@@ -20,7 +20,6 @@ import InfoIcon from "@mui/icons-material/Info";
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import WorkIcon from "@mui/icons-material/Work";
 import BookIcon from "@mui/icons-material/Book";
-import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import { AdminAbout } from "../AdminPanelComponent/AdminAbout";
 import { AdminResume } from "../AdminPanelComponent/AdminResume";

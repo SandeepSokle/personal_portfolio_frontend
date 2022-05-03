@@ -20,9 +20,9 @@ export const AdminProjects = (props) => {
   const [data, setData] = React.useState({});
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    dispatch(getDataActionCreater());
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(getDataActionCreater());
+  // }, [dispatch]);
 
   const newData = useSelector((state) => {
     return state?.data?.projects;

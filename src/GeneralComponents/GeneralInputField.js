@@ -24,7 +24,6 @@ export const GeneralInputField = (props) => {
   // console.log(storeValue, props.data[storeValue], value, data);
 
   const handleChange = (event) => {
-    
     setValue(event.target.value);
     if (setConflict) {
       // console.log(conflict);
@@ -47,7 +46,7 @@ export const GeneralInputField = (props) => {
     let newData = data;
     newData[`${storeValue}`] = data[storeValue];
     setData(newData);
-  }, [data]);
+  }, [data, conflict, setConflict, setData, storeValue]);
 
   // console.log("In Input Field : ", data[storeValue], value);
 
@@ -101,7 +100,7 @@ export const GeneralInputField = (props) => {
       props.setData(newData);
       setValue(props.value);
     }
-  }, [props]);
+  }, [props, storeValue]);
 
   return (
     <div
