@@ -1,4 +1,4 @@
-const getDataReducer = (state = {}, action) => {
+export const getDataReducer = (state = {}, action) => {
   // console.log("In getReducer : ", action)
   switch (action.type) {
     case "GET_DATA":
@@ -8,6 +8,4 @@ const getDataReducer = (state = {}, action) => {
   }
 };
 
-module.exports = {
-  getDataReducer,
-};
+// module.exports = getDataReducer;
