@@ -1,5 +1,4 @@
-import { WrapText } from "@mui/icons-material";
-import { Box, margin } from "@mui/system";
+import { Box } from "@mui/system";
 import ProjectCard from "../HelperComponents/ProjectCard";
 
 export const Projects = () => {

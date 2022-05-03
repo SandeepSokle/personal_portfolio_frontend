@@ -1,6 +1,6 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+// import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 export const GeneralDatePicker = (props) => {
@@ -10,14 +10,8 @@ export const GeneralDatePicker = (props) => {
     label,
     place,
     dataKey,
-    onlyNumber,
-    paddingRight,
-    submitted,
-    multiline,
-    dataValue,
     data,
     setData,
-    uploadFile,
   } = props;
   const PlaceHolder = label;
   const storeValue = dataKey;

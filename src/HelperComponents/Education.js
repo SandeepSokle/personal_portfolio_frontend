@@ -1,7 +1,3 @@
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Box } from "@mui/material";
 export const Education = () => {
   const data = [

@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import { useState } from "react";
 import ConfigInput from "./ConfigInput";
 export const AdminResumeEducationData = (props) => {
   const { setSelectedItem, data, selectedVal,setEditFile,setEditLink,setIsEdit } = props;

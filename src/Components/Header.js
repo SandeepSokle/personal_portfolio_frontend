@@ -9,7 +9,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import { GeneralButton } from "../GeneralComponents/GeneralButton";
 export default function Header() {
   const title = "Software Engineer";
-  const des = `I am a javaScript Programmer “Adjunct professor of creative writing at Columbia University, published author, former lifestyle editor at Esquire, the New York Times. I can teach you how to find, shape, pitch, and publish stories for web & print. `;
+  // const des = `I am a javaScript Programmer “Adjunct professor of creative writing at Columbia University, published author, former lifestyle editor at Esquire, the New York Times. I can teach you how to find, shape, pitch, and publish stories for web & print. `;
 
   // console.log(GitHubIcon);
 

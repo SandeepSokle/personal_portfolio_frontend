@@ -12,16 +12,14 @@ export const GeneralInputField = (props) => {
     paddingRight,
     submitted,
     multiline,
-    dataValue,
     data,
     setData,
-    selectedItem,
   } = props;
   const PlaceHolder = label;
   const storeValue = dataKey;
 
   const [value, setValue] = React.useState(data[storeValue] || "");
-  const [localConflict, setLocalConflict] = React.useState(false);
+  // const [localConflict, setLocalConflict] = React.useState(false);
   // console.log(data[storeValue]);
   // console.log(storeValue, props.data[storeValue], value, data);
 
@@ -61,7 +59,7 @@ export const GeneralInputField = (props) => {
     if (window.event) {
       var charCode = window.event.keyCode;
     } else if (e) {
-      var charCode = e.which;
+      charCode = e.which;
     } else {
       return true;
     }
@@ -79,7 +77,7 @@ export const GeneralInputField = (props) => {
     if (window.event) {
       var charCode = window.event.keyCode;
     } else if (e) {
-      var charCode = e.which;
+      charCode = e.which;
     } else {
       return true;
     }
@@ -103,7 +101,7 @@ export const GeneralInputField = (props) => {
       props.setData(newData);
       setValue(props.value);
     }
-  }, []);
+  }, [props]);
 
   return (
     <div

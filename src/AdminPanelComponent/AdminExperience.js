@@ -1,8 +1,7 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
-import { Grid, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 import { AdminResumeEducationData } from "../AdminPanelComponentHelper/AdminResumeEducationData";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
@@ -11,7 +10,7 @@ import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
 
 export const AdminExperience = (props) => {
   const { selectedTab } = props;
-  const [selectedVal, setSelectedVal] = React.useState("Experince");
+  const selectedVal = "Experince";
   const [selectedItem, setSelectedItem] = React.useState({});
   const [isEdit, setIsEdit] = React.useState(false);
   const [data, setData] = React.useState({});
@@ -41,43 +40,43 @@ export const AdminExperience = (props) => {
     setIsEdit(false);
   };
 
-  const dataList = [
-    {
-      name: "Movie App",
-      experience: 2,
-      des: "show movie list we can like dislike",
-      response: "working as a developer",
-      // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-    },
-    {
-      name: "Movie App",
-      experience: 2,
-      des: "show movie list we can like dislike",
-      response: "working as a developer",
-      // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-    },
-    {
-      name: "Movie App",
-      experience: 2,
-      des: "show movie list we can like dislike",
-      response: "working as a developer",
-      // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-    },
-    {
-      name: "Movie App",
-      experience: 2,
-      des: "show movie list we can like dislike",
-      response: "working as a developer",
-      // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-    },
-    {
-      name: "Movie App",
-      experience: 2,
-      des: "show movie list we can like dislike",
-      response: "working as a developer",
-      // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-    },
-  ];
+  // const dataList = [
+  //   {
+  //     name: "Movie App",
+  //     experience: 2,
+  //     des: "show movie list we can like dislike",
+  //     response: "working as a developer",
+  //     // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     experience: 2,
+  //     des: "show movie list we can like dislike",
+  //     response: "working as a developer",
+  //     // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     experience: 2,
+  //     des: "show movie list we can like dislike",
+  //     response: "working as a developer",
+  //     // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     experience: 2,
+  //     des: "show movie list we can like dislike",
+  //     response: "working as a developer",
+  //     // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     experience: 2,
+  //     des: "show movie list we can like dislike",
+  //     response: "working as a developer",
+  //     // link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //   },
+  // ];
 
   return (
     <Grid

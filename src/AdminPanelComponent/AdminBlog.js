@@ -1,8 +1,7 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
-import { Grid, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { AdminResumeEducationData } from "../AdminPanelComponentHelper/AdminResumeEducationData";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +11,7 @@ import { handleSave } from "../HandleFunctions/handleFunctions";
 
 export const AdminBlog = (props) => {
   const { selectedTab } = props;
-  const [selectedVal, setSelectedVal] = React.useState("Blog");
+  const selectedVal = "Blog";
   const [selectedItem, setSelectedItem] = React.useState({});
   const [editLink, setEditLink] = React.useState(false);
   const [isEdit, setIsEdit] = React.useState(false);
@@ -44,33 +43,33 @@ export const AdminBlog = (props) => {
     setIsEdit(false);
   };
 
-  const dataList = [
-    {
-      name: "leetCode question 12",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-    {
-      name: "Movie App",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-    {
-      name: "Movie App",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-    {
-      name: "Movie App",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-    {
-      name: "Movie App",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-  ];
+  // const dataList = [
+  //   {
+  //     name: "leetCode question 12",
+  //     link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //     des: "show movie list we can like dislike",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //     des: "show movie list we can like dislike",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //     des: "show movie list we can like dislike",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //     des: "show movie list we can like dislike",
+  //   },
+  //   {
+  //     name: "Movie App",
+  //     link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //     des: "show movie list we can like dislike",
+  //   },
+  // ];
 
   return (
     <Grid
@@ -153,6 +152,7 @@ export const AdminBlog = (props) => {
                 <a
                   style={{ marginRight: "12px" }}
                   target="_blank"
+                  rel="noreferrer"
                   href={`${selectedItem.link}`}
                 >
                   Blog Link

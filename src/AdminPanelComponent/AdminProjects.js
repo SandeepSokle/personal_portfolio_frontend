@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import { Grid, TextField } from "@mui/material";
-import ConfigInput from "../AdminPanelComponentHelper/ConfigInput";
 import { AdminResumeEducationData } from "../AdminPanelComponentHelper/AdminResumeEducationData";
 import EditIcon from "@mui/icons-material/Edit";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
@@ -82,56 +81,16 @@ export const AdminProjects = (props) => {
     </Button>,
   ];
 
-  const completeList = [
-    {
-      data: {
-        name: "Movie App",
-        img: "sandeep.jpg",
-        link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-        des: "show movie list we can like dislike",
-      },
-    },
-    {
-      name: "Movie App",
-      img: "sandeep.jpg",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-    {
-      name: "Movie App",
-      img: "sandeep.jpg",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-    {
-      name: "Movie App",
-      img: "sandeep.jpg",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-    {
-      name: "Movie App",
-      img: "sandeep.jpg",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-  ];
-  const unCompleteList = [
-    {
-      data: {
-        name: "Movie App",
-        img: "sandeep.jpg",
-        link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-        des: "show movie list we can like dislike",
-      },
-    },
-    {
-      name: "Movie App",
-      img: "sandeep.jpg",
-      link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
-      des: "show movie list we can like dislike",
-    },
-  ];
+  // const completeList = [
+  //   {
+  //     data: {
+  //       name: "Movie App",
+  //       img: "sandeep.jpg",
+  //       link: "https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html",
+  //       des: "show movie list we can like dislike",
+  //     },
+  //   },]
+
 
   return (
     <Grid
@@ -249,6 +208,7 @@ export const AdminProjects = (props) => {
                 <a
                   style={{ marginRight: "12px" }}
                   target="_blank"
+                  rel="noreferrer"
                   href="https://primeprogrammingworld.blogspot.com/2021/06/leetcode-max-area-of-island-solution.html"
                 >
                   Project Image
@@ -282,6 +242,7 @@ export const AdminProjects = (props) => {
                 <a
                   style={{ marginRight: "12px" }}
                   target="_blank"
+                  rel="noreferrer"
                   href={`${selectedItem.link}`}
                 >
                   Project Link

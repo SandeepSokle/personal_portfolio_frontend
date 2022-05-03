@@ -4,11 +4,9 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import { Grid, TextField } from "@mui/material";
 import { AdminResumeEducationData } from "../AdminPanelComponentHelper/AdminResumeEducationData";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
-import { GeneralDatePicker } from "../GeneralComponents/GeneralDatePicker";
 import { handleSave } from "../HandleFunctions/handleFunctions";
 // import { DatePicker } from "@mui/x-date-pickers";
 // import { GeneralDatePicker } from "../GeneralComponents/GeneralDatePicker";
@@ -18,7 +16,6 @@ export const AdminResume = (props) => {
   const [selectedVal, setSelectedVal] = React.useState("Education");
   const [selectedItem, setSelectedItem] = React.useState({});
   const [isEdit, setIsEdit] = React.useState(false);
-  const [allData, setAllData] = React.useState({});
   const [data, setData] = React.useState({});
   const [startDate, setStartDate] = React.useState("");
   const [endDate, setEndDate] = React.useState("");
@@ -31,7 +28,7 @@ export const AdminResume = (props) => {
       startDate,
       endDate,
     });
-  }, [startDate, endDate]);
+  }, [startDate, endDate,data]);
 
   const newData = useSelector((state) => {
     return state?.data?.resume;
@@ -53,136 +50,136 @@ export const AdminResume = (props) => {
   //   setAllData(newData);
   // }, [newData]);
 
-  const dataEducation = [
-    {
-      name: "crsu",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      courseName: "MCA",
-      CGPA: "8.2",
-    },
-    {
-      name: "crsu",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      courseName: "MCA",
-      CGPA: "8.2",
-    },
-    {
-      name: "crsu",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      courseName: "MCA",
-      CGPA: "8.2",
-    },
-    {
-      name: "crsu",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      courseName: "MCA",
-      CGPA: "8.2",
-    },
-  ];
+  // const dataEducation = [
+  //   {
+  //     name: "crsu",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     courseName: "MCA",
+  //     CGPA: "8.2",
+  //   },
+  //   {
+  //     name: "crsu",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     courseName: "MCA",
+  //     CGPA: "8.2",
+  //   },
+  //   {
+  //     name: "crsu",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     courseName: "MCA",
+  //     CGPA: "8.2",
+  //   },
+  //   {
+  //     name: "crsu",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     courseName: "MCA",
+  //     CGPA: "8.2",
+  //   },
+  // ];
 
-  const dataWork = [
-    {
-      name: "nirmitee",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      jobTitle: "Software Engineer",
-      responsibility: "developer",
-    },
-    {
-      name: "Elintex tecknologies",
-      location: "Pune",
-      startDate: Date(),
-      endDate: Date(),
-      jobTitle: "Software Engineer",
-      responsibility: "developer in web app",
-    },
-    {
-      name: "nirmitee",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      jobTitle: "Software Engineer",
-      responsibility: "developer",
-    },
-    {
-      name: "nirmitee",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      jobTitle: "Software Engineer",
-      responsibility: "developer",
-    },
-    {
-      name: "nirmitee",
-      location: "Jind",
-      startDate: Date(),
-      endDate: Date(),
-      jobTitle: "Software Engineer",
-      responsibility: "developer",
-    },
-  ];
+  // const dataWork = [
+  //   {
+  //     name: "nirmitee",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     jobTitle: "Software Engineer",
+  //     responsibility: "developer",
+  //   },
+  //   {
+  //     name: "Elintex tecknologies",
+  //     location: "Pune",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     jobTitle: "Software Engineer",
+  //     responsibility: "developer in web app",
+  //   },
+  //   {
+  //     name: "nirmitee",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     jobTitle: "Software Engineer",
+  //     responsibility: "developer",
+  //   },
+  //   {
+  //     name: "nirmitee",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     jobTitle: "Software Engineer",
+  //     responsibility: "developer",
+  //   },
+  //   {
+  //     name: "nirmitee",
+  //     location: "Jind",
+  //     startDate: Date(),
+  //     endDate: Date(),
+  //     jobTitle: "Software Engineer",
+  //     responsibility: "developer",
+  //   },
+  // ];
 
-  const dataAchive = [
-    {
-      name: "Haryan Hacks",
-      location: "Jind",
-      date: Date(),
-      des: "HAryan Hackes is a compitition that is based on developer",
-    },
-    {
-      name: "Haryan Hacks",
-      location: "Jind",
-      date: Date(),
-      des: "HAryan Hackes is a compitition that is based on developer",
-    },
-    {
-      name: "Haryan Hacks",
-      location: "Jind",
-      date: Date(),
-      des: "HAryan Hackes is a compitition that is based on developer",
-    },
-    {
-      name: "Haryan Hacks",
-      location: "Jind",
-      date: Date(),
-      des: "HAryan Hackes is a compitition that is based on developer",
-    },
-  ];
+  // const dataAchive = [
+  //   {
+  //     name: "Haryan Hacks",
+  //     location: "Jind",
+  //     date: Date(),
+  //     des: "HAryan Hackes is a compitition that is based on developer",
+  //   },
+  //   {
+  //     name: "Haryan Hacks",
+  //     location: "Jind",
+  //     date: Date(),
+  //     des: "HAryan Hackes is a compitition that is based on developer",
+  //   },
+  //   {
+  //     name: "Haryan Hacks",
+  //     location: "Jind",
+  //     date: Date(),
+  //     des: "HAryan Hackes is a compitition that is based on developer",
+  //   },
+  //   {
+  //     name: "Haryan Hacks",
+  //     location: "Jind",
+  //     date: Date(),
+  //     des: "HAryan Hackes is a compitition that is based on developer",
+  //   },
+  // ];
 
-  const dataSkill = [
-    {
-      name: "DSA",
-      rate: 90,
-    },
-    {
-      name: "Development",
-      rate: 80,
-    },
-    {
-      name: "JS",
-      rate: 78,
-    },
-    {
-      name: "Java",
-      rate: 89,
-    },
-  ];
+  // const dataSkill = [
+  //   {
+  //     name: "DSA",
+  //     rate: 90,
+  //   },
+  //   {
+  //     name: "Development",
+  //     rate: 80,
+  //   },
+  //   {
+  //     name: "JS",
+  //     rate: 78,
+  //   },
+  //   {
+  //     name: "Java",
+  //     rate: 89,
+  //   },
+  // ];
 
-  function convert(str) {
-    var date = new Date(str),
-      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-      day = ("0" + date.getDate()).slice(-2);
-    return [date.getFullYear(), mnth, day].join("-");
-  }
+  // function convert(str) {
+  //   var date = new Date(str),
+  //     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+  //     day = ("0" + date.getDate()).slice(-2);
+  //   return [date.getFullYear(), mnth, day].join("-");
+  // }
 
   // console.log(selectedItem, data);
 

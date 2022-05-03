@@ -9,7 +9,7 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
+// import Container from "@mui/material/Container";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -75,32 +75,32 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const itemList = [
-  {
-    icon: <InfoIcon />,
-    label: "About",
-  },
-  {
-    icon: <DocumentScannerIcon />,
-    label: "Resume",
-  },
-  {
-    icon: <ImportContactsIcon />,
-    label: "Projects",
-  },
-  {
-    icon: <WorkIcon />,
-    label: "Experience",
-  },
-  {
-    icon: <BookIcon />,
-    label: "Blog",
-  },
-  {
-    icon: <RecentActorsIcon />,
-    label: "Contacts",
-  },
-];
+// const itemList = [
+//   {
+//     icon: <InfoIcon />,
+//     label: "About",
+//   },
+//   {
+//     icon: <DocumentScannerIcon />,
+//     label: "Resume",
+//   },
+//   {
+//     icon: <ImportContactsIcon />,
+//     label: "Projects",
+//   },
+//   {
+//     icon: <WorkIcon />,
+//     label: "Experience",
+//   },
+//   {
+//     icon: <BookIcon />,
+//     label: "Blog",
+//   },
+//   {
+//     icon: <RecentActorsIcon />,
+//     label: "Contacts",
+//   },
+// ];
 
 const mdTheme = createTheme();
 

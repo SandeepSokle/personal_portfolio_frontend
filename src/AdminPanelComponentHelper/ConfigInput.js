@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
+import React, {  useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
@@ -14,7 +13,6 @@ const ConfigInput = (props) => {
     i,
     id,
     element,
-    setConflict,
     selectedVal,
     setEditFile,
     setEditLink,
@@ -22,7 +20,7 @@ const ConfigInput = (props) => {
   } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   // console.log(configType);
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
   const dispatch = useDispatch();
   const feature = {
     fontSize: "30px",

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 
 export const handleSave = async (props) => {
@@ -13,7 +12,7 @@ export const handleSave = async (props) => {
       module: selectedTab.toLowerCase(),
       type: selectedVal.toLowerCase(),
     });
-    // console.log(response.data);
+    console.log(response.data);
 
     dispatch(getDataActionCreater());
   } catch (err) {
@@ -26,8 +25,8 @@ export const handleDelete = async (props) => {
   //   const dispatch = useDispatch();
   console.log("Delete Hit!!", id);
   try {
-    const response = await axios.delete("/portfolio/delete/" + `${id}`);
-    // console.log(response.data);
+    const response = await axios.delete(`/portfolio/delete/${id}`);
+    console.log(response.data);
 
     dispatch(getDataActionCreater());
   } catch (err) {
