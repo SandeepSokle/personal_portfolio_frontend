@@ -19,8 +19,21 @@ export const AdminResume = (props) => {
   const [data, setData] = React.useState({});
   const [startDate, setStartDate] = React.useState("");
   const [endDate, setEndDate] = React.useState("");
-  const [selectedId,setSelectedID] = React.useState("")
+  const [isUpdateHit, setISUpdateHit] = React.useState(false);
+  const [selectedId, setSelectedID] = React.useState("");
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    // console.log(startDate, endDate);
+    if (isUpdateHit) {
+      setData({
+        ...data,
+        startDate,
+        endDate,
+      });
+    }
+    setISUpdateHit(false);
+  }, [startDate, endDate]);
 
   React.useEffect(() => {
     // console.log(startDate, endDate);
@@ -44,6 +57,7 @@ export const AdminResume = (props) => {
     setData(selectedItem);
     setStartDate(selectedItem.startDate);
     setEndDate(selectedItem.endDate);
+    setISUpdateHit(true);
   }, [selectedItem]);
 
   // React.useEffect(() => {
@@ -258,6 +272,7 @@ export const AdminResume = (props) => {
     setIsEdit(false);
     setStartDate("");
     setEndDate("");
+    setISUpdateHit(true);
   };
 
   const handleSwitch = (val) => {
@@ -354,6 +369,7 @@ export const AdminResume = (props) => {
                   }}
                   onBlur={(e) => {
                     e.target.type = "text";
+                    setISUpdateHit(true);
                     setStartDate(e.target.value);
                   }}
                 />
@@ -386,6 +402,7 @@ export const AdminResume = (props) => {
                   }}
                   onBlur={(e) => {
                     e.target.type = "text";
+                    setISUpdateHit(true);
                     setEndDate(e.target.value);
                   }}
                 />
@@ -441,8 +458,8 @@ export const AdminResume = (props) => {
                 selectedVal={selectedVal}
                 data={newData?.works || []}
                 setSelectedItem={setSelectedItem}
-            setSelectedID={setSelectedID}
-            setIsEdit={setIsEdit}
+                setSelectedID={setSelectedID}
+                setIsEdit={setIsEdit}
               />
 
               <div
@@ -561,6 +578,7 @@ export const AdminResume = (props) => {
                     onBlur={(e) => {
                       e.target.type = "text";
                       // console.log("On blur", e.target.value, e.target.value);
+                      setISUpdateHit(true);
                       setEndDate(e.target.value);
                     }}
                   />
@@ -610,8 +628,8 @@ export const AdminResume = (props) => {
                 selectedVal={selectedVal}
                 data={newData?.achievements || []}
                 setSelectedItem={setSelectedItem}
-            setSelectedID={setSelectedID}
-            setIsEdit={setIsEdit}
+                setSelectedID={setSelectedID}
+                setIsEdit={setIsEdit}
               />
               <div
                 style={{
@@ -694,8 +712,8 @@ export const AdminResume = (props) => {
                 selectedVal={selectedVal}
                 data={newData?.skills || []}
                 setSelectedItem={setSelectedItem}
-            setSelectedID={setSelectedID}
-            setIsEdit={setIsEdit}
+                setSelectedID={setSelectedID}
+                setIsEdit={setIsEdit}
               />
               <div
                 style={{
@@ -810,6 +828,7 @@ export const AdminResume = (props) => {
               setIsEdit(false);
               setStartDate("");
               setEndDate("");
+              setISUpdateHit(true);
             }}
           >
             UnSelect Data
