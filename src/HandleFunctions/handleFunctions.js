@@ -33,3 +33,17 @@ export const handleDelete = async (props) => {
     console.log(err);
   }
 };
+
+export const handleUpdate = async (props) => {
+  const { id, data, dispatch } = props;
+  //   const dispatch = useDispatch();
+  console.log("Update Hit!!", id);
+  try {
+    const response = await axios.put(`/portfolio/update/${id}`, data);
+    console.log(response.data);
+
+    dispatch(getDataActionCreater());
+  } catch (err) {
+    console.log(err);
+  }
+};

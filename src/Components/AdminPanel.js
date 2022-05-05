@@ -27,6 +27,8 @@ import { AdminProjects } from "../AdminPanelComponent/AdminProjects";
 import { AdminExperience } from "../AdminPanelComponent/AdminExperience";
 import { AdminBlog } from "../AdminPanelComponent/AdminBlog";
 import { AdminContacts } from "../AdminPanelComponent/AdminContacts";
+import { getDataActionCreater } from "../Redux/getDataActionCreater";
+import { useDispatch } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -110,22 +112,28 @@ export const AdminPanel = () => {
     setOpen(!open);
   };
 
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    console.log("In effect!!")
+    dispatch(getDataActionCreater());
+  }, [dispatch]);
+
   const renderSwitch = (val) => {
     switch (val) {
       case "About":
-        return <AdminAbout selectedTab = {val} />;
+        return <AdminAbout selectedTab={val} />;
       case "Resume":
-        return <AdminResume selectedTab = {val}/>;
+        return <AdminResume selectedTab={val} />;
       case "Projects":
-        return <AdminProjects selectedTab = {val}/>;
+        return <AdminProjects selectedTab={val} />;
       case "Experience":
-        return <AdminExperience selectedTab = {val}/>;
+        return <AdminExperience selectedTab={val} />;
       case "Blog":
-        return <AdminBlog selectedTab = {val}/>;
+        return <AdminBlog selectedTab={val} />;
       case "Contacts":
-        return <AdminContacts selectedTab = {val}/>;
+        return <AdminContacts selectedTab={val} />;
       default:
-        return <AdminAbout selectedTab = {val}/>;
+        return <AdminAbout selectedTab={val} />;
     }
   };
 
@@ -270,9 +278,7 @@ export const AdminPanel = () => {
             padding: "0px",
           }}
         >
-          <Box  sx={{ mt: 11, mb: 4, p: 0 }}>
-            {renderSwitch(selectedTab)}
-          </Box>
+          <Box sx={{ mt: 11, mb: 4, p: 0 }}>{renderSwitch(selectedTab)}</Box>
         </Box>
       </Box>
     </ThemeProvider>

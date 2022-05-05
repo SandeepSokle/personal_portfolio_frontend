@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 const ConfigInput = (props) => {
   const {
     setSelectedItem,
+    setSelectedID,
     i,
     id,
     element,
@@ -55,6 +56,7 @@ const ConfigInput = (props) => {
 
   const handleEdit = () => {
     if (setSelectedItem) setSelectedItem(element);
+    if(setSelectedID) setSelectedID(id)
     if (setEditFile) setEditFile(false);
     if (setEditLink) setEditLink(false);
     if(setIsEdit) setIsEdit(true)

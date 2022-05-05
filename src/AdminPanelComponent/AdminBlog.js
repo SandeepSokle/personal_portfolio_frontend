@@ -7,12 +7,13 @@ import { AdminResumeEducationData } from "../AdminPanelComponentHelper/AdminResu
 import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
-import { handleSave } from "../HandleFunctions/handleFunctions";
+import { handleSave, handleUpdate } from "../HandleFunctions/handleFunctions";
 
 export const AdminBlog = (props) => {
   const { selectedTab } = props;
   const selectedVal = "Blog";
   const [selectedItem, setSelectedItem] = React.useState({});
+  const [selectedId,setSelectedID] = React.useState("")
   const [editLink, setEditLink] = React.useState(false);
   const [isEdit, setIsEdit] = React.useState(false);
   const [data, setData] = React.useState({});
@@ -31,10 +32,10 @@ export const AdminBlog = (props) => {
   const handleSubmit = async (name) => {
     // console.log("Selected Data", name);
     if (isEdit) {
-      console.info("Update Hit!!", selectedItem, data);
-      // handleSave({ selectedTab, selectedVal, data, dispatch });
+      console.info("Update Hit!!", selectedId);
+      handleUpdate({ id: selectedId, data, dispatch });
       dispatch(getDataActionCreater());
-    } else {
+    }else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
       handleSave({ selectedTab, selectedVal, data, dispatch });
     }
@@ -105,7 +106,8 @@ export const AdminBlog = (props) => {
           setEditLink={setEditLink}
           data={newData?.blog}
           setSelectedItem={setSelectedItem}
-        />
+          setSelectedID={setSelectedID}
+          />
 
         <div
           style={{

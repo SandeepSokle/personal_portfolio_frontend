@@ -7,7 +7,7 @@ import { AdminResumeEducationData } from "../AdminPanelComponentHelper/AdminResu
 import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
-import { handleSave } from "../HandleFunctions/handleFunctions";
+import { handleSave, handleUpdate } from "../HandleFunctions/handleFunctions";
 // import { DatePicker } from "@mui/x-date-pickers";
 // import { GeneralDatePicker } from "../GeneralComponents/GeneralDatePicker";
 
@@ -19,6 +19,7 @@ export const AdminResume = (props) => {
   const [data, setData] = React.useState({});
   const [startDate, setStartDate] = React.useState("");
   const [endDate, setEndDate] = React.useState("");
+  const [selectedId,setSelectedID] = React.useState("")
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -28,7 +29,7 @@ export const AdminResume = (props) => {
       startDate,
       endDate,
     });
-  }, [startDate, endDate,data]);
+  }, [startDate, endDate]);
 
   const newData = useSelector((state) => {
     return state?.data?.resume;
@@ -245,8 +246,8 @@ export const AdminResume = (props) => {
   const handleSubmit = async (name) => {
     // console.log("Selected Data", name);
     if (isEdit) {
-      console.info("Update Hit!!", selectedItem, data);
-      // handleSave({ selectedTab, selectedVal, data, dispatch });
+      console.info("Update Hit!!", selectedId);
+      handleUpdate({ id: selectedId, data, dispatch });
       dispatch(getDataActionCreater());
     } else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
@@ -269,6 +270,7 @@ export const AdminResume = (props) => {
               selectedVal={selectedVal}
               data={newData?.education || []}
               setSelectedItem={setSelectedItem}
+              setSelectedID={setSelectedID}
               setIsEdit={setIsEdit}
             />
             <div
@@ -439,7 +441,8 @@ export const AdminResume = (props) => {
                 selectedVal={selectedVal}
                 data={newData?.works || []}
                 setSelectedItem={setSelectedItem}
-                setIsEdit={setIsEdit}
+            setSelectedID={setSelectedID}
+            setIsEdit={setIsEdit}
               />
 
               <div
@@ -607,7 +610,8 @@ export const AdminResume = (props) => {
                 selectedVal={selectedVal}
                 data={newData?.achievements || []}
                 setSelectedItem={setSelectedItem}
-                setIsEdit={setIsEdit}
+            setSelectedID={setSelectedID}
+            setIsEdit={setIsEdit}
               />
               <div
                 style={{
@@ -690,7 +694,8 @@ export const AdminResume = (props) => {
                 selectedVal={selectedVal}
                 data={newData?.skills || []}
                 setSelectedItem={setSelectedItem}
-                setIsEdit={setIsEdit}
+            setSelectedID={setSelectedID}
+            setIsEdit={setIsEdit}
               />
               <div
                 style={{

@@ -7,13 +7,14 @@ import { AdminResumeEducationData } from "../AdminPanelComponentHelper/AdminResu
 import EditIcon from "@mui/icons-material/Edit";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { useDispatch, useSelector } from "react-redux";
-import { handleSave } from "../HandleFunctions/handleFunctions";
+import { handleSave, handleUpdate } from "../HandleFunctions/handleFunctions";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
 
 export const AdminProjects = (props) => {
   const { selectedTab } = props;
   const [selectedVal, setSelectedVal] = React.useState("Complete");
   const [selectedItem, setSelectedItem] = React.useState({});
+  const [selectedId, setSelectedID] = React.useState("");
   const [editFile, setEditFile] = React.useState(false);
   const [editLink, setEditLink] = React.useState(false);
   const [isEdit, setIsEdit] = React.useState(false);
@@ -36,8 +37,8 @@ export const AdminProjects = (props) => {
   const handleSubmit = async (name) => {
     // console.log("Selected Data", name);
     if (isEdit) {
-      console.info("Update Hit!!", selectedItem, data);
-      // handleSave({ selectedTab, selectedVal, data, dispatch });
+      console.info("Update Hit!!", selectedId);
+      handleUpdate({ id: selectedId, data, dispatch });
       dispatch(getDataActionCreater());
     } else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
@@ -90,7 +91,6 @@ export const AdminProjects = (props) => {
   //       des: "show movie list we can like dislike",
   //     },
   //   },]
-
 
   return (
     <Grid
@@ -153,6 +153,7 @@ export const AdminProjects = (props) => {
             setEditLink={setEditLink}
             data={newData?.complete || []}
             setSelectedItem={setSelectedItem}
+            setSelectedID={setSelectedID}
             setIsEdit={setIsEdit}
           />
         ) : (
@@ -162,6 +163,7 @@ export const AdminProjects = (props) => {
             setEditLink={setEditLink}
             data={newData["in progress"] || []}
             setSelectedItem={setSelectedItem}
+            setSelectedID={setSelectedID}
             setIsEdit={setIsEdit}
           />
         )}
@@ -286,16 +288,16 @@ export const AdminProjects = (props) => {
               }}
               value={selectedItem.des ? `${selectedItem.des}` : ""}
             /> */}
-             <GeneralInputField
-                data={data}
-                setData={setData}
-                // disabled={selectedData?.id ? true : false}
-                multiline
-                width="48%"
-                place={"Project Description"}
-                dataKey={"des"}
-                // value = {data.location}
-              />
+            <GeneralInputField
+              data={data}
+              setData={setData}
+              // disabled={selectedData?.id ? true : false}
+              multiline
+              width="48%"
+              place={"Project Description"}
+              dataKey={"des"}
+              // value = {data.location}
+            />
           </Box>
           <Box
             fullWidth
