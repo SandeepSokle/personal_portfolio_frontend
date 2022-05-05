@@ -33,7 +33,7 @@ export const AdminResume = (props) => {
       });
     }
     setISUpdateHit(false);
-  }, [startDate, endDate,data]);
+  }, [startDate, endDate,data,isUpdateHit]);
 
  
 
