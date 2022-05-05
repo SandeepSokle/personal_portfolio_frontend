@@ -109,7 +109,7 @@ export const AdminExperience = (props) => {
 
         <AdminResumeEducationData
           selectedVal={selectedVal}
-          data={newData.experince}
+          data={newData?.experince || []}
           setSelectedItem={setSelectedItem}
               setSelectedID={setSelectedID}
               setIsEdit={setIsEdit}
