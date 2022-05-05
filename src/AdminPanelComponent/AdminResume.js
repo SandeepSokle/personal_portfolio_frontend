@@ -33,16 +33,9 @@ export const AdminResume = (props) => {
       });
     }
     setISUpdateHit(false);
-  }, [startDate, endDate]);
+  }, [startDate, endDate,data]);
 
-  React.useEffect(() => {
-    // console.log(startDate, endDate);
-    setData({
-      ...data,
-      startDate,
-      endDate,
-    });
-  }, [startDate, endDate]);
+ 
 
   const newData = useSelector((state) => {
     return state?.data?.resume;
