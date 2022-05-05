@@ -4,7 +4,9 @@ const { getDataAction } = actions;
 
 const getData = async () => {
   try {
-    const response = await axios.get("/portfolio/get");
+    const add = process.env.PORTFOLIO_LOCAL_API;
+    console.log(add)
+    const response = await axios.get("http://localhost:8080/portfolio/get");
     // console.log("Data : ", response.data);
 
     let data = response.data.reduce((ans, ele) => {
