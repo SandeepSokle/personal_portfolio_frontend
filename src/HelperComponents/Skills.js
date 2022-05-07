@@ -1,3 +1,4 @@
+// import React   from 'react';
 import Progressbar from "./Progressbar";
 
 export const Skills = () => {
