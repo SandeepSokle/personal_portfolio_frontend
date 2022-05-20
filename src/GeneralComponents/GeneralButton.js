@@ -1,4 +1,3 @@
-// import React   from 'react';
 import { Button } from "@mui/material";
 import "./GeneralButton.css"
 export const GeneralButton = (props) => {
