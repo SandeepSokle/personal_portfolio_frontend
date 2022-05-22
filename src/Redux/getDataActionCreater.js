@@ -6,7 +6,7 @@ const getData = async () => {
   try {
     const add = process.env.PORTFOLIO_LOCAL_API;
     console.log(add)
-    const response = await axios.get("http://localhost:8080/portfolio/get");
+    const response = await axios.get("https://dynamic-portfolio-api.herokuapp.com/portfolio/get");
     // console.log("Data : ", response.data);
 
     let data = response.data.reduce((ans, ele) => {
