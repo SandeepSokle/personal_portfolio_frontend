@@ -6,7 +6,7 @@ export const handleSave = async (props) => {
   //   const dispatch = useDispatch();
   console.log("Save Hit!!");
   try {
-    const response = await axios.post("http://localhost:8080/portfolio/save", {
+    const response = await axios.post("https://dynamic-portfolio-api.herokuapp.com/portfolio/save", {
       data: data,
       id: "1234587678",
       module: selectedTab.toLowerCase(),
@@ -25,7 +25,7 @@ export const handleDelete = async (props) => {
   //   const dispatch = useDispatch();
   console.log("Delete Hit!!", id);
   try {
-    const response = await axios.delete(`http://localhost:8080/portfolio/delete/${id}`);
+    const response = await axios.delete(`https://dynamic-portfolio-api.herokuapp.com/portfolio/delete/${id}`);
     console.log(response.data);
 
     dispatch(getDataActionCreater());
@@ -39,7 +39,7 @@ export const handleUpdate = async (props) => {
   //   const dispatch = useDispatch();
   console.log("Update Hit!!", id);
   try {
-    const response = await axios.put(`http://localhost:8080/portfolio/update/${id}`, data);
+    const response = await axios.put(`https://dynamic-portfolio-api.herokuapp.com/portfolio/update/${id}`, data);
     console.log(response.data);
 
     dispatch(getDataActionCreater());
