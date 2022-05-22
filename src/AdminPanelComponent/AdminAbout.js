@@ -3,15 +3,56 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
+import { useDispatch, useSelector } from "react-redux";
+import { handleSave, handleUpdate } from "../HandleFunctions/handleFunctions";
+import { getDataActionCreater } from "../Redux/getDataActionCreater";
+import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
 
-export const AdminAbout = () => {
+export const AdminAbout = (props) => {
+  const { selectedTab } = props;
   const [selectedVal, setSelectedVal] = React.useState("About Me");
+  const [selectedId, setSelectedID] = React.useState("");
+  const [data, setData] = React.useState([]);
+  const dispatch = useDispatch();
+
+  const newData = useSelector((state) => {
+    return state?.data?.about;
+  });
+  const resetData = () => {
+    if (newData) setData(newData[`${selectedVal.toLowerCase()}`][0]?.data);
+    return;
+  };
+
+  React.useEffect(() => {
+    if (newData) {
+      // console.log(newData);
+      setData(newData[`${selectedVal.toLowerCase()}`][0].data);
+      setSelectedID(newData[`${selectedVal.toLowerCase()}`][0].id);
+    }
+  }, [newData,selectedVal]);
+  // console.log("data!!", selectedId);
+
+  const handleSubmit = async (name) => {
+    // console.log("Selected Data", name);
+    // if (isEdit) {
+    console.info("Update Hit!!", selectedId);
+    handleUpdate({ id: selectedId, data, dispatch });
+    // } else {
+    // console.log("Save Hit!!", selectedTab, selectedVal, data);
+    // handleSave({ selectedTab, selectedVal, data, dispatch });
+    dispatch(getDataActionCreater());
+    // }
+    // setSelectedItem({});
+    // setData({});
+    // setIsEdit(false);
+  };
 
   const buttons = [
     <Button
       key="aboutMe"
       onClick={() => {
         setSelectedVal("About Me");
+        resetData();
       }}
       sx={{
         textTransform: "capitalize",
@@ -23,6 +64,7 @@ export const AdminAbout = () => {
       key="contact"
       onClick={() => {
         setSelectedVal("Contact Details");
+        resetData();
       }}
       sx={{
         textTransform: "capitalize",
@@ -76,7 +118,27 @@ export const AdminAbout = () => {
               padding: "1rem",
             }}
           >
-            <TextField label="About Yourself" fullWidth multiline rows={4} />
+            {/* <TextField
+              label="About Yourself"
+              fullWidth
+              multiline
+              rows={4}
+              value={data[0]?.data?.name}
+              onChange={(ele) => {
+                setData({ ...data, name: ele.target.value });
+              }}
+            /> */}
+            <GeneralInputField
+              selectedItem={data?.data}
+              multiline
+              data={data}
+              setData={setData}
+              // disabled={selectedData?.id ? true : false}
+              width="98%"
+              place={"About Yourself"}
+              // value={data?.name}
+              dataKey={"name"}
+            />
             <Box
               fullWidth
               sx={{
@@ -87,7 +149,9 @@ export const AdminAbout = () => {
               }}
               width
             >
-              <Button variant="contained">Save Data</Button>
+              <Button variant="contained" onClick={handleSubmit}>
+                Update Data
+              </Button>
             </Box>
           </div>
         ) : (
@@ -108,64 +172,177 @@ export const AdminAbout = () => {
                 flexWrap: "wrap",
               }}
             >
-              <TextField
+              {/* <TextField
                 label="First Name"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
-              <TextField
+                value={data[0]?.data?.firstName}
+                onChange={(ele) => {
+                  setData({ ...data, firstName: ele.target.value });
+                }}
+              /> */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                width="48%"
+                place={"First Name"}
+                // value={data?.name}
+                dataKey={"firstName"}
+              />
+              {/* <TextField
                 label="Last Name"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
-              <TextField
+                // value = {data[0].lastName}
+                onChange={(ele) => {
+                  setData({ ...data, lastName: ele.target.value });
+                }}
+              />{" "} */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                width="48%"
+                place={"Last Name"}
+                // value={data?.name}
+                dataKey={"lastName"}
+              />
+              {/* <TextField
                 label="Your Street"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
-              <TextField
+                // value = {data[0].street}
+                onChange={(ele) => {
+                  setData({ ...data, street: ele.target.value });
+                }}
+              />{" "} */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                width="48%"
+                place={"Your Street"}
+                // value={data?.name}
+                dataKey={"street"}
+              />
+              {/* <TextField
                 label="Your City"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
-              <TextField
+                // value = {data[0].city}
+                onChange={(ele) => {
+                  setData({ ...data, city: ele.target.value });
+                }}
+              />{" "} */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                width="48%"
+                place={"Your City"}
+                // value={data?.name}
+                dataKey={"city"}
+              />
+              {/* <TextField
                 label="Your State"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
-              <TextField
+                // value = {data[0].state}
+                onChange={(ele) => {
+                  setData({ ...data, state: ele.target.value });
+                }}
+              />{" "} */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                width="48%"
+                place={"Your State"}
+                // value={data?.name}
+                dataKey={"state"}
+              />
+              {/* <TextField
                 label="Pin Code"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
-              <TextField
+                // value = {data[0].pinCode}
+                onChange={(ele) => {
+                  setData({ ...data, pinCode: ele.target.value });
+                }}
+              />{" "} */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                onlyNumber
+                width="48%"
+                place={"Pin Code"}
+                // value={data?.name}
+                dataKey={"pinCode"}
+              />
+              {/* <TextField
                 label="Phone Number"
                 type="number"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
-              <TextField
+                // value = {data[0].phone}
+                onChange={(ele) => {
+                  setData({ ...data, phone: ele.target.value });
+                }}
+              />{" "} */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                width="48%"
+                place={"Phone Number"}
+                // value={data?.name}
+                dataKey={"phone"}
+              />
+              {/* <TextField
                 label="Your Email"
                 type="email"
                 sx={{
                   width: "48%",
                   m: 1,
                 }}
-              />{" "}
+                // value = {data[0].email}
+                onChange={(ele) => {
+                  setData({ ...data, email: ele.target.value });
+                }}
+              />{" "} */}
+              <GeneralInputField
+                selectedItem={data}
+                data={data}
+                setData={setData}
+                // disabled={selectedData?.id ? true : false}
+                width="48%"
+                place={"Your Email"}
+                // value={data?.name}
+                dataKey={"email"}
+              />
             </Box>
             <Box
               fullWidth
@@ -176,7 +353,9 @@ export const AdminAbout = () => {
                 justifyContent: "flex-end",
               }}
             >
-              <Button variant="contained">Save Data</Button>
+              <Button variant="contained" onClick={handleSubmit}>
+                Update Data
+              </Button>
             </Box>
           </div>
         )}
