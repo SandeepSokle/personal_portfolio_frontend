@@ -1,20 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { useEffect, useRef, useState } from "react";
 // import React   from 'react';
 import { About } from "./Components/About";
 import { Footer } from "./Components/Footer";
 import Header from "./Components/Header";
 import { Projects } from "./Components/Projects";
 import { Resume } from "./Components/Resume";
-import { getDataActionCreater } from "./Redux/getDataActionCreater";
 
 export const Portfolio = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getDataActionCreater());
-  }, [dispatch]);
-
+  
   return (
     <div
       className="portfolio"

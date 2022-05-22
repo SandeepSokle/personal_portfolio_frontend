@@ -1,41 +1,27 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import React   from 'react';
 export const Achievements = () => {
-  const [data, setData] = useState([]);
-
-  const getData = useSelector((state) => {
-    // console.log("In education : ", state);
-    return state?.data?.resume?.achievements;
-  });
-
-  useEffect(() => {
-    console.log("In achievements : ", getData);
-    setData(getData);
-  }, [getData]);
-
-  // const data = [
-  //   {
-  //     name: "HARYANA HACKS",
-  //     des: [
-  //       `Ranked 3rd in Hackathon organized by Pepcoding India Private
-  //       Limited.Build an automated script that helps users to generate
-  //       automated articles by just allowing them to enter the title of Article`,
-  //       `System download 3 article automatic and save this file in my cloud
-  //       storage with same name of tile that enter at starting`,
-  //     ],
-  //   },
-  //   {
-  //     name: "HARYANA HACKS",
-  //     des: [
-  //       `Ranked 3rd in Hackathon organized by Pepcoding India Private
-  //       Limited.Build an automated script that helps users to generate
-  //       automated articles by just allowing them to enter the title of Article`,
-  //       `System download 3 article automatic and save this file in my cloud
-  //       storage with same name of tile that enter at starting`,
-  //     ],
-  //   },
-  // ];
-
+  const data = [
+    {
+      name: "HARYANA HACKS",
+      des: [
+        `Ranked 3rd in Hackathon organized by Pepcoding India Private
+        Limited.Build an automated script that helps users to generate
+        automated articles by just allowing them to enter the title of Article`,
+        `System download 3 article automatic and save this file in my cloud
+        storage with same name of tile that enter at starting`,
+      ],
+    },
+    {
+      name: "HARYANA HACKS",
+      des: [
+        `Ranked 3rd in Hackathon organized by Pepcoding India Private
+        Limited.Build an automated script that helps users to generate
+        automated articles by just allowing them to enter the title of Article`,
+        `System download 3 article automatic and save this file in my cloud
+        storage with same name of tile that enter at starting`,
+      ],
+    },
+  ];
   return (
     <div
       style={{
@@ -53,7 +39,7 @@ export const Achievements = () => {
           maxWidth: "100%",
         }}
       >
-        {data?.map((e) => {
+        {data.map((e) => {
           return (
             <div
               style={{
@@ -69,7 +55,7 @@ export const Achievements = () => {
                   textAlign: "center",
                 }}
               >
-                {e.data.name}
+                {e.name}
               </div>
               <div
                 style={{
@@ -80,8 +66,7 @@ export const Achievements = () => {
                   justifyContent: "space-between",
                 }}
               >
-                {e.data.des}
-                {/* <ul>
+                <ul>
                   {e.des.map((e) => {
                     return (
                       <li
@@ -94,7 +79,7 @@ export const Achievements = () => {
                       </li>
                     );
                   })}
-                </ul> */}
+                </ul>
               </div>
             </div>
           );
