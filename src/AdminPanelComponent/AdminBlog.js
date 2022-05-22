@@ -107,6 +107,8 @@ export const AdminBlog = (props) => {
           data={newData?.blog}
           setSelectedItem={setSelectedItem}
           setSelectedID={setSelectedID}
+          // setIsEdit={setIsEdit}
+
           />
 
         <div
