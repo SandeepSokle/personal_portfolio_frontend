@@ -316,6 +316,7 @@ export const AdminAbout = (props) => {
                 data={data}
                 setData={setData}
                 // disabled={selectedData?.id ? true : false}
+                onlyNumber
                 width="48%"
                 place={"Phone Number"}
                 // value={data?.name}

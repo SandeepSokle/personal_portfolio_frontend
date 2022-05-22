@@ -76,6 +76,7 @@ export const About = () => {
               title={"Download Resume"}
               btnIcon={DownloadIcon}
               btnColor={"success"}
+              disabled
             />
           </div>
         </Box>

@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
-import "./GeneralButton.css"
+import "./GeneralButton.css";
 export const GeneralButton = (props) => {
-  const { title, btnColor } = props;
+  const { title, btnColor, disabled } = props;
   // console.log(props);
   return (
     <Button
-    className="btn"
+      className="btn"
       sx={{
         fontSize: "1rem",
         padding: "0.5rem 2rem",
@@ -16,9 +16,9 @@ export const GeneralButton = (props) => {
         alignItems: "center",
         textTransform: "capitalize",
       }}
-   
-    //   color={btnColor ? btnColor : ""}
-    color={`${btnColor ? btnColor : "primary"}`}
+      disabled={disabled ? true : false}
+      //   color={btnColor ? btnColor : ""}
+      color={`${btnColor ? btnColor : "primary"}`}
       variant="contained"
     >
       {title}
