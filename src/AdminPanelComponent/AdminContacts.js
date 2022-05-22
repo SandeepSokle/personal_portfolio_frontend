@@ -44,6 +44,7 @@ export const AdminContacts = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          width: "16%",
         }}
       >
         <ButtonGroup
@@ -53,7 +54,7 @@ export const AdminContacts = () => {
           {buttons}
         </ButtonGroup>
       </Grid>
-      <Grid xs={9.5} sx={{ p: "2px 2rem" }}>
+      <Grid xs={9.5} sx={{ p: "2px 2rem", width: "80%" }}>
         <h1>{selectedVal}</h1>
       </Grid>
     </Grid>

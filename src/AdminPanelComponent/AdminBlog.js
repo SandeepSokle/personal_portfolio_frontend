@@ -79,7 +79,7 @@ export const AdminBlog = (props) => {
         "& > *": {},
       }}
     >
-      <Grid xs={12} sx={{ p: "2px 2rem" }}>
+      <Grid xs={12} sx={{ p: "2px 2rem",width : "100%" }}>
         <Box
           fullWidth
           sx={{

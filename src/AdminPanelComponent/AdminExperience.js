@@ -12,7 +12,7 @@ export const AdminExperience = (props) => {
   const { selectedTab } = props;
   const selectedVal = "Experince";
   const [selectedItem, setSelectedItem] = React.useState({});
-  const [selectedId,setSelectedID] = React.useState("")
+  const [selectedId, setSelectedID] = React.useState("");
   const [isEdit, setIsEdit] = React.useState(false);
   const [data, setData] = React.useState({});
   const dispatch = useDispatch();
@@ -86,7 +86,7 @@ export const AdminExperience = (props) => {
         "& > *": {},
       }}
     >
-      <Grid xs={12} sx={{ p: "2px 2rem" }}>
+      <Grid xs={12} sx={{ p: "2px 2rem", width: "100%" }}>
         <Box
           fullWidth
           sx={{
@@ -111,8 +111,8 @@ export const AdminExperience = (props) => {
           selectedVal={selectedVal}
           data={newData?.experince || []}
           setSelectedItem={setSelectedItem}
-              setSelectedID={setSelectedID}
-              setIsEdit={setIsEdit}
+          setSelectedID={setSelectedID}
+          setIsEdit={setIsEdit}
         />
 
         <div

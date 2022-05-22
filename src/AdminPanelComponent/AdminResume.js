@@ -33,9 +33,7 @@ export const AdminResume = (props) => {
       });
     }
     setISUpdateHit(false);
-  }, [startDate, endDate,data,isUpdateHit]);
-
- 
+  }, [startDate, endDate, data, isUpdateHit]);
 
   const newData = useSelector((state) => {
     return state?.data?.resume;
@@ -781,7 +779,7 @@ export const AdminResume = (props) => {
         xs={2.5}
         sx={{
           borderRight: "1rem solid rgb(0 0 0 / 26%)",
-
+          width: "16%",
           display: "flex",
           // alignItems: "center",
           justifyContent: "center",
@@ -794,7 +792,7 @@ export const AdminResume = (props) => {
           {buttons}
         </ButtonGroup>
       </Grid>
-      <Grid xs={9.5} sx={{ p: "2px 2rem", width: "100%" }}>
+      <Grid xs={9.5} sx={{ p: "2px 2rem", width: "80%" }}>
         <h1
           style={{
             color: "rgb(25 118 210)",
