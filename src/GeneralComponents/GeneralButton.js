@@ -25,6 +25,7 @@ export const GeneralButton = (props) => {
       color={`${btnColor ? btnColor : "primary"}`}
       variant="contained"
       onClick={(e) => {
+        // if (title.toLowerCase() === "projects") return;
         e.preventDefault();
         handleOpenLink();
       }}

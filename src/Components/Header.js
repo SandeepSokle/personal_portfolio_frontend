@@ -141,7 +141,7 @@ export default function Header() {
             title={"Projects"}
             btnIcon={BookIcon}
             btnColor={"secondary"}
-            link={""}
+            link={"https://primeprogrammingworld.blogspot.com/"}
           />
           <GeneralButton
             title={"LinkedIn"}
