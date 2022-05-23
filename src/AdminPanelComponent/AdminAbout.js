@@ -12,7 +12,7 @@ export const AdminAbout = (props) => {
   const { selectedTab } = props;
   const [selectedVal, setSelectedVal] = React.useState("About Me");
   const [selectedId, setSelectedID] = React.useState("");
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState({});
   const dispatch = useDispatch();
 
   const newData = useSelector((state) => {
@@ -29,13 +29,13 @@ export const AdminAbout = (props) => {
       setData(newData[`${selectedVal.toLowerCase()}`][0].data);
       setSelectedID(newData[`${selectedVal.toLowerCase()}`][0].id);
     }
-  }, [newData,selectedVal]);
+  }, [newData, selectedVal]);
   // console.log("data!!", selectedId);
 
   const handleSubmit = async (name) => {
     // console.log("Selected Data", name);
     // if (isEdit) {
-    console.info("Update Hit!!", selectedId);
+    // console.info("Update Hit!!", selectedId);
     handleUpdate({ id: selectedId, data, dispatch });
     // } else {
     // console.log("Save Hit!!", selectedTab, selectedVal, data);
@@ -71,6 +71,18 @@ export const AdminAbout = (props) => {
       }}
     >
       Contact Details
+    </Button>,
+    <Button
+      key="links"
+      onClick={() => {
+        setSelectedVal("Links Details");
+        resetData();
+      }}
+      sx={{
+        textTransform: "capitalize",
+      }}
+    >
+      Links Details
     </Button>,
   ];
   return (
@@ -139,6 +151,74 @@ export const AdminAbout = (props) => {
               // value={data?.name}
               dataKey={"name"}
             />
+            <Box
+              fullWidth
+              sx={{
+                mt: 3,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+              width
+            >
+              <Button variant="contained" onClick={handleSubmit}>
+                Update Data
+              </Button>
+            </Box>
+          </div>
+        ) : selectedVal === "Links Details" ? (
+          <div
+            style={{
+              // border: "1px dashed",
+              borderColor: "black",
+              marginTop: "1rem",
+              padding: "1rem",
+            }}
+          >
+            {/* <TextField
+              label="About Yourself"
+              fullWidth
+              multiline
+              rows={4}
+              value={data[0]?.data?.name}
+              onChange={(ele) => {
+                setData({ ...data, name: ele.target.value });
+              }}
+            /> */}
+            <GeneralInputField
+              selectedItem={data?.data}
+              // multiline
+              data={data}
+              setData={setData}
+              // disabled={selectedData?.id ? true : false}
+              width="98%"
+              place={"Linked In"}
+              // value={data?.name}
+              dataKey={"linkName"}
+            />
+            <GeneralInputField
+              selectedItem={data?.data}
+              // multiline
+              data={data}
+              setData={setData}
+              // disabled={selectedData?.id ? true : false}
+              width="98%"
+              place={"Github"}
+              // value={data?.name}
+              dataKey={"gitName"}
+            />
+            <GeneralInputField
+              selectedItem={data?.data}
+              // multiline
+              data={data}
+              setData={setData}
+              // disabled={selectedData?.id ? true : false}
+              width="98%"
+              place={"Leet Code"}
+              // value={data?.name}
+              dataKey={"leetCodeName"}
+            />
+
             <Box
               fullWidth
               sx={{

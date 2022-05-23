@@ -7,11 +7,46 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BookIcon from "@mui/icons-material/Book";
 import CodeIcon from "@mui/icons-material/Code";
 import { GeneralButton } from "../GeneralComponents/GeneralButton";
+import { getDataActionCreater } from "../Redux/getDataActionCreater";
+import { useDispatch, useSelector } from "react-redux";
 export default function Header() {
   const title = "Software Engineer";
   // const des = `I am a javaScript Programmer “Adjunct professor of creative writing at Columbia University, published author, former lifestyle editor at Esquire, the New York Times. I can teach you how to find, shape, pitch, and publish stories for web & print. `;
 
   // console.log(GitHubIcon);
+  const [getCompleteData, setGetCompleteData] = React.useState();
+  const [links, setLinks] = React.useState({});
+
+  const dispatch = useDispatch();
+  const aboutData = useSelector((state) => {
+    return state.data.about;
+  });
+
+  React.useEffect(() => {
+    // console.log(aboutData);
+    setGetCompleteData(aboutData);
+  }, [aboutData]);
+
+  React.useEffect(() => {
+    if (getCompleteData) {
+      let link = getCompleteData["links details"][0]?.data;
+      setLinks(link);
+      console.log({
+        links,
+      });
+    }
+  }, [getCompleteData]);
+
+  console.log(links?.linkName);
+
+  React.useEffect(() => {
+    dispatch(getDataActionCreater());
+  }, [dispatch]);
+
+  const handleOpenLink = (name) => {
+    window.open(links[name], "_blank", "noopener,noreferrer");
+    // window.location.href = links[name];
+  };
 
   return (
     <Box
@@ -22,7 +57,7 @@ export default function Header() {
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
-      id = "header"
+      id="header"
     >
       <Navbar />
 
@@ -53,7 +88,7 @@ export default function Header() {
             display: "flex",
             marginBottom: "2rem",
             justifyContent: "center",
-            color: "#2e7d32"
+            color: "#2e7d32",
           }}
         >
           Sandeep Sokle
@@ -67,9 +102,8 @@ export default function Header() {
             display: "flex",
             marginBottom: "2rem",
             justifyContent: "center",
-            textDecoration:"underline"
-            ,
-            textDecorationColor : "#2e7d32"
+            textDecoration: "underline",
+            textDecorationColor: "#2e7d32",
           }}
         >
           {title}
@@ -100,7 +134,7 @@ export default function Header() {
             justifyContent: "center",
             alignItems: "center",
             padding: "2rem 2rem",
-            marginTop:"5%"
+            marginTop: "5%",
           }}
         >
           <GeneralButton
@@ -112,16 +146,28 @@ export default function Header() {
             title={"LinkedIn"}
             btnIcon={LinkedInIcon}
             btnColor={"primary"}
+            onClick={(e) => {
+              // e.preventDefault();
+              handleOpenLink("linkName");
+            }}
           />
           <GeneralButton
             title={"Github"}
             btnIcon={GitHubIcon}
             btnColor={"warning"}
+            onClick={(e) => {
+              // e.preventDefault();
+              handleOpenLink("gitName");
+            }}
           />
           <GeneralButton
             title={"Leet Code"}
             btnIcon={CodeIcon}
             btnColor={"success"}
+            onClick={(e) => {
+              // e.preventDefault();
+              handleOpenLink("leetCodeName");
+            }}
           />
         </Box>
         <Box
