@@ -1,8 +1,12 @@
 import { Button } from "@mui/material";
 import "./GeneralButton.css";
 export const GeneralButton = (props) => {
-  const { title, btnColor, disabled } = props;
+  const { title, btnColor, disabled, link } = props;
   // console.log(props);
+  const handleOpenLink = (name) => {
+    window.open(link, "_blank", "noopener,noreferrer");
+    // window.location.href = links[name];
+  };
   return (
     <Button
       className="btn"
@@ -20,6 +24,10 @@ export const GeneralButton = (props) => {
       //   color={btnColor ? btnColor : ""}
       color={`${btnColor ? btnColor : "primary"}`}
       variant="contained"
+      onClick={(e) => {
+        e.preventDefault();
+        handleOpenLink();
+      }}
     >
       {title}
       <props.btnIcon

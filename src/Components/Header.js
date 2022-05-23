@@ -141,11 +141,13 @@ export default function Header() {
             title={"Projects"}
             btnIcon={BookIcon}
             btnColor={"secondary"}
+            link={""}
           />
           <GeneralButton
             title={"LinkedIn"}
             btnIcon={LinkedInIcon}
             btnColor={"primary"}
+            link={links?.linkName}
             onClick={(e) => {
               // e.preventDefault();
               handleOpenLink("linkName");
@@ -155,6 +157,7 @@ export default function Header() {
             title={"Github"}
             btnIcon={GitHubIcon}
             btnColor={"warning"}
+            link={links?.gitName}
             onClick={(e) => {
               // e.preventDefault();
               handleOpenLink("gitName");
@@ -164,6 +167,7 @@ export default function Header() {
             title={"Leet Code"}
             btnIcon={CodeIcon}
             btnColor={"success"}
+            link={links?.leetCodeName}
             onClick={(e) => {
               // e.preventDefault();
               handleOpenLink("leetCodeName");
