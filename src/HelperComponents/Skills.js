@@ -1,8 +1,22 @@
 // import React   from 'react';
+import { useEffect, useState } from "react";
 import Progressbar from "./Progressbar";
 
-export const Skills = () => {
-  const data = [
+export const Skills = (props) => {
+  const { data } = props;
+  const [finalData, setFinalData] = useState([]);
+  console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      let newData = data?.map((ele) => {
+        return ele.data;
+      });
+      setFinalData(newData);
+    }
+  }, [data]);
+  
+  const dummyData = [
     {
       label: "java",
       value: 20,
@@ -26,8 +40,8 @@ export const Skills = () => {
       
       {/* //////data */}
       <div style={{ flexGrow: 1, width: "60%" }}>
-        {data.map((e) => {
-          return <Progressbar label={e.label} value={e.value} />;
+        {finalData.map((e) => {
+          return <Progressbar label={e.name} value={e.rate} />;
         })}
       </div>
     </div>

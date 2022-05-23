@@ -11,6 +11,8 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataActionCreater } from "../Redux/getDataActionCreater";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -50,6 +52,21 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export const Resume = () => {
   const [expanded, setExpanded] = React.useState("panel1");
+  const [getCompleteData, setGetCompleteData] = React.useState();
+
+  const dispatch = useDispatch();
+  const resumeData = useSelector((state) => {
+    return state.data.resume;
+  });
+
+  React.useEffect(() => {
+    dispatch(getDataActionCreater());
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    // console.log(resumeData);
+    setGetCompleteData(resumeData);
+  }, [resumeData]);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -65,7 +82,7 @@ export const Resume = () => {
         marginTop: "2rem",
         padding: "2rem 0rem",
       }}
-      id = "resume"
+      id="resume"
     >
       <Box
         sx={{
@@ -79,17 +96,23 @@ export const Resume = () => {
         }}
       ></Box>
       {/* //Accordion */}
-      <Box sx={{ width: "67%",overflow:"auto" }}>
+      <Box sx={{ width: "67%", overflow: "auto" }}>
         <Accordion
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
         >
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-            <Typography>Education</Typography>
+            <Typography
+              sx={{
+                width: "60%",
+              }}
+            >
+              Education
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <Education />
+              <Education data={getCompleteData?.education} />
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -102,7 +125,7 @@ export const Resume = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <Works />
+              <Works data={getCompleteData?.works} />
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -115,7 +138,7 @@ export const Resume = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <Achievements />
+              <Achievements data={getCompleteData?.achievements} />
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -134,7 +157,7 @@ export const Resume = () => {
                 justifyContent: "center",
               }}
             >
-              <Skills />
+              <Skills data={getCompleteData?.skills} />
             </Typography>
           </AccordionDetails>
         </Accordion>

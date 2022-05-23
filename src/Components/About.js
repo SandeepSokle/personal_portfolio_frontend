@@ -4,7 +4,50 @@ import CardMedia from "@mui/material/CardMedia";
 import ProfileImage from "../Images/profileImg.png";
 import { GeneralButton } from "../GeneralComponents/GeneralButton";
 import DownloadIcon from "@mui/icons-material/Download";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataActionCreater } from "../Redux/getDataActionCreater";
 export const About = () => {
+  const [getCompleteData, setGetCompleteData] = React.useState();
+  const [about, setAbout] = React.useState("");
+  const [contactUs, setContactUs] = React.useState([]);
+  const dispatch = useDispatch();
+  const aboutData = useSelector((state) => {
+    return state.data.about;
+  });
+
+  React.useEffect(() => {
+    // console.log(aboutData);
+    setGetCompleteData(aboutData);
+  }, [aboutData]);
+
+  React.useEffect(() => {
+    if (getCompleteData) {
+      let aboutMe = getCompleteData["about me"][0]?.data?.name;
+      let contacts = getCompleteData["contact details"][0]?.data;
+      let contactDetails = [
+        `Name : ${contacts.firstName} ${contacts.lastName}`,
+        `Street: ${contacts.street}`,
+        `City: ${contacts.city}`,
+        `State: ${contacts.state}`,
+        `PinCode: ${contacts.pinCode}`,
+        `Phone: ${contacts.phone}`,
+        `Email: ${contacts.email}`,
+      ];
+      setAbout(aboutMe);
+      setContactUs(contactDetails);
+
+      // console.log({
+      //   aboutMe,
+      //   contacts,
+      //   contactDetails,
+      // });
+    }
+  }, [getCompleteData]);
+
+  React.useEffect(() => {
+    dispatch(getDataActionCreater());
+  }, [dispatch]);
+
   const contacts = [
     "Nordic-Giant Project",
     "(Your Street)",
@@ -26,9 +69,9 @@ export const About = () => {
         width: "72vw",
         marginTop: "2rem",
         padding: "2rem 4rem",
-        paddingBottom :"0px"
+        paddingBottom: "0px",
       }}
-      id = "about"
+      id="about"
     >
       <Box sx={{ display: "flex", flexDirection: "column", width: "80%" }}>
         <Box>
@@ -41,10 +84,11 @@ export const About = () => {
             About Me
           </h1>
           <p>
-            Use this bio section as your way of describing yourself and saying
+            {/* Use this bio section as your way of describing yourself and saying
             what you do, what technologies you like to use or feel most
             comfortable with, describing your personality, or whatever else you
-            feel like throwing in.
+            feel like throwing in. */}
+            {about}
           </p>
         </Box>
         <Box>
@@ -67,7 +111,7 @@ export const About = () => {
                 Contact Details
               </h1>
               <ul>
-                {contacts.map((e) => {
+                {contactUs.map((e) => {
                   return <li>{e}</li>;
                 })}
               </ul>

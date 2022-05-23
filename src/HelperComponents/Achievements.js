@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
+
 // import React   from 'react';
-export const Achievements = () => {
-  const data = [
+export const Achievements = (props) => {
+  const { data } = props;
+  const [finalData, setFinalData] = useState([]);
+  console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      let newData = data?.map((ele) => {
+        return ele.data;
+      });
+      setFinalData(newData);
+    }
+  }, [data]);
+
+
+  const dummyData = [
     {
       name: "HARYANA HACKS",
       des: [
@@ -39,7 +55,7 @@ export const Achievements = () => {
           maxWidth: "100%",
         }}
       >
-        {data.map((e) => {
+        {finalData?.map((e) => {
           return (
             <div
               style={{
@@ -66,7 +82,8 @@ export const Achievements = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <ul>
+                {e.des}
+                {/* <ul>
                   {e.des.map((e) => {
                     return (
                       <li
@@ -79,7 +96,7 @@ export const Achievements = () => {
                       </li>
                     );
                   })}
-                </ul>
+                </ul> */}
               </div>
             </div>
           );

@@ -1,7 +1,21 @@
 // import React   from 'react';
 import { Box } from "@mui/material";
-export const Education = () => {
-  const data = [
+import { useEffect, useState } from "react";
+export const Education = (props) => {
+  const { data } = props;
+  const [finalData, setFinalData] = useState([]);
+  console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      let newData = data.map((ele) => {
+        return ele.data;
+      });
+      setFinalData(newData);
+    }
+  }, [data]);
+
+  const dummyData = [
     {
       schoolName: "Chaudhary Ranbir Singh University, Jind",
       course: "Master of Computer Applications",
@@ -34,7 +48,7 @@ export const Education = () => {
           maxWidth: "70%",
         }}
       >
-        {data.map((e) => {
+        {finalData?.map((e) => {
           return (
             <Box
               sx={{
@@ -47,12 +61,13 @@ export const Education = () => {
                   margin: "0px",
                   fontSize: "1.8rem",
                   fontWeight: "bold",
-                  color: "#2e7d32",
+                  // color: "#2e7d32",
+                  color : "black"
                 }}
               >
-                {e.schoolName}
+                {e?.name}
               </div>
-              <div style={{ fontSize: "1.3rem" }}>{e.course}</div>
+              <div style={{ fontSize: "1.3rem" }}>{e.courseName}</div>
               <div
                 style={{
                   display: "flex",
@@ -65,7 +80,13 @@ export const Education = () => {
                 <div>
                   {e.startDate} - {e.endDate}
                 </div>
-                <div>{e.cgpa}</div>
+                <div
+                  style={{
+                    marginLeft: "6rem",
+                  }}
+                >
+                  {e.CGPA}
+                </div>
               </div>
             </Box>
           );

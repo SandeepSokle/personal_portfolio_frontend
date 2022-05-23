@@ -1,8 +1,25 @@
 // import React   from 'react';
 // import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+import { useEffect, useState } from "react";
+
 // import { style } from "@mui/system";
-export const Works = () => {
-  const data = [
+export const Works = (props) => {
+
+  const { data } = props;
+  const [finalData, setFinalData] = useState([]);
+  console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      let newData = data?.map((ele) => {
+        return ele.data;
+      });
+      setFinalData(newData);
+    }
+  }, [data]);
+
+  const dummyData = [
     {
       projectName: "COLLABORATIVE TEACHING BOARD (MERN Stack)",
       startDate: "07/2018",
@@ -95,7 +112,7 @@ export const Works = () => {
           maxWidth: "100%",
         }}
       >
-        {data.map((e) => {
+        {finalData?.map((e) => {
           return (
             <div
               style={{
@@ -103,7 +120,7 @@ export const Works = () => {
               }}
             >
               <div style={{ fontSize: "1.8rem", fontWeight: "bold" ,color:"#2e7d32"}}>
-                {e.projectName}
+                {e.name}
               </div>
               <div
                 style={{
@@ -117,13 +134,16 @@ export const Works = () => {
                 <div>
                   {e.startDate} - {e.endDate}
                 </div>
-                <a href={e.link}>Live Demo</a>
+                {/* <a href={e.link}>Live Demo</a> */}
               </div>
-              <ul>
+              <div>
+                  {e.responsibility}
+                </div>
+              {/* <ul>
                 {e.des.map((e) => {
                   return <li style={{ textDecoration: "none",listStyleType: "square" }}>{e}</li>;
                 })}
-              </ul>
+              </ul> */}
             </div>
           );
         })}

@@ -1,7 +1,49 @@
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataActionCreater } from "../Redux/getDataActionCreater";
 
 export const Footer = () => {
+
+  const [getCompleteData, setGetCompleteData] = useState();
+  const [contactUs, setContactUs] = useState([]);
+  const dispatch = useDispatch();
+  const aboutData = useSelector((state) => {
+    return state.data.about;
+  });
+
+  useEffect(() => {
+    // console.log(aboutData);
+    setGetCompleteData(aboutData);
+  }, [aboutData]);
+
+  useEffect(() => {
+    if (getCompleteData) {
+      let contacts = getCompleteData["contact details"][0]?.data;
+      let contactDetails = [
+        `Name : ${contacts.firstName} ${contacts.lastName}`,
+        `Street: ${contacts.street}`,
+        `City: ${contacts.city}`,
+        `State: ${contacts.state}`,
+        `PinCode: ${contacts.pinCode}`,
+        `Phone: ${contacts.phone}`,
+        `Email: ${contacts.email}`,
+      ];
+      setContactUs(contactDetails);
+
+      // console.log({
+      //   aboutMe,
+      //   contacts,
+      //   contactDetails,
+      // });
+    }
+  }, [getCompleteData]);
+
+  useEffect(() => {
+    dispatch(getDataActionCreater());
+  }, [dispatch]);
+
   const contacts = [
     "Nordic-Giant Project",
     "(Your Street)",
@@ -11,6 +53,7 @@ export const Footer = () => {
     "555-555-5555",
     "youremailhere@gmail.com",
   ];
+
   return (
     <div
       style={{
@@ -116,7 +159,7 @@ export const Footer = () => {
             <div>
               <h1>Contact Details</h1>
               <ul>
-                {contacts.map((e) => {
+                {contactUs?.map((e) => {
                   return <li>{e}</li>;
                 })}
               </ul>
