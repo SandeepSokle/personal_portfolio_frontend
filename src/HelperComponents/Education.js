@@ -45,10 +45,10 @@ export const Education = (props) => {
     >
       <div
         style={{
-          maxWidth: "70%",
+          maxWidth: "100%",
         }}
       >
-        {finalData?.map((e) => {
+        {finalData?.map((e,i) => {
           return (
             <Box
               sx={{
@@ -61,11 +61,11 @@ export const Education = (props) => {
                   margin: "0px",
                   fontSize: "1.8rem",
                   fontWeight: "bold",
-                  // color: "#2e7d32",
-                  color : "black"
+                  color: "#2e7d32",
+                  // color : "black"
                 }}
               >
-                {e?.name}
+                {`${i+1}. ${e?.name}`}
               </div>
               <div style={{ fontSize: "1.3rem" }}>{e.courseName}</div>
               <div

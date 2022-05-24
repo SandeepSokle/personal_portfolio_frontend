@@ -25,7 +25,7 @@ export default function Progressbar(props) {
     <div
       style={{
         padding: "1rem 2rem",
-        margin: "1.6rem 0rem",
+        margin: "1.6rem 1rem",
         boxShadow: "0px 0px 1px",
       }}
     >

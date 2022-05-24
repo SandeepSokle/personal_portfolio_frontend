@@ -12,8 +12,9 @@ export const GeneralButton = (props) => {
       className="btn"
       sx={{
         fontSize: "1rem",
-        padding: "0.5rem 2rem",
+        // padding: "2px 1px",
         m: 1,
+        width : "16rem",
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",

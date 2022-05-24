@@ -111,7 +111,10 @@ export const Resume = () => {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography style = {{
+              // float : "left",
+              // width : "80vw"
+            }}>
               <Education data={getCompleteData?.education} />
             </Typography>
           </AccordionDetails>

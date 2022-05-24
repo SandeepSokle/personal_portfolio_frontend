@@ -73,23 +73,60 @@ export const About = () => {
       }}
       id="about"
     >
-      <Box sx={{ display: "flex", flexDirection: "column", width: "80%" }}>
-        <Box>
-          <h1
+      <Box sx={{ display: "flex", flexDirection: "column", width: "90%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
             style={{
-              color: "#2e7d32",
-              fontWeight: 700,
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            About Me
-          </h1>
-          <p>
-            {/* Use this bio section as your way of describing yourself and saying
+            <h1
+              style={{
+                color: "#2e7d32",
+                fontWeight: 700,
+              }}
+            >
+              About Me
+            </h1>
+            <p
+              style={{
+                fontSize: "18px",
+              }}
+            >
+              {/* Use this bio section as your way of describing yourself and saying
             what you do, what technologies you like to use or feel most
             comfortable with, describing your personality, or whatever else you
-            feel like throwing in. */}
-            {about}
-          </p>
+          feel like throwing in. */}
+              {about}
+            </p>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems :"center"
+            }}
+          >
+            <CardMedia
+              component="img"
+              sx={{ width: 301, borderRadius: "40px", padding: "1rem 1rem" }}
+              image={ProfileImage}
+              alt="Live from space album cover"
+            />
+            <GeneralButton
+              title={"Download Resume"}
+              btnIcon={DownloadIcon}
+              btnColor={"success"}
+              disabled
+            />
+          </div>
         </Box>
         <Box>
           {" "}
@@ -112,25 +149,37 @@ export const About = () => {
               </h1>
               <ul>
                 {contactUs.map((e) => {
-                  return <li>{e}</li>;
+                  return (
+                    <li
+                      style={{
+                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {" "}
+                        {`${e.split(":")[0]} :`}
+                      </div>
+                      <div>{` ${e.split(":")[1]}`}</div>
+                    </li>
+                  );
                 })}
               </ul>
             </div>
-            <GeneralButton
-              title={"Download Resume"}
-              btnIcon={DownloadIcon}
-              btnColor={"success"}
-              disabled
-            />
           </div>
         </Box>
       </Box>
-      <CardMedia
+      {/* <CardMedia
         component="img"
         sx={{ width: 501, borderRadius: "40px", padding: "1rem 1rem" }}
         image={ProfileImage}
         alt="Live from space album cover"
-      />
+      /> */}
     </Box>
   );
 };
