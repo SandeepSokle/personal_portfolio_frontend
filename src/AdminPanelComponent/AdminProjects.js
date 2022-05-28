@@ -13,14 +13,7 @@ import {
   handleUpdate,
 } from "../HandleFunctions/handleFunctions";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
-import storage from "../firebase/firebase_config";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
-import uuid from "react-uuid";
+
 
 export const AdminProjects = (props) => {
   const { selectedTab } = props;
