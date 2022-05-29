@@ -13,12 +13,17 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
-import { loginWithEmailPassword } from "../firebase/firebase_config";
+import {
+  createUserWithEmailPassword,
+  loginWithEmailPassword,
+  loginWithGoogle,
+} from "../firebase/firebase_config";
 
 const theme = createTheme();
 
 export default function Login() {
   const [loginState, setLoginState] = React.useState("signin");
+  const [user, setUser] = React.useState();
   const history = useHistory();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,11 +35,23 @@ export default function Login() {
       password: data.get("password"),
       confirmPassword: data.get("confirmPassword"),
     });
-    // let user = await loginWithEmailPassword(
-    //   data.get("email"),
-    //   data.get("password")
-    // );
-    // console.log("user!!", user);
+
+    if (loginState === "signin") {
+      let userDetail = await loginWithEmailPassword(
+        data.get("email"),
+        data.get("password")
+      );
+      console.log("user!!", userDetail);
+      setUser(userDetail);
+    } else {
+      let userDetail = await createUserWithEmailPassword(
+        data.get("email"),
+        data.get("password")
+      );
+      console.log("user!!", userDetail);
+      setUser(userDetail);
+    }
+
     history.push("/admin");
   };
 
@@ -123,6 +140,20 @@ export default function Login() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 1 }}
+                onClick={async (e) => {
+                  e.preventDefault();
+                  let userDetail = await loginWithGoogle();
+                  console.log("user!!", userDetail);
+                  setUser(userDetail);
+                }}
+              >
+                Sign in with google
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 1, mb: 2 }}
               >
                 {`${loginState === "signin" ? "Sign in" : "Sign up"}`}
               </Button>

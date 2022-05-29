@@ -1,7 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,20 +29,47 @@ console.log({ firebaseApp });
 
 const auth = getAuth();
 
+export const createUserWithEmailPassword = async (email, password) => {
+  let user;
+  try {
+    let userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    user = userCredential.user;
+
+    if (!user) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(userCredential);
+    } else {
+      return user;
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 export const loginWithEmailPassword = async (email, password) => {
   let user;
-  let userCredential = await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
-  user = userCredential.user;
+  try {
+    let userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    user = userCredential.user;
 
-  if (!user) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  } else {
-    return user;
+    if (!user) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    } else {
+      return user;
+    }
+  } catch (err) {
+    console.log(err.message);
   }
 };
 
@@ -44,3 +77,51 @@ export const loginWithEmailPassword = async (email, password) => {
 //   storage,
 //   loginWithEmailPassword
 // }
+
+export const loginOut = () => {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+};
+
+//google login auth
+
+const provider = new GoogleAuthProvider();
+
+export const loginWithGoogle = async () => {
+  let user;
+  try {
+    let userCredential = await signInWithPopup(auth, provider);
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(userCredential);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    user = userCredential.user;
+    if (!user) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // console.log(errorMessage);
+    } else {
+      return user;
+    }
+    // ...
+
+    // .catch((error) => {
+    //   // Handle Errors here.
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   // The email of the user's account used.
+    //   const email = error.customData.email;
+    //   // The AuthCredential type that was used.
+    //   const credential = GoogleAuthProvider.credentialFromError(error);
+    //   // ...
+    // });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
