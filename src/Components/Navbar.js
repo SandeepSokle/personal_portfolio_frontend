@@ -42,14 +42,13 @@ export default function Navbar() {
     return state.data.user;
   });
 
+  // const handlePopoverClose = () => {
+  //   setAnchorEl(null);
+  // };
 
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handlePopoverOpen = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   return (
     <Box
@@ -213,7 +212,7 @@ export default function Navbar() {
         </Button>
         {userData ? (
           <>
-            <Typography
+            {/* <Typography
               aria-owns={ "mouse-over-popover" }
               aria-haspopup="true"
               onMouseEnter={handlePopoverOpen}
@@ -225,16 +224,16 @@ export default function Navbar() {
                 alignItems: "center",
                 fontSize: "20px",
               }}
-            >
-              {/* {userData?.displayName} */}
-              <Avatar
-                sx={{
-                  m: "0rem 1rem",
-                }}
-                alt={userData?.displayName || userData?.email}
-                src={userData?.photoURL}
-              />
-            </Typography>
+            > */}
+            {/* {userData?.displayName} */}
+            <Avatar
+              sx={{
+                m: "0rem 1rem",
+              }}
+              alt={userData?.displayName || userData?.email}
+              src={userData?.photoURL}
+            />
+            {/* </Typography>
             <Popover
               id="mouse-over-popover"
               sx={{
@@ -265,7 +264,7 @@ export default function Navbar() {
                 </div>
                 <div>{userData?.email}</div>
               </Typography>
-            </Popover>
+            </Popover> */}
           </>
         ) : (
           ""
