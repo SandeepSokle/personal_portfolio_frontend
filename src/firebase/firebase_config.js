@@ -70,6 +70,7 @@ export const loginWithEmailPassword = async (email, password) => {
     }
   } catch (err) {
     console.log(err.message);
+    alert(err.message);
   }
 };
 

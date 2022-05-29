@@ -43,16 +43,18 @@ export default function Login() {
       );
       console.log("user!!", userDetail);
       setUser(userDetail);
+      history.push("/admin");
     } else {
-      let userDetail = await createUserWithEmailPassword(
-        data.get("email"),
-        data.get("password")
-      );
-      console.log("user!!", userDetail);
-      setUser(userDetail);
+      if (data.get("password") === data.get("confirmPassword")) {
+        let userDetail = await createUserWithEmailPassword(
+          data.get("email"),
+          data.get("password")
+        );
+        console.log("user!!", userDetail);
+        setUser(userDetail);
+        history.push("/admin");
+      }
     }
-
-    history.push("/admin");
   };
 
   return (
