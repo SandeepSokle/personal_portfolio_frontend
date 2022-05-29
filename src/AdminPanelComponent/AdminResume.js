@@ -39,6 +39,18 @@ export const AdminResume = (props) => {
     return state?.data?.resume;
   });
 
+  const userData = useSelector((state) => {
+    console.log(state);
+    return state.data.user;
+  });
+
+  const userSecret = useSelector((state) => {
+    console.log(state);
+    return state.data.secretKey;
+  });
+
+  console.log(userSecret)
+
   // React.useEffect(() => {
   //   dispatch(getDataActionCreater());
   // }, []);
@@ -366,7 +378,12 @@ export const AdminResume = (props) => {
                   selectedItem={selectedItem}
                   data={data}
                   setData={setData}
-                  // disabled={selectedData?.id ? true : false}
+                  // disabled={
+                  //   userData?.email === "sandeepsokle12@gmail.com" ||
+                  //   userSecret === "Sandeep@Sokle12"
+                  //     ? false
+                  //     : true
+                  // }
                   width="48%"
                   place={"School / Institute Name"}
                   // value={data?.name}
@@ -384,7 +401,7 @@ export const AdminResume = (props) => {
                 <GeneralInputField
                   data={data}
                   setData={setData}
-                  // disabled={selectedData?.id ? true : false}
+                  // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                   width="48%"
                   place={"School Location"}
                   dataKey={"location"}
@@ -416,6 +433,7 @@ export const AdminResume = (props) => {
                     m: 1,
                   }}
                   type="text"
+                  // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                   // InputLabelProps={{
                   // shrink: true,
                   // required: true,
@@ -454,6 +472,7 @@ export const AdminResume = (props) => {
                   // InputLabelProps={{
                   //   // shrink: true,
                   // }}
+                  // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                   type="text"
                   //  onChange={(val) => {
                   //   setEndDate(val);
@@ -477,7 +496,7 @@ export const AdminResume = (props) => {
                 <GeneralInputField
                   data={data}
                   setData={setData}
-                  // disabled={selectedData?.id ? true : false}
+                  // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                   width="48%"
                   place={"Course Name"}
                   dataKey={"courseName"}
@@ -497,7 +516,7 @@ export const AdminResume = (props) => {
                 <GeneralInputField
                   data={data}
                   setData={setData}
-                  // disabled={selectedData?.id ? true : false}
+                  // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                   width="48%"
                   place={"CGPA"}
                   dataKey={"CGPA"}
@@ -550,7 +569,7 @@ export const AdminResume = (props) => {
                     selectedItem={selectedItem}
                     data={data}
                     setData={setData}
-                    // disabled={selectedData?.id ? true : false}
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     width="48%"
                     place={"Company Name"}
                     // value={data?.name}
@@ -569,7 +588,7 @@ export const AdminResume = (props) => {
                   <GeneralInputField
                     data={data}
                     setData={setData}
-                    // disabled={selectedData?.id ? true : false}
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     width="48%"
                     place={"Job Location"}
                     dataKey={"location"}
@@ -601,6 +620,7 @@ export const AdminResume = (props) => {
                       m: 1,
                     }}
                     type="text"
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     InputLabelProps={{
                       shrink: true,
                       // required: true,
@@ -639,6 +659,7 @@ export const AdminResume = (props) => {
                       m: 1,
                     }}
                     type="text"
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     InputLabelProps={{
                       shrink: true,
                       // required: true,
@@ -663,7 +684,7 @@ export const AdminResume = (props) => {
                   <GeneralInputField
                     data={data}
                     setData={setData}
-                    // disabled={selectedData?.id ? true : false}
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     width="48%"
                     place={"Job Title"}
                     dataKey={"jobTitle"}
@@ -673,6 +694,7 @@ export const AdminResume = (props) => {
                     data={data}
                     setData={setData}
                     multiline
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     width="48%"
                     place={"Responsibilities"}
                     dataKey={"responsibility"}
@@ -728,7 +750,7 @@ export const AdminResume = (props) => {
                   <GeneralInputField
                     data={data}
                     setData={setData}
-                    // disabled={selectedData?.id ? true : false}
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     width="48%"
                     place={"Title"}
                     dataKey={"name"}
@@ -743,6 +765,7 @@ export const AdminResume = (props) => {
                       m: 1,
                     }}
                     type="text"
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     // InputLabelProps={{
                     // shrink: true,
                     // required: true,
@@ -777,6 +800,7 @@ export const AdminResume = (props) => {
                     data={data}
                     setData={setData}
                     multiline
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     width="98%"
                     place={"Description"}
                     dataKey={"des"}
@@ -826,6 +850,7 @@ export const AdminResume = (props) => {
                   <GeneralInputField
                     data={data}
                     setData={setData}
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     width="48%"
                     place={"Name"}
                     dataKey={"name"}
@@ -845,6 +870,7 @@ export const AdminResume = (props) => {
                     data={data}
                     setData={setData}
                     width="48%"
+                    // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
                     place={"Rate yourself from 100"}
                     dataKey={"rate"}
                     // value = {data.courseName}
@@ -931,6 +957,7 @@ export const AdminResume = (props) => {
         >
           <Button
             variant="contained"
+            // disabled={userData?.email !== "sandeepsokle12@gmail.com"}
             onClick={() => {
               handleSubmit();
             }}

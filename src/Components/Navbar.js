@@ -4,9 +4,12 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Link } from "react-scroll";
 import { useHistory } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Avatar, Button, Popover, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+
 export default function Navbar() {
   const [value, setValue] = React.useState(0);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const history = useHistory();
   const handleChange = (event, newValue) => {
@@ -34,6 +37,20 @@ export default function Navbar() {
 
   // console.log(value);
 
+  const userData = useSelector((state) => {
+    console.log(state);
+    return state.data.user;
+  });
+
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   return (
     <Box
       sx={{
@@ -42,6 +59,7 @@ export default function Navbar() {
         top: "0px",
         right: "0px",
         zIndex: 3,
+
         // backgroundColor: "#2e7d32",
         backgroundColor: `${
           scrollPosition <= 100
@@ -54,8 +72,14 @@ export default function Navbar() {
             ? "#34813894"
             : "#348138b3"
         }`,
+
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        padding: "0px 10px",
       }}
     >
+      <div></div>
       <Tabs value={value} onChange={handleChange} centered>
         <Link
           activeClass="active"
@@ -167,16 +191,87 @@ export default function Navbar() {
             }}
           />
         </Link>
-        <div style = {{
-          height : "1rem",
-          marginTop:"4px"
-        }}>
-
-        <Button variant="contained" color = "success" onClick = {()=>{
-          history.push("/login")
-        }}>Admin</Button>
-        </div>
       </Tabs>
+
+      <div
+        style={{
+          // height: "1rem",
+          marginTop: "4px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => {
+            history.push("/login");
+          }}
+        >
+          Admin
+        </Button>
+        {userData ? (
+          <>
+            <Typography
+              aria-owns={ "mouse-over-popover" }
+              aria-haspopup="true"
+              onMouseEnter={handlePopoverOpen}
+              onMouseLeave={handlePopoverClose}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "20px",
+              }}
+            >
+              {/* {userData?.displayName} */}
+              <Avatar
+                sx={{
+                  m: "0rem 1rem",
+                }}
+                alt={userData?.displayName || userData?.email}
+                src={userData?.photoURL}
+              />
+            </Typography>
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: "none",
+              }}
+              open={open}
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              onClose={handlePopoverClose}
+              disableRestoreFocus
+            >
+              {" "}
+              <Typography sx={{ p: 2.5, textAlign: "center" }}>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    marginBottom: "5px",
+                  }}
+                >
+                  {userData?.displayName}
+                </div>
+                <div>{userData?.email}</div>
+              </Typography>
+            </Popover>
+          </>
+        ) : (
+          ""
+        )}
+      </div>
+
       {/* <Button
       // onChange={() => {
       //   history.push("/admin");

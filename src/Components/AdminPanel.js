@@ -27,8 +27,14 @@ import { AdminProjects } from "../AdminPanelComponent/AdminProjects";
 import { AdminExperience } from "../AdminPanelComponent/AdminExperience";
 import { AdminBlog } from "../AdminPanelComponent/AdminBlog";
 import { AdminContacts } from "../AdminPanelComponent/AdminContacts";
-import { getDataActionCreater } from "../Redux/getDataActionCreater";
-import { useDispatch } from "react-redux";
+import {
+  getDataActionCreater,
+  storeUseSecretKeyActionCreater,
+} from "../Redux/getDataActionCreater";
+import { useDispatch, useSelector } from "react-redux";
+import { Avatar, Button, Popover } from "@mui/material";
+import { loginOut } from "../firebase/firebase_config";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -107,14 +113,19 @@ const mdTheme = createTheme();
 
 export const AdminPanel = () => {
   const [open, setOpen] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElBtn, setAnchorElBtn] = React.useState(null);
   const [selectedTab, setSelectedTab] = React.useState("About");
+  const [secretKey, setSecretKey] = React.useState(null);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
   React.useEffect(() => {
-    console.log("In effect!!")
+    console.log("In effect!!");
     dispatch(getDataActionCreater());
   }, [dispatch]);
 
@@ -137,6 +148,36 @@ export const AdminPanel = () => {
     }
   };
 
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClick = (event) => {
+    setAnchorElBtn(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorElBtn(null);
+  };
+
+  const open2 = Boolean(anchorElBtn);
+  const id = open2 ? "simple-popover" : undefined;
+
+  const userData = useSelector((state) => {
+    console.log(state);
+    return state.data.user;
+  });
+
+  const isSecretKey = () => {
+    return true;
+  };
+
+  console.log(isSecretKey());
+  console.log(secretKey);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -164,9 +205,134 @@ export const AdminPanel = () => {
               variant="h6"
               color="inherit"
               noWrap
-              sx={{ flexGrow: 1 }}
+              sx={{
+                flexGrow: 1,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              {selectedTab}
+              <div> {selectedTab}</div>
+              <div>
+                {/* for profile hower */}{" "}
+                <Typography
+                  aria-owns={open ? "mouse-over-popover" : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={handlePopoverOpen}
+                  onMouseLeave={handlePopoverClose}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "20px",
+                  }}
+                  onClick={handleClick}
+                >
+                  {userData?.displayName}
+                  <Avatar
+                    sx={{
+                      ml: "1rem",
+                    }}
+                    alt={userData?.displayName || userData?.email}
+                    src={userData?.photoURL}
+                  />
+                </Typography>
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: "none",
+                  }}
+                  open={open}
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  onClose={handlePopoverClose}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2.5, textAlign: "center" }}>
+                    <div
+                      style={{
+                        fontWeight: "bold",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {userData?.displayName}
+                    </div>
+                    <div>{userData?.email}</div>
+                  </Typography>
+                </Popover>
+                <Popover
+                  id={id}
+                  open={open2}
+                  anchorEl={anchorElBtn}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      p: 2.5,
+                      textAlign: "center",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "20px",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {userData?.displayName}
+                    </div>
+                    <div
+                      style={{
+                        // fontWeight: "bold",
+                        fontSize: "18px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      {userData?.email}
+                    </div>
+                    <Button
+                      variant="text"
+                      onClick={() => {
+                        let key = prompt("Enter Your secret Key!!");
+                        if (key) {
+                          dispatch(storeUseSecretKeyActionCreater(key));
+                        }
+                        handleClose()
+                      }}
+                      sx={{
+                        fontWeight: "bold",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      Add Secret Key
+                    </Button>
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        loginOut();
+                        history.push("/");
+                      }}
+                    >
+                      Sign Out
+                    </Button>
+                  </Typography>
+                </Popover>
+              </div>
             </Typography>
           </Toolbar>
         </AppBar>
@@ -265,6 +431,7 @@ export const AdminPanel = () => {
           {/* List of left nav */}
         </Drawer>
         {/* ///Container */}
+        {/* {userData || secretKey ? "" : setSecretKey(prompt("Enter Your Secret Key!!"))} */}
         <Box
           component="main"
           sx={{
