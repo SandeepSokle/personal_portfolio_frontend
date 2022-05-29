@@ -249,7 +249,73 @@ export const AdminResume = (props) => {
   ];
 
   const handleSubmit = async (name) => {
-    // console.log("Selected Data", name);
+    console.log("Selected Data", selectedVal, data);
+
+    switch (selectedVal) {
+      case "Education":
+        if (
+          data.name === undefined ||
+          data.startDate === undefined ||
+          data.location === undefined ||
+          data.endDate === undefined ||
+          data.courseName === undefined ||
+          data.CGPA === undefined ||
+          data.name === "" ||
+          data.startDate === "" ||
+          data.location === "" ||
+          data.endDate === "" ||
+          data.courseName === "" ||
+          data.CGPA === ""
+        ) {
+          alert("You can not submit empty field::");
+          return;
+        }
+        break;
+      case "Works":
+        if (
+          data.name === undefined ||
+          data.startDate === undefined ||
+          data.location === undefined ||
+          data.endDate === undefined ||
+          data.responsibility === undefined ||
+          data.jobTitle === undefined ||
+          data.name === "" ||
+          data.startDate === "" ||
+          data.location === "" ||
+          data.endDate === "" ||
+          data.responsibility === "" ||
+          data.jobTitle === ""
+        ) {
+          alert("You can not submit empty field::");
+          return;
+        }
+        break;
+      case "Achievements":
+        if (
+          data.name === undefined ||
+          // data.startDate === undefined ||
+          data.des === undefined ||
+          data.name === "" ||
+          // data.startDate === "" ||
+          data.des === ""
+        ) {
+          alert("You can not submit empty field::");
+          return;
+        }
+        break;
+      case "Skills":
+        if (
+          data.name === undefined ||
+          data.rate === undefined ||
+          data.name === "" ||
+          data.rate === ""
+        ) {
+          alert("You can not submit empty field::");
+          return;
+        }
+        break;
+    }
+
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
       handleUpdate({ id: selectedId, data, dispatch });

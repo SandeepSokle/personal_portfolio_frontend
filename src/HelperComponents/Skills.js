@@ -15,7 +15,7 @@ export const Skills = (props) => {
       setFinalData(newData);
     }
   }, [data]);
-  
+
   const dummyData = [
     {
       label: "java",
@@ -34,14 +34,13 @@ export const Skills = (props) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-          justifyContent: "center",
+        justifyContent: "center",
       }}
     >
-      
       {/* //////data */}
       <div style={{ flexGrow: 1, width: "60%" }}>
-        {finalData.map((e) => {
-          return <Progressbar label={e.name} value={e.rate} />;
+        {finalData.map((e,i) => {
+          return <Progressbar label={e?.name} value = {i} rate={e?.rate} />;
         })}
       </div>
     </div>

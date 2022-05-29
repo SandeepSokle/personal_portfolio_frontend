@@ -71,7 +71,7 @@ export const Achievements = (props) => {
                   textAlign: "center",
                 }}
               >
-                {e.name}
+                {e?.name}
               </div>
               <div
                 style={{
@@ -82,7 +82,7 @@ export const Achievements = (props) => {
                   justifyContent: "space-between",
                 }}
               >
-                {e.des}
+                {e?.des}
                 {/* <ul>
                   {e.des.map((e) => {
                     return (

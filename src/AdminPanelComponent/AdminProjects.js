@@ -14,7 +14,6 @@ import {
 } from "../HandleFunctions/handleFunctions";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
 
-
 export const AdminProjects = (props) => {
   const { selectedTab } = props;
   const [selectedVal, setSelectedVal] = React.useState("Complete");
@@ -40,7 +39,22 @@ export const AdminProjects = (props) => {
   }, [selectedItem]);
 
   const handleSubmit = async (name) => {
-    // console.log("Selected Data", name);
+    console.log("Selected Data", selectedVal, data);
+
+    if (
+      data.name === undefined ||
+      data.file === undefined ||
+      data.link === undefined ||
+      data.des === undefined ||
+      data.name === "" ||
+      data.file === "" ||
+      data.link === "" ||
+      data.des === ""
+    ) {
+      alert("You can not submit empty field::");
+      return;
+    }
+
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
       handleUpdate({ id: selectedId, data, dispatch });

@@ -9,7 +9,7 @@ const getData = async () => {
     const response = await axios.get("https://dynamic-portfolio-api.herokuapp.com/portfolio/get");
     // console.log("Data : ", response.data);
 
-    let data = response.data.reduce((ans, ele) => {
+    let data = response?.data?.reduce((ans, ele) => {
       return {
         ...ans,
         [`${ele.module}`]: {

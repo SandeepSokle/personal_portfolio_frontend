@@ -33,18 +33,46 @@ export const AdminAbout = (props) => {
   // console.log("data!!", selectedId);
 
   const handleSubmit = async (name) => {
-    // console.log("Selected Data", name);
-    // if (isEdit) {
-    // console.info("Update Hit!!", selectedId);
-    handleUpdate({ id: selectedId, data, dispatch });
-    // } else {
-    // console.log("Save Hit!!", selectedTab, selectedVal, data);
-    // handleSave({ selectedTab, selectedVal, data, dispatch });
+    switch (selectedVal) {
+      case "About Me":
+        if (data?.name && data.name !== "") {
+          handleUpdate({ id: selectedId, data, dispatch });
+        } else {
+          alert("You can not submit empty field::");
+        }
+        break;
+      case "Contact Details":
+        if (
+          data?.firstName &&
+          data.firstName !== "" &&
+          data.lastName !== "" &&
+          data.email !== "" &&
+          data.city !== "" &&
+          data.phone !== "" &&
+          data.pinCode !== "" &&
+          data.street !== "" &&
+          data.state !== ""
+        ) {
+          handleUpdate({ id: selectedId, data, dispatch });
+        } else {
+          alert("You can not submit empty field::");
+        }
+        break;
+      case "Links Details":
+        if (
+          data?.gitName &&
+          data.gitName !== "" &&
+          data.leetCodeName !== "" &&
+          data.linkName !== ""
+        ) {
+          handleUpdate({ id: selectedId, data, dispatch });
+        } else {
+          alert("You can not submit empty field::");
+        }
+        break;
+    }
+
     dispatch(getDataActionCreater());
-    // }
-    // setSelectedItem({});
-    // setData({});
-    // setIsEdit(false);
   };
 
   const buttons = [

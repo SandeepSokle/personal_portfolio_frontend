@@ -28,6 +28,23 @@ export const AdminExperience = (props) => {
 
   const handleSubmit = async (name) => {
     // console.log("Selected Data", name);
+    console.log("Selected Data", selectedVal, data);
+
+    if (
+      data.name === undefined ||
+      data.des === undefined ||
+      data.experience === undefined ||
+      data.response === undefined ||
+      data.name === "" ||
+      data.des === "" ||
+      data.experience === "" ||
+      data.response === ""
+    ) {
+      alert("You can not submit empty field::");
+      return;
+    }
+    console.log("Selected Data after rejection ::", selectedVal, data);
+
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
       handleUpdate({ id: selectedId, data, dispatch });

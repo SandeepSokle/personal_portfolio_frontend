@@ -120,7 +120,7 @@ export const Works = (props) => {
               }}
             >
               <div style={{ fontSize: "1.8rem", fontWeight: "bold" ,color:"#2e7d32"}}>
-                {e.name}
+                {e?.name}
               </div>
               <div
                 style={{
@@ -132,12 +132,12 @@ export const Works = (props) => {
                 }}
               >
                 <div>
-                  {e.startDate} - {e.endDate}
+                  {e?.startDate} - {e?.endDate}
                 </div>
                 {/* <a href={e.link}>Live Demo</a> */}
               </div>
               <div>
-                  {e.responsibility}
+                  {e?.responsibility}
                 </div>
               {/* <ul>
                 {e.des.map((e) => {

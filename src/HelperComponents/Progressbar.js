@@ -20,7 +20,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 export default function Progressbar(props) {
-    const {value,label} = props;
+    const {value,label,rate} = props;
   return (
     <div
       style={{
@@ -37,7 +37,7 @@ export default function Progressbar(props) {
       >
         {label}
       </FormLabel>
-      <BorderLinearProgress variant="determinate" value={value} />
+      <BorderLinearProgress variant="determinate" value={rate} />
     </div>
   );
 }

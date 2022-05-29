@@ -6,7 +6,7 @@ import { Link } from "react-scroll";
 import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 export default function Navbar() {
-  const [value, setValue] = React.useState("home");
+  const [value, setValue] = React.useState(0);
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const history = useHistory();
   const handleChange = (event, newValue) => {
@@ -66,7 +66,7 @@ export default function Navbar() {
         >
           <Tab
             label="Home"
-            value="home"
+            value={0}
             color="white"
             sx={{
               color: "white",
@@ -82,7 +82,7 @@ export default function Navbar() {
         >
           <Tab
             label="About"
-            value="about"
+            value={1}
             sx={{
               color: "white",
             }}
@@ -101,7 +101,7 @@ export default function Navbar() {
         >
           <Tab
             label="Resume"
-            value="resume"
+            value={2}
             sx={{
               color: "white",
             }}
@@ -116,7 +116,7 @@ export default function Navbar() {
         >
           <Tab
             label="Works"
-            value="works"
+            value={3}
             sx={{
               color: "white",
             }}
@@ -131,7 +131,7 @@ export default function Navbar() {
         >
           <Tab
             label="Experience"
-            value="experience"
+            value={4}
             sx={{
               color: "white",
             }}
@@ -146,7 +146,7 @@ export default function Navbar() {
         >
           <Tab
             label="Blog"
-            value="blog"
+            value={5}
             sx={{
               color: "white",
             }}
@@ -161,7 +161,7 @@ export default function Navbar() {
         >
           <Tab
             label="Contacts"
-            value="contacts"
+            value={6}
             sx={{
               color: "white",
             }}

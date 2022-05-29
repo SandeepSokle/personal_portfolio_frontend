@@ -6,9 +6,19 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
 export default function ProjectCard(props) {
-  const { image, des, name } = props;
+  const { image, des, name, link } = props;
   return (
-    <Card sx={{ maxWidth: 280, margin: "10px" }}>
+    <Card
+      sx={{ maxWidth: 280, margin: "10px" }}
+      onClick={() => {
+        // location.href = link
+        var url = document.createElement("a");
+        url.href = link;
+        url.target = "_blank";
+        document.body.appendChild(url);
+        url.click();
+      }}
+    >
       <CardActionArea>
         <CardMedia
           component="img"
