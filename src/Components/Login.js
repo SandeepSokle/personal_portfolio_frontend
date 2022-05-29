@@ -145,6 +145,7 @@ export default function Login() {
                   let userDetail = await loginWithGoogle();
                   console.log("user!!", userDetail);
                   setUser(userDetail);
+                  history.push("/admin");
                 }}
               >
                 Sign in with google
