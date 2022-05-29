@@ -43,7 +43,7 @@ export default function Login() {
       );
       console.log("user!!", userDetail);
       setUser(userDetail);
-      history.push("/admin");
+      // history.push("/admin");
     } else {
       if (data.get("password") === data.get("confirmPassword")) {
         let userDetail = await createUserWithEmailPassword(
@@ -52,7 +52,7 @@ export default function Login() {
         );
         console.log("user!!", userDetail);
         setUser(userDetail);
-        history.push("/admin");
+        // history.push("/admin");
       }
     }
   };
