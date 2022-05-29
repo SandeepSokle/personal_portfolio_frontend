@@ -112,7 +112,7 @@ export const Works = (props) => {
           maxWidth: "100%",
         }}
       >
-        {finalData?.map((e) => {
+        {finalData?.map((e,i) => {
           return (
             <div
               style={{
@@ -120,7 +120,7 @@ export const Works = (props) => {
               }}
             >
               <div style={{ fontSize: "1.8rem", fontWeight: "bold" ,color:"#2e7d32"}}>
-                {e?.name}
+                {`${i+1}. ${e?.name}`}
               </div>
               <div
                 style={{

@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,12 +20,27 @@ const firebaseApp = initializeApp(firebaseConfig);
 // const db = getFirestore(firebaseApp);
 const storage = getStorage();
 console.log({ firebaseApp });
-// const storageRef = ref(storage, "files");
+
+const auth = getAuth();
+
+export const loginWithEmailPassword = async (email, password) => {
+  let user;
+  let userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  user = userCredential.user;
+
+  if (!user) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  } else {
+    return user;
+  }
+};
 
 // module.exports = {
-//   db,
 //   storage,
-//   storageRef,
-// };
-
-export default storage;
+//   loginWithEmailPassword
+// }

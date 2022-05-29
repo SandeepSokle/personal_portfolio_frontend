@@ -110,6 +110,7 @@ export const AdminProjects = (props) => {
   //       des: "show movie list we can like dislike",
   //     },
   //   },]
+  console.log(data?.file);
 
   return (
     <Grid
@@ -253,6 +254,8 @@ export const AdminProjects = (props) => {
                   width: "48%",
                   m: 1,
                 }}
+                // value = {data?.file}
+                // name={data?.file}
                 onChange={async (e) => {
                   console.log("target", e.target.files);
                   let fileUrl = await fileUpload({

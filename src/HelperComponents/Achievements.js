@@ -15,7 +15,6 @@ export const Achievements = (props) => {
     }
   }, [data]);
 
-
   const dummyData = [
     {
       name: "HARYANA HACKS",
@@ -55,7 +54,7 @@ export const Achievements = (props) => {
           maxWidth: "100%",
         }}
       >
-        {finalData?.map((e) => {
+        {finalData?.map((e, i) => {
           return (
             <div
               style={{
@@ -68,10 +67,10 @@ export const Achievements = (props) => {
                   fontSize: "1.8rem",
                   fontWeight: "bold",
                   color: "#2e7d32",
-                  textAlign: "center",
+                  // textAlign: "center",
                 }}
               >
-                {e?.name}
+                {`${i + 1}. ${e?.name}`}
               </div>
               <div
                 style={{

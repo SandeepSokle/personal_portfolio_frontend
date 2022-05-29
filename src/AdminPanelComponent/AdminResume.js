@@ -46,8 +46,8 @@ export const AdminResume = (props) => {
   React.useEffect(() => {
     // console.log("selectedItem", selectedItem);
     setData(selectedItem);
-    setStartDate(selectedItem.startDate);
-    setEndDate(selectedItem.endDate);
+    setStartDate(selectedItem?.startDate || "");
+    setEndDate(selectedItem?.endDate || "");
     setISUpdateHit(true);
   }, [selectedItem]);
 
@@ -293,10 +293,10 @@ export const AdminResume = (props) => {
       case "Achievements":
         if (
           data.name === undefined ||
-          // data.startDate === undefined ||
+          data.startDate === undefined ||
           data.des === undefined ||
           data.name === "" ||
-          // data.startDate === "" ||
+          data.startDate === "" ||
           data.des === ""
         ) {
           alert("You can not submit empty field::");
@@ -426,7 +426,12 @@ export const AdminResume = (props) => {
                   }}
                   onBlur={(e) => {
                     e.target.type = "text";
-                    setISUpdateHit(true);
+                    // setISUpdateHit(true);
+                    setStartDate(e.target.value);
+                  }}
+                  onChange={(e) => {
+                    e.target.type = "text";
+                    // setISUpdateHit(true);
                     setStartDate(e.target.value);
                   }}
                 />
@@ -460,6 +465,11 @@ export const AdminResume = (props) => {
                   onBlur={(e) => {
                     e.target.type = "text";
                     setISUpdateHit(true);
+                    setEndDate(e.target.value);
+                  }}
+                  onChange={(e) => {
+                    e.target.type = "text";
+                    // setISUpdateHit(true);
                     setEndDate(e.target.value);
                   }}
                 />
@@ -604,6 +614,11 @@ export const AdminResume = (props) => {
                       // console.log("On blur", e.target.value, e.target.value);
                       setStartDate(e.target.value);
                     }}
+                    onChange={(e) => {
+                      e.target.type = "text";
+                      // setISUpdateHit(true);
+                      setStartDate(e.target.value);
+                    }}
                   />
                   {/* 
                   <GeneralDatePicker
@@ -636,6 +651,11 @@ export const AdminResume = (props) => {
                       e.target.type = "text";
                       // console.log("On blur", e.target.value, e.target.value);
                       setISUpdateHit(true);
+                      setEndDate(e.target.value);
+                    }}
+                    onChange={(e) => {
+                      e.target.type = "text";
+                      // setISUpdateHit(true);
                       setEndDate(e.target.value);
                     }}
                   />
@@ -733,6 +753,12 @@ export const AdminResume = (props) => {
                     }}
                     onBlur={(e) => {
                       e.target.type = "text";
+                      setISUpdateHit(true);
+                      setStartDate(e.target.value);
+                    }}
+                    onChange={(e) => {
+                      e.target.type = "text";
+                      setISUpdateHit(true);
                       setStartDate(e.target.value);
                     }}
                   />

@@ -13,20 +13,28 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
+import { loginWithEmailPassword } from "../firebase/firebase_config";
 
 const theme = createTheme();
 
 export default function Login() {
+  const [loginState, setLoginState] = React.useState("signin");
   const history = useHistory();
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
+
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+      confirmPassword: data.get("confirmPassword"),
     });
-
+    // let user = await loginWithEmailPassword(
+    //   data.get("email"),
+    //   data.get("password")
+    // );
+    // console.log("user!!", user);
     history.push("/admin");
   };
 
@@ -64,7 +72,7 @@ export default function Login() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              {`${loginState === "signin" ? "Sign in" : "Sign up"}`}
             </Typography>
             <Box
               component="form"
@@ -92,6 +100,20 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
               />
+              {loginState === "signin" ? (
+                ""
+              ) : (
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+              )}
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
@@ -102,10 +124,34 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 1 }}
               >
-                Sign In
+                {`${loginState === "signin" ? "Sign in" : "Sign up"}`}
               </Button>
 
-              <Grid container>
+              <Grid
+                container
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Grid item xs>
+                  <Link
+                    href=""
+                    variant="body2"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (loginState === "signin") {
+                        setLoginState("signup");
+                      } else {
+                        setLoginState("signin");
+                      }
+                    }}
+                  >
+                    {`${
+                      loginState === "signin" ? "Sign up new User." : "Sign in"
+                    }`}
+                  </Link>
+                </Grid>
                 <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?

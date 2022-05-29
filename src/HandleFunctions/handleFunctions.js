@@ -1,11 +1,11 @@
 import axios from "axios";
-import storage from "../firebase/firebase_config";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 const uuid = require("react-uuid");
 const {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  getStorage,
 } = require("firebase/storage");
 export const handleSave = async (props) => {
   const { selectedTab, selectedVal, data, dispatch } = props;
@@ -66,7 +66,7 @@ export const fileUpload = async (props) => {
   const { file, dispatch, storeValue, setData, data } = props;
   //   const dispatch = useDispatch()
   try {
-    const storageRef = ref(storage, "images/" + uuid() + "_" + name);
+    const storageRef = ref(getStorage(), "images/" + uuid() + "_" + name);
     let fileUrl = "";
 
     const uploadTask = uploadBytesResumable(storageRef, file);
