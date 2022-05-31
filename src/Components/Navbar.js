@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Link } from "react-scroll";
 import { useHistory } from "react-router-dom";
-import { Avatar, Button, Popover, Typography } from "@mui/material";
+import { Avatar, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 export default function Navbar() {
   const [value, setValue] = React.useState(0);
