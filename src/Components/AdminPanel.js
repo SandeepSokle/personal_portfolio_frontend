@@ -113,7 +113,10 @@ const mdTheme = createTheme();
 
 export const AdminPanel = () => {
   const [open, setOpen] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElBtn, setAnchorElBtn] = React.useState(null);
   const [selectedTab, setSelectedTab] = React.useState("About");
+  const [secretKey, setSecretKey] = React.useState(null);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -151,7 +154,6 @@ export const AdminPanel = () => {
 
   // console.log(userData);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -442,6 +444,7 @@ export const AdminPanel = () => {
           {/* List of left nav */}
         </Drawer>
         {/* ///Container */}
+        {/* {userData || secretKey ? "" : setSecretKey(prompt("Enter Your Secret Key!!"))} */}
         <Box
           component="main"
           sx={{

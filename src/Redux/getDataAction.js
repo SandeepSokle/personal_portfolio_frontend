@@ -3,7 +3,7 @@ const actions = {
     // console.log("In getDataAction  : ", data)
     return {
       type: "GET_DATA",
-      payload : data,
+      payload: data,
     };
   },
   loginUserAction : (data)=>{
@@ -24,5 +24,5 @@ const actions = {
 
 
 module.exports = {
-  actions
-}
+  actions,
+};

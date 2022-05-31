@@ -8,6 +8,7 @@ import { Avatar, Button, Popover, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 export default function Navbar() {
   const [value, setValue] = React.useState(0);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const history = useHistory();
   const handleChange = (event, newValue) => {
@@ -34,12 +35,7 @@ export default function Navbar() {
   // console.log(scrollPosition);
 
   // console.log(value);
-  const userData = useSelector((state) => {
-    // console.log(state.data.user);
-    return state.data.user;
-  });
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -51,6 +47,19 @@ export default function Navbar() {
 
   const open1 = Boolean(anchorEl);
 
+  const userData = useSelector((state) => {
+    console.log(state);
+    return state.data.user;
+  });
+
+  // const handlePopoverClose = () => {
+  //   setAnchorEl(null);
+  // };
+
+  // const handlePopoverOpen = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
   return (
     <Box
       sx={{
@@ -59,6 +68,7 @@ export default function Navbar() {
         top: "0px",
         right: "0px",
         zIndex: 3,
+
         // backgroundColor: "#2e7d32",
         backgroundColor: `${
           scrollPosition <= 100
