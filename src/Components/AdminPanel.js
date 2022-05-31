@@ -27,9 +27,15 @@ import { AdminProjects } from "../AdminPanelComponent/AdminProjects";
 import { AdminExperience } from "../AdminPanelComponent/AdminExperience";
 import { AdminBlog } from "../AdminPanelComponent/AdminBlog";
 import { AdminContacts } from "../AdminPanelComponent/AdminContacts";
-import { getDataActionCreater } from "../Redux/getDataActionCreater";
-import { useDispatch } from "react-redux";
-
+import {
+  getDataActionCreater,
+  logoutUserActionCreater,
+} from "../Redux/getDataActionCreater";
+import { useDispatch, useSelector } from "react-redux";
+import Avatar from "@mui/material/Avatar";
+import { Button, Popover } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import { useHistory } from "react-router-dom";
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -113,8 +119,9 @@ export const AdminPanel = () => {
   };
 
   const dispatch = useDispatch();
+  const history = useHistory();
   React.useEffect(() => {
-    console.log("In effect!!")
+    console.log("In effect!!");
     dispatch(getDataActionCreater());
   }, [dispatch]);
 
@@ -136,6 +143,38 @@ export const AdminPanel = () => {
         return <AdminAbout selectedTab={val} />;
     }
   };
+
+  const userData = useSelector((state) => {
+    // console.log(state.data.user);
+    return state.data.user;
+  });
+
+  // console.log(userData);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open1 = Boolean(anchorEl);
+
+  const [anchorElModel, setAnchorElModel] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorElModel(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorElModel(null);
+  };
+
+  const openModel = Boolean(anchorElModel);
+  const id = openModel ? "simple-popover" : undefined;
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -159,15 +198,153 @@ export const AdminPanel = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
             >
-              {selectedTab}
-            </Typography>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+                {selectedTab}
+              </Typography>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "1.3rem",
+                  }}
+                >
+                  {userData?.displayName}
+                </div>
+                <Typography
+                  aria-owns={open1 ? "mouse-over-popover" : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={handlePopoverOpen}
+                  onMouseLeave={handlePopoverClose}
+                  onClick={handleClick}
+                  sx={{
+                    m: "0rem 0.8rem",
+                  }}
+                >
+                  {/* Hover with a Popover. */}
+                  <Avatar alt="Travis Howard" src={`${userData?.photoURL}`} />
+                </Typography>
+                <Button
+                  variant="contained"
+                  color="info"
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  <HomeIcon />
+                </Button>
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: "none",
+                  }}
+                  open={open1}
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  onClose={handlePopoverClose}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 1, textAlign: "center" }}>
+                    <div
+                      style={{
+                        margin: "0px 10px",
+                        fontSize: "18px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      {userData?.displayName}
+                    </div>
+                    <div
+                      style={{
+                        margin: "0px 10px",
+                        fontSize: "18px",
+                        // fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      {userData?.email}
+                    </div>
+                  </Typography>
+                </Popover>
+                <Popover
+                  id={id}
+                  open={openModel}
+                  anchorEl={anchorElModel}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                >
+                  <Typography sx={{ p: 2, textAlign: "center" }}>
+                    <div
+                      style={{
+                        margin: "8px 1px",
+                        marginTop: "0px",
+                        fontSize: "22px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      {userData?.displayName}
+                    </div>
+                    <div
+                      style={{
+                        margin: "8px 1px",
+                        fontSize: "20px",
+                        // fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      {userData?.email}
+                    </div>
+                    <Button
+                      sx={{
+                        m: "8px 0px",
+                        mb: "0px",
+                        // fontSize: "18px",
+                        // fontWeight: "bold",
+                      }}
+                      variant="contained"
+                      onClick={() => {
+                        dispatch(logoutUserActionCreater());
+                        history.push("/");
+                      }}
+                    >
+                      Sign Out
+                    </Button>
+                  </Typography>
+                </Popover>
+              </div>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

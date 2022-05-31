@@ -18,6 +18,8 @@ import {
   loginWithEmailPassword,
   loginWithGoogle,
 } from "../firebase/firebase_config";
+import { useDispatch } from "react-redux";
+import { loginUserActionCreater } from "../Redux/getDataActionCreater";
 
 const theme = createTheme();
 
@@ -25,6 +27,7 @@ export default function Login() {
   const [loginState, setLoginState] = React.useState("signin");
   const [user, setUser] = React.useState();
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -147,6 +150,7 @@ export default function Login() {
                   let userDetail = await loginWithGoogle();
                   console.log("user!!", userDetail);
                   setUser(userDetail);
+                  dispatch(loginUserActionCreater(userDetail));
                   history.push("/admin");
                 }}
               >

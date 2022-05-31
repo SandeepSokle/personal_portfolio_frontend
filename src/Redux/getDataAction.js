@@ -6,7 +6,22 @@ const actions = {
       payload : data,
     };
   },
+  loginUserAction : (data)=>{
+    return {
+      type: "LOG_IN",
+      payload : data,
+    };
+  },
+
+  logoutUserAction : ()=>{
+    return {
+      type: "LOG_OUT",
+    };
+  }
+
 };
+
+
 
 module.exports = {
   actions

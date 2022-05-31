@@ -4,7 +4,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Link } from "react-scroll";
 import { useHistory } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Avatar, Button, Popover, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 export default function Navbar() {
   const [value, setValue] = React.useState(0);
   const [scrollPosition, setScrollPosition] = React.useState(0);
@@ -33,6 +34,22 @@ export default function Navbar() {
   // console.log(scrollPosition);
 
   // console.log(value);
+  const userData = useSelector((state) => {
+    // console.log(state.data.user);
+    return state.data.user;
+  });
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open1 = Boolean(anchorEl);
 
   return (
     <Box
@@ -54,8 +71,14 @@ export default function Navbar() {
             ? "#34813894"
             : "#348138b3"
         }`,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        p: "4px 10px",
       }}
     >
+      <div></div>
       <Tabs value={value} onChange={handleChange} centered>
         <Link
           activeClass="active"
@@ -167,16 +190,93 @@ export default function Navbar() {
             }}
           />
         </Link>
-        <div style = {{
-          height : "1rem",
-          marginTop:"4px"
-        }}>
-
-        <Button variant="contained" color = "success" onClick = {()=>{
-          history.push("/login")
-        }}>Admin</Button>
-        </div>
+        <div
+          style={{
+            height: "1rem",
+            marginTop: "4px",
+          }}
+        ></div>
       </Tabs>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => {
+            history.push("/login");
+          }}
+          sx={{
+            mr: "0.8rem",
+          }}
+        >
+          Admin
+        </Button>
+        {userData ? (
+          <>
+            <Typography
+              aria-owns={open1 ? "mouse-over-popover" : undefined}
+              aria-haspopup="true"
+              onMouseEnter={handlePopoverOpen}
+              onMouseLeave={handlePopoverClose}
+              // sx={{
+              //   m: "0rem 0.8rem",
+              // }}
+            >
+              <Avatar alt="Travis Howard" src={`${userData?.photoURL}`} />
+            </Typography>
+            {/* <Popover
+              // id="mouse-over-popover"
+              sx={{
+                pointerEvents: "none",
+              }}
+              open={open1}
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              onClose={handlePopoverClose}
+              // disableRestoreFocus
+            >
+              <Typography sx={{ p: 1, textAlign: "center" }}>
+                <div
+                  style={{
+                    margin: "0px 10px",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {" "}
+                  {userData?.displayName}
+                </div>
+                <div
+                  style={{
+                    margin: "0px 10px",
+                    fontSize: "18px",
+                    // fontWeight: "bold",
+                  }}
+                >
+                  {" "}
+                  {userData?.email}
+                </div>
+              </Typography>
+            </Popover> */}
+          </>
+        ) : (
+          ""
+        )}
+      </div>
+
       {/* <Button
       // onChange={() => {
       //   history.push("/admin");
