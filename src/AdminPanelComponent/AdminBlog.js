@@ -13,7 +13,7 @@ export const AdminBlog = (props) => {
   const { selectedTab } = props;
   const selectedVal = "Blog";
   const [selectedItem, setSelectedItem] = React.useState({});
-  const [selectedId,setSelectedID] = React.useState("")
+  const [selectedId, setSelectedID] = React.useState("");
   const [editLink, setEditLink] = React.useState(false);
   const [isEdit, setIsEdit] = React.useState(false);
   const [data, setData] = React.useState({});
@@ -22,6 +22,14 @@ export const AdminBlog = (props) => {
   const newData = useSelector((state) => {
     // console.log(state)
     return state?.data?.blog;
+  });
+  const userData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.user;
+  });
+  const secretData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.secret;
   });
 
   React.useEffect(() => {
@@ -33,11 +41,18 @@ export const AdminBlog = (props) => {
     // console.log("Selected Data", name);
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
-      handleUpdate({ id: selectedId, data, dispatch });
+      handleUpdate({ id: selectedId, data, dispatch, userData, secretData });
       dispatch(getDataActionCreater());
-    }else {
+    } else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
-      handleSave({ selectedTab, selectedVal, data, dispatch });
+      handleSave({
+        selectedTab,
+        selectedVal,
+        data,
+        dispatch,
+        userData,
+        secretData,
+      });
     }
     setSelectedItem({});
     setData({});
@@ -79,7 +94,7 @@ export const AdminBlog = (props) => {
         "& > *": {},
       }}
     >
-      <Grid xs={12} sx={{ p: "2px 2rem",width : "100%" }}>
+      <Grid xs={12} sx={{ p: "2px 2rem", width: "100%" }}>
         <Box
           fullWidth
           sx={{
@@ -108,8 +123,7 @@ export const AdminBlog = (props) => {
           setSelectedItem={setSelectedItem}
           setSelectedID={setSelectedID}
           // setIsEdit={setIsEdit}
-
-          />
+        />
 
         <div
           style={{

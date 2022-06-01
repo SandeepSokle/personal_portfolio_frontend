@@ -18,8 +18,10 @@ import {
   loginWithEmailPassword,
   loginWithGoogle,
 } from "../firebase/firebase_config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUserActionCreater } from "../Redux/getDataActionCreater";
+import { Redirect } from "react-router-dom";
+import { colorChannel } from "@mui/system";
 
 const theme = createTheme();
 
@@ -28,6 +30,21 @@ export default function Login() {
   const [user, setUser] = React.useState();
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const userData = useSelector((state) => {
+    console.log(state.data.user);
+    return state.data.user;
+  });
+
+  React.useEffect(() => {
+    if (userData) {
+    //  return <Redirect to="/admin" />;
+    history.push("/admin")
+    }
+  }, [userData]);
+
+  console.log(userData)
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

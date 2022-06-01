@@ -40,16 +40,16 @@ export const AdminResume = (props) => {
   });
 
   const userData = useSelector((state) => {
-    console.log(state);
+    // console.log(state);
     return state.data.user;
   });
 
   const userSecret = useSelector((state) => {
-    console.log(state);
-    return state.data.secretKey;
+    // console.log(state);
+    return state.data.secret;
   });
 
-  console.log(userSecret)
+  // console.log(userSecret)
 
   // React.useEffect(() => {
   //   dispatch(getDataActionCreater());
@@ -330,11 +330,18 @@ export const AdminResume = (props) => {
 
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
-      handleUpdate({ id: selectedId, data, dispatch });
+      handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
-      handleSave({ selectedTab, selectedVal, data, dispatch });
+      handleSave({
+        selectedTab,
+        selectedVal,
+        data,
+        dispatch,
+        userData,
+        userSecret,
+      });
     }
     setSelectedItem({});
     setData({});

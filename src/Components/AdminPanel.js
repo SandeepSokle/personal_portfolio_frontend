@@ -33,10 +33,22 @@ import {
 } from "../Redux/getDataActionCreater";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
-import { Button, Popover } from "@mui/material";
+import { Button, Modal, Popover, TextField } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { useHistory } from "react-router-dom";
 const drawerWidth = 240;
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -116,7 +128,10 @@ export const AdminPanel = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorElBtn, setAnchorElBtn] = React.useState(null);
   const [selectedTab, setSelectedTab] = React.useState("About");
-  const [secretKey, setSecretKey] = React.useState(null);
+  const [secretKey, setSecretKey] = React.useState("");
+  const [openSecretModel, setOpenSecretModel] = React.useState(false);
+  const handleOpenSecretModel = () => setOpenSecretModel(true);
+  const handleCloseSecretModel = () => setOpenSecretModel(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -154,7 +169,6 @@ export const AdminPanel = () => {
 
   // console.log(userData);
 
-
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -177,6 +191,8 @@ export const AdminPanel = () => {
 
   const openModel = Boolean(anchorElModel);
   const id = openModel ? "simple-popover" : undefined;
+
+  // console.log("secretKey", secretKey);
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -244,7 +260,10 @@ export const AdminPanel = () => {
                   }}
                 >
                   {/* Hover with a Popover. */}
-                  <Avatar alt="Travis Howard" src={`${userData?.photoURL}`} />
+                  <Avatar
+                    alt={`${userData?.displayName}`}
+                    src={`${userData?.photoURL}`}
+                  />
                 </Typography>
                 <Button
                   variant="contained"
@@ -328,6 +347,29 @@ export const AdminPanel = () => {
                       {" "}
                       {userData?.email}
                     </div>
+                    <div
+                      style={{
+                        margin: "8px 1px",
+                        // fontSize: "20px",
+                        // fontWeight: "bold",
+                      }}
+                    >
+                      <Button
+                        // sx={{
+                        //   m: "8px 0px",
+                        //   mb: "0px",
+                        //   // fontSize: "18px",
+                        //   // fontWeight: "bold",
+                        // }}
+                        variant="text"
+                        onClick={() => {
+                          setOpenSecretModel(true);
+                          handleOpenSecretModel();
+                        }}
+                      >
+                        Add secret Key
+                      </Button>
+                    </div>
                     <Button
                       sx={{
                         m: "8px 0px",
@@ -345,6 +387,78 @@ export const AdminPanel = () => {
                     </Button>
                   </Typography>
                 </Popover>
+                {openSecretModel ? (
+                  <Modal
+                    open={openModel}
+                    onClose={handleCloseSecretModel}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        Enter Your Secret Key
+                      </Typography>
+                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <div>
+                          <TextField
+                            fullWidth
+                            id="outlined-basic"
+                            label="Outlined"
+                            variant="outlined"
+                            onChange={(ele) => {
+                              setSecretKey(ele.target.value);
+                            }}
+                          />
+                        </div>
+                        <div
+                          style={{
+                            textAlign: "end",
+                          }}
+                        >
+                          {" "}
+                          <Button
+                            sx={{
+                              m: "8px 8px",
+                              mb: "0px",
+                              // fontSize: "18px",
+                              // fontWeight: "bold",
+                            }}
+                            variant="text"
+                            onClick={(ele) => {
+                              handleCloseSecretModel();
+                              handleClose();
+                            }}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            sx={{
+                              m: "8px 2px",
+                              mb: "0px",
+                              // fontSize: "18px",
+                              // fontWeight: "bold",
+                            }}
+                            variant="contained"
+                            onClick={(ele) => {
+                              // console.log(secretKey)
+                              handleCloseSecretModel();
+                              handleClose();
+                              dispatch(addSecretKeyActionCreater(secretKey));
+                            }}
+                          >
+                            Add
+                          </Button>
+                        </div>
+                      </Typography>
+                    </Box>
+                  </Modal>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </Toolbar>

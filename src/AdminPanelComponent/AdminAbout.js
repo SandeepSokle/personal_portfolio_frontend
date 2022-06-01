@@ -18,6 +18,15 @@ export const AdminAbout = (props) => {
   const newData = useSelector((state) => {
     return state?.data?.about;
   });
+  const userData = useSelector((state) => {
+    // console.log(state);
+    return state.data.user;
+  });
+
+  const userSecret = useSelector((state) => {
+    // console.log(state);
+    return state.data.secret;
+  });
   const resetData = () => {
     if (newData) setData(newData[`${selectedVal.toLowerCase()}`][0]?.data);
     return;
@@ -36,7 +45,13 @@ export const AdminAbout = (props) => {
     switch (selectedVal) {
       case "About Me":
         if (data?.name && data.name !== "") {
-          handleUpdate({ id: selectedId, data, dispatch });
+          handleUpdate({
+            id: selectedId,
+            data,
+            dispatch,
+            userData,
+            userSecret,
+          });
         } else {
           alert("You can not submit empty field::");
         }
@@ -53,7 +68,13 @@ export const AdminAbout = (props) => {
           data.street !== "" &&
           data.state !== ""
         ) {
-          handleUpdate({ id: selectedId, data, dispatch });
+          handleUpdate({
+            id: selectedId,
+            data,
+            dispatch,
+            userData,
+            userSecret,
+          });
         } else {
           alert("You can not submit empty field::");
         }
@@ -65,7 +86,13 @@ export const AdminAbout = (props) => {
           data.leetCodeName !== "" &&
           data.linkName !== ""
         ) {
-          handleUpdate({ id: selectedId, data, dispatch });
+          handleUpdate({
+            id: selectedId,
+            data,
+            dispatch,
+            userData,
+            userSecret,
+          });
         } else {
           alert("You can not submit empty field::");
         }

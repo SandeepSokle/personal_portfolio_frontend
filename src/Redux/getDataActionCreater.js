@@ -1,6 +1,7 @@
 import axios from "axios";
 import { actions } from "./getDataAction";
-const { getDataAction, loginUserAction,logoutUserAction } = actions;
+const { getDataAction, loginUserAction, logoutUserAction, addSecretKeyAction } =
+  actions;
 
 const getData = async () => {
   try {
@@ -57,12 +58,22 @@ export const loginUserActionCreater = (data) => {
   };
 };
 
-
 export const logoutUserActionCreater = () => {
   return async (dispatch) => {
     try {
       // console.log("In loginUserActionCreater : ", data);
       dispatch(logoutUserAction());
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+};
+
+export const addSecretKeyActionCreater = (data) => {
+  return async (dispatch) => {
+    try {
+      // console.log("In loginUserActionCreater : ", data);
+      dispatch(addSecretKeyAction(data));
     } catch (err) {
       console.log(err.message);
     }

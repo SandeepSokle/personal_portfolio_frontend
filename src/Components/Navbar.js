@@ -36,7 +36,6 @@ export default function Navbar() {
 
   // console.log(value);
 
-
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -48,7 +47,7 @@ export default function Navbar() {
   const open1 = Boolean(anchorEl);
 
   const userData = useSelector((state) => {
-    console.log(state);
+    // console.log(state.data.user);
     return state.data.user;
   });
 
@@ -219,7 +218,8 @@ export default function Navbar() {
           variant="contained"
           color="success"
           onClick={() => {
-            history.push("/login");
+            if (userData) history.push("/admin");
+            else history.push("/login");
           }}
           sx={{
             mr: "0.8rem",
@@ -238,7 +238,10 @@ export default function Navbar() {
               //   m: "0rem 0.8rem",
               // }}
             >
-              <Avatar alt="Travis Howard" src={`${userData?.photoURL}`} />
+              <Avatar
+                alt={`${userData?.displayName}`}
+                src={`${userData?.photoURL}`}
+              />
             </Typography>
             {/* <Popover
               // id="mouse-over-popover"
