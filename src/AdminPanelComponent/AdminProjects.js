@@ -273,23 +273,19 @@ export const AdminProjects = (props) => {
                 // name={data?.file}
                 onChange={async (e) => {
                   console.log("target", e.target.files);
-                  if (
-                    userData?.email === "sandeepsokle12@gmail.com" ||
-                    secretData === "Sokle12"
-                  ) {
-                    let fileUrl = await fileUpload({
-                      file: e.target.files[0],
-                      dispatch,
-                      storeValue: "file",
-                      data,
-                      setData,
-                    });
-                    // console.log("fileUrl :: before");
-                    // console.log(fileUrl);
-                    // console.log("fileUrl :: after");
-                  } else {
-                    alert("Unauthorized User!!");
-                  }
+
+                  let fileUrl = await fileUpload({
+                    file: e.target.files[0],
+                    dispatch,
+                    storeValue: "file",
+                    data,
+                    setData,
+                    userData,
+                    secretData,
+                  });
+                  // console.log("fileUrl :: before");
+                  // console.log(fileUrl);
+                  // console.log("fileUrl :: after");
                 }}
                 // value={selectedItem.name ? `${selectedItem.img}` : ""}
               />
