@@ -88,7 +88,7 @@ export default function Header() {
             display: "flex",
             marginBottom: "2rem",
             justifyContent: "center",
-            color: "#2e7d32",
+            // color: "#2e7d32",
           }}
         >
           Sandeep Sokle
@@ -96,14 +96,14 @@ export default function Header() {
         <Box
           style={{ textShadow: "0px 0px 18px black" }}
           sx={{
-            fontSize: "3rem",
+            fontSize: "2.5rem",
             fontWeight: "bold",
             width: "100%",
             display: "flex",
             marginBottom: "2rem",
             justifyContent: "center",
-            textDecoration: "underline",
-            textDecorationColor: "#2e7d32",
+            // textDecoration: "underline",
+            // textDecorationColor: "#2e7d32",
           }}
         >
           {title}
