@@ -1,4 +1,5 @@
 import axios from "axios";
+import { saveUserDetails } from "../HandleFunctions/handleFunctions";
 import { actions } from "./getDataAction";
 const { getDataAction, loginUserAction, logoutUserAction, addSecretKeyAction } =
   actions;
@@ -51,6 +52,7 @@ export const loginUserActionCreater = (data) => {
   return async (dispatch) => {
     try {
       // console.log("In loginUserActionCreater : ", data);
+      saveUserDetails({ data });
       dispatch(loginUserAction(data));
     } catch (err) {
       console.log(err.message);

@@ -28,6 +28,7 @@ import { AdminExperience } from "../AdminPanelComponent/AdminExperience";
 import { AdminBlog } from "../AdminPanelComponent/AdminBlog";
 import { AdminContacts } from "../AdminPanelComponent/AdminContacts";
 import {
+  addSecretKeyActionCreater,
   getDataActionCreater,
   logoutUserActionCreater,
 } from "../Redux/getDataActionCreater";
@@ -167,7 +168,15 @@ export const AdminPanel = () => {
     return state.data.user;
   });
 
-  // console.log(userData);
+  const secretKeyFromStore = useSelector((state) => {
+    // console.log(state.data.user);
+    return state.data.secret;
+  });
+
+  React.useEffect(() => {
+    console.log(secretKeyFromStore);
+    setSecretKey(secretKeyFromStore || "");
+  }, [secretKeyFromStore]);
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -406,8 +415,13 @@ export const AdminPanel = () => {
                         <div>
                           <TextField
                             fullWidth
+                            // type="password"
                             id="outlined-basic"
-                            label="Outlined"
+                            label="Secret Key"
+                            placeholder={`${
+                              secretKey || "Enter Your Secret Key"
+                            }`}
+                            value={`${secretKey || ""}`}
                             variant="outlined"
                             onChange={(ele) => {
                               setSecretKey(ele.target.value);
