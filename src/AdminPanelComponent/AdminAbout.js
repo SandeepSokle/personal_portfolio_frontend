@@ -27,6 +27,7 @@ export const AdminAbout = (props) => {
     // console.log(state);
     return state.data.secret;
   });
+
   const resetData = () => {
     if (newData) setData(newData[`${selectedVal.toLowerCase()}`][0]?.data);
     return;

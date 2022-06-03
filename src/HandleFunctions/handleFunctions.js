@@ -7,21 +7,23 @@ const {
   getDownloadURL,
   getStorage,
 } = require("firebase/storage");
+
 export const handleSave = async (props) => {
   const { selectedTab, selectedVal, data, dispatch, userData, secretData } =
     props;
   //   const dispatch = useDispatch();
   console.log("Save Hit!!");
+  // http://localhost:8080/
+  // "https://dynamic-portfolio-api.herokuapp.com/ " + "portfolio/save",
   try {
     const response = await axios.post(
-      "https://dynamic-portfolio-api.herokuapp.com/portfolio/save",
+      "http://localhost:8080/" + "portfolio/save",
       {
         data: data,
         id: "1234587678",
         module: selectedTab.toLowerCase(),
         type: selectedVal.toLowerCase(),
-        userData,
-        secretData,
+        secret: { userData, secretData },
       }
     );
     console.log(response.data);
@@ -36,9 +38,13 @@ export const handleDelete = async (props) => {
   const { id, dispatch, userData, secretData } = props;
   //   const dispatch = useDispatch();
   console.log("Delete Hit!!", id);
+  // "https://dynamic-portfolio-api.herokuapp.com/" + `portfolio/delete/${id}`,
   try {
     const response = await axios.delete(
-      `https://dynamic-portfolio-api.herokuapp.com/portfolio/delete/${id}`
+      "http://localhost:8080/" + `portfolio/delete/${id}`,
+      {
+        secret: { userData, secretData },
+      }
     );
     console.log(response.data);
 
@@ -51,13 +57,14 @@ export const handleDelete = async (props) => {
 export const handleUpdate = async (props) => {
   const { id, data, dispatch, userData, secretData } = props;
   //   const dispatch = useDispatch();
-  console.log("Update Hit!!", id);
+  console.log("Update Hit!!", props);
+  // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/update/${id}`,
   try {
     const response = await axios.put(
-      `https://dynamic-portfolio-api.herokuapp.com/portfolio/update/${id}`,
-      { ...data, userData, secretData }
+      `http://localhost:8080/` + `portfolio/update/${id}`,
+      { ...data, secret: { ...userData, secretData } }
     );
-    console.log(response.data);
+    // console.log(response.data);
 
     dispatch(getDataActionCreater());
   } catch (err) {
@@ -76,7 +83,10 @@ export const fileUpload = async (props) => {
     ) {
       throw "unauthorized User!!";
     }
-    const storageRef = ref(getStorage(), "images/" + uuid() + "_" + name);
+    const storageRef = ref(
+      getStorage(),
+      "images/" + uuid() + "_" + file.files.item(0)
+    );
     let fileUrl = "";
 
     const uploadTask = uploadBytesResumable(storageRef, file);
