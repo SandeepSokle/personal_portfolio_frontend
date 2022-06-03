@@ -5,7 +5,7 @@ import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
 import { Popover, TextField } from "@mui/material";
 import { handleDelete } from "../HandleFunctions/handleFunctions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ConfigInput = (props) => {
   const {
@@ -17,7 +17,7 @@ const ConfigInput = (props) => {
     selectedVal,
     setEditFile,
     setEditLink,
-    setIsEdit
+    setIsEdit,
   } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   // console.log(configType);
@@ -56,10 +56,10 @@ const ConfigInput = (props) => {
 
   const handleEdit = () => {
     if (setSelectedItem) setSelectedItem(element);
-    if(setSelectedID) setSelectedID(id)
+    if (setSelectedID) setSelectedID(id);
     if (setEditFile) setEditFile(false);
     if (setEditLink) setEditLink(false);
-    if(setIsEdit) setIsEdit(true)
+    if (setIsEdit) setIsEdit(true);
   };
 
   const handlePopoverOpen = (event) => {
@@ -70,6 +70,15 @@ const ConfigInput = (props) => {
     setAnchorEl(null);
   };
   const open = Boolean(anchorEl);
+
+  const userData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.user;
+  });
+  const secretData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.secret;
+  });
   return (
     <div
       className="d-flex align-items-center"
@@ -111,9 +120,9 @@ const ConfigInput = (props) => {
         <div
           style={{ width: "30%" }}
           onClick={() => {
-  console.log(id, element);
+            console.log(id, element);
 
-            handleDelete({id, dispatch});
+            handleDelete({ id, dispatch, userData, secretData });
           }}
         >
           {" "}

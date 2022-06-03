@@ -5,6 +5,8 @@ const getDataReducer = (state = {}, action) => {
       return { ...state, ...action.payload };
     case "LOG_IN":
       return { ...state, user: action.payload };
+    case "SECRET_KEY":
+      return { ...state, secret: action.payload };
     case "LOG_OUT":
       return { ...state, user: null };
     default:

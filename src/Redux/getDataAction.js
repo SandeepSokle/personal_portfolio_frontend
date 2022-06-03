@@ -17,6 +17,13 @@ const actions = {
     return {
       type: "LOG_OUT",
     };
+  },
+
+  addSecretKeyAction : (data)=>{
+    return {
+      type: "SECRET_KEY",
+      payload : data,
+    };
   }
 
 };

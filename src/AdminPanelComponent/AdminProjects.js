@@ -32,6 +32,14 @@ export const AdminProjects = (props) => {
   const newData = useSelector((state) => {
     return state?.data?.projects;
   });
+  const userData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.user;
+  });
+  const secretData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.secret;
+  });
 
   React.useEffect(() => {
     // console.log("selectedItem", selectedItem);
@@ -57,11 +65,18 @@ export const AdminProjects = (props) => {
 
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
-      handleUpdate({ id: selectedId, data, dispatch });
+      handleUpdate({ id: selectedId, data, dispatch, userData, secretData });
       dispatch(getDataActionCreater());
     } else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
-      handleSave({ selectedTab, selectedVal, data, dispatch });
+      handleSave({
+        selectedTab,
+        selectedVal,
+        data,
+        dispatch,
+        userData,
+        secretData,
+      });
     }
     setSelectedItem({});
     setData({});
@@ -110,7 +125,7 @@ export const AdminProjects = (props) => {
   //       des: "show movie list we can like dislike",
   //     },
   //   },]
-  console.log(data?.file);
+  // console.log(data?.file);
 
   return (
     <Grid
@@ -258,16 +273,19 @@ export const AdminProjects = (props) => {
                 // name={data?.file}
                 onChange={async (e) => {
                   console.log("target", e.target.files);
+
                   let fileUrl = await fileUpload({
                     file: e.target.files[0],
                     dispatch,
                     storeValue: "file",
                     data,
                     setData,
+                    userData,
+                    secretData,
                   });
-                  console.log("fileUrl :: before");
-                  console.log(fileUrl);
-                  console.log("fileUrl :: after");
+                  // console.log("fileUrl :: before");
+                  // console.log(fileUrl);
+                  // console.log("fileUrl :: after");
                 }}
                 // value={selectedItem.name ? `${selectedItem.img}` : ""}
               />

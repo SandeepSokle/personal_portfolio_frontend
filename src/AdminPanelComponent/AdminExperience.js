@@ -20,6 +20,14 @@ export const AdminExperience = (props) => {
   const newData = useSelector((state) => {
     return state?.data?.experience;
   });
+  const userData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.user;
+  });
+  const secretData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.secret;
+  });
 
   React.useEffect(() => {
     // console.log("selectedItem", selectedItem);
@@ -47,11 +55,18 @@ export const AdminExperience = (props) => {
 
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
-      handleUpdate({ id: selectedId, data, dispatch });
+      handleUpdate({ id: selectedId, data, dispatch, userData, secretData });
       dispatch(getDataActionCreater());
     } else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
-      handleSave({ selectedTab, selectedVal, data, dispatch });
+      handleSave({
+        selectedTab,
+        selectedVal,
+        data,
+        dispatch,
+        userData,
+        secretData,
+      });
     }
     setSelectedItem({});
     setData({});

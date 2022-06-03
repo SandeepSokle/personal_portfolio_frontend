@@ -8,7 +8,8 @@ const {
   getStorage,
 } = require("firebase/storage");
 export const handleSave = async (props) => {
-  const { selectedTab, selectedVal, data, dispatch } = props;
+  const { selectedTab, selectedVal, data, dispatch, userData, secretData } =
+    props;
   //   const dispatch = useDispatch();
   console.log("Save Hit!!");
   try {
@@ -19,6 +20,8 @@ export const handleSave = async (props) => {
         id: "1234587678",
         module: selectedTab.toLowerCase(),
         type: selectedVal.toLowerCase(),
+        userData,
+        secretData,
       }
     );
     console.log(response.data);
@@ -30,7 +33,7 @@ export const handleSave = async (props) => {
 };
 
 export const handleDelete = async (props) => {
-  const { id, dispatch } = props;
+  const { id, dispatch, userData, secretData } = props;
   //   const dispatch = useDispatch();
   console.log("Delete Hit!!", id);
   try {
@@ -46,13 +49,13 @@ export const handleDelete = async (props) => {
 };
 
 export const handleUpdate = async (props) => {
-  const { id, data, dispatch } = props;
+  const { id, data, dispatch, userData, secretData } = props;
   //   const dispatch = useDispatch();
   console.log("Update Hit!!", id);
   try {
     const response = await axios.put(
       `https://dynamic-portfolio-api.herokuapp.com/portfolio/update/${id}`,
-      data
+      { ...data, userData, secretData }
     );
     console.log(response.data);
 
@@ -63,9 +66,16 @@ export const handleUpdate = async (props) => {
 };
 
 export const fileUpload = async (props) => {
-  const { file, dispatch, storeValue, setData, data } = props;
+  const { file, dispatch, storeValue, setData, data, userData, secretData } =
+    props;
   //   const dispatch = useDispatch()
   try {
+    if (
+      userData?.email !== "sandeepsokle12@gmail.com" &&
+      secretData !== "Sokle12"
+    ) {
+      throw "unauthorized User!!";
+    }
     const storageRef = ref(getStorage(), "images/" + uuid() + "_" + name);
     let fileUrl = "";
 
