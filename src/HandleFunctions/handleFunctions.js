@@ -38,12 +38,13 @@ export const handleDelete = async (props) => {
   const { id, dispatch, userData, secretData } = props;
   //   const dispatch = useDispatch();
   console.log("Delete Hit!!", id);
+  const secret = { userData, userSecret: secretData };
   // "https://dynamic-portfolio-api.herokuapp.com/" + `portfolio/delete/${id}`,
   try {
-    const response = await axios.delete(
+    const response = await axios.put(
       "http://localhost:8080/" + `portfolio/delete/${id}`,
       {
-        secret: { userData, secretData },
+        secret,
       }
     );
     console.log(response.data);
@@ -55,15 +56,31 @@ export const handleDelete = async (props) => {
 };
 
 export const handleUpdate = async (props) => {
-  const { id, data, dispatch, userData, secretData } = props;
+  const { id, data, dispatch, userData, secretData, userSecret } = props;
   //   const dispatch = useDispatch();
+  let secret = { userData, secretData };
   console.log("Update Hit!!", props);
   // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/update/${id}`,
   try {
     const response = await axios.put(
       `http://localhost:8080/` + `portfolio/update/${id}`,
-      { ...data, secret: { ...userData, secretData } }
+      { ...data, secret: { userData, userSecret } }
     );
+    // console.log(response.data);
+
+    dispatch(getDataActionCreater());
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const saveUserDetails = async (props) => {
+  const { data } = props;
+  // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/update/${id}`,
+  try {
+    const response = await axios.post(`http://localhost:8080/` + `user/save`, {
+      data,
+    });
     // console.log(response.data);
 
     dispatch(getDataActionCreater());
