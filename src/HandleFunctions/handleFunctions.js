@@ -14,10 +14,10 @@ export const handleSave = async (props) => {
   //   const dispatch = useDispatch();
   console.log("Save Hit!!");
   // http://localhost:8080/
-  // "https://dynamic-portfolio-api.herokuapp.com/ " + "portfolio/save",
+  // "http://localhost:8080/" + "portfolio/save",
   try {
     const response = await axios.post(
-      "http://localhost:8080/" + "portfolio/save",
+      "https://dynamic-portfolio-api.herokuapp.com/ " + "portfolio/save",
       {
         data: data,
         id: "1234587678",
@@ -39,10 +39,10 @@ export const handleDelete = async (props) => {
   //   const dispatch = useDispatch();
   console.log("Delete Hit!!", id);
   const secret = { userData, userSecret: secretData };
-  // "https://dynamic-portfolio-api.herokuapp.com/" + `portfolio/delete/${id}`,
+  // "http://localhost:8080/" + `portfolio/delete/${id}`,
   try {
     const response = await axios.put(
-      "http://localhost:8080/" + `portfolio/delete/${id}`,
+      "https://dynamic-portfolio-api.herokuapp.com/" + `portfolio/delete/${id}`,
       {
         secret,
       }
@@ -60,10 +60,10 @@ export const handleUpdate = async (props) => {
   //   const dispatch = useDispatch();
   let secret = { userData, secretData };
   console.log("Update Hit!!", props);
-  // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/update/${id}`,
+  // `http://localhost:8080/` + `portfolio/update/${id}`,
   try {
     const response = await axios.put(
-      `http://localhost:8080/` + `portfolio/update/${id}`,
+      `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/update/${id}`,
       { ...data, secret: { userData, userSecret } }
     );
     // console.log(response.data);
@@ -76,11 +76,15 @@ export const handleUpdate = async (props) => {
 
 export const saveUserDetails = async (props) => {
   const { data } = props;
-  // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/update/${id}`,
+  // `http://localhost:8080/` +`user/save`,
+
   try {
-    const response = await axios.post(`http://localhost:8080/` + `user/save`, {
-      data,
-    });
+    const response = await axios.post(
+      `https://dynamic-portfolio-api.herokuapp.com/` + `user/save`,
+      {
+        data,
+      }
+    );
     // console.log(response.data);
 
     dispatch(getDataActionCreater());
