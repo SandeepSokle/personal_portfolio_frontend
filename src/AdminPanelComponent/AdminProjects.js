@@ -13,6 +13,7 @@ import {
   handleUpdate,
 } from "../HandleFunctions/handleFunctions";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
+import { openSnackbar } from "../Redux/Snackbar/snackbarStore";
 
 export const AdminProjects = (props) => {
   const { selectedTab } = props;
@@ -36,7 +37,7 @@ export const AdminProjects = (props) => {
     // console.log(state)
     return state?.data?.user;
   });
-  const secretData = useSelector((state) => {
+  const userSecret = useSelector((state) => {
     // console.log(state)
     return state?.data?.secret;
   });
@@ -59,23 +60,24 @@ export const AdminProjects = (props) => {
       data.link === "" ||
       data.des === ""
     ) {
-      alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
+          // alert("You can not submit empty field::");
       return;
     }
 
     if (isEdit) {
-      console.info("Update Hit!!", selectedId);
-      handleUpdate({ id: selectedId, data, dispatch, userData, secretData });
+      console.info("Update Hit!!", selectedId, userData, userSecret);
+      handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
-      console.log("Save Hit!!", selectedTab, selectedVal, data);
+      console.log("Save Hit!!", userData, userSecret);
       handleSave({
         selectedTab,
         selectedVal,
         data,
         dispatch,
         userData,
-        secretData,
+        userSecret,
       });
     }
     setSelectedItem({});
@@ -281,7 +283,7 @@ export const AdminProjects = (props) => {
                     data,
                     setData,
                     userData,
-                    secretData,
+                    userSecret,
                   });
                   // console.log("fileUrl :: before");
                   // console.log(fileUrl);

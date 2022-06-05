@@ -11,14 +11,14 @@ export const Projects = () => {
   });
 
   useEffect(() => {
-    console.log(projectData);
+    // console.log(projectData);
     setGetCompleteData(projectData);
   }, [projectData]);
 
   useEffect(() => {
     if (getCompleteData) {
       let projectDataLocal = getCompleteData?.complete;
-      console.log(projectDataLocal);
+      // console.log(projectDataLocal);
       setData(projectDataLocal);
     }
   }, [getCompleteData]);

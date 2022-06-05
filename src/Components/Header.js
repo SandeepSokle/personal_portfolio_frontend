@@ -31,13 +31,13 @@ export default function Header() {
     if (getCompleteData) {
       let link = getCompleteData["links details"][0]?.data;
       setLinks(link);
-      console.log({
-        links,
-      });
+      // console.log({
+      //   links,
+      // });
     }
   }, [getCompleteData]);
 
-  console.log(links?.linkName);
+  // console.log(links?.linkName);
 
   React.useEffect(() => {
     dispatch(getDataActionCreater());

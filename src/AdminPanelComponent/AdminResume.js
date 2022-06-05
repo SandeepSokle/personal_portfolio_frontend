@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
 import { handleSave, handleUpdate } from "../HandleFunctions/handleFunctions";
+import { openSnackbar } from "../Redux/Snackbar/snackbarStore";
 // import { DatePicker } from "@mui/x-date-pickers";
 // import { GeneralDatePicker } from "../GeneralComponents/GeneralDatePicker";
 
@@ -45,11 +46,11 @@ export const AdminResume = (props) => {
   });
 
   const userSecret = useSelector((state) => {
-    // console.log(state);
+    console.log(state.data);
     return state.data.secret;
   });
 
-  // console.log(userSecret)
+  console.log(userSecret);
 
   // React.useEffect(() => {
   //   dispatch(getDataActionCreater());
@@ -62,144 +63,6 @@ export const AdminResume = (props) => {
     setEndDate(selectedItem?.endDate || "");
     setISUpdateHit(true);
   }, [selectedItem]);
-
-  // React.useEffect(() => {
-  //   // console.log("newData in Admin : ", newData.education);
-  //   setAllData(newData);
-  // }, [newData]);
-
-  // const dataEducation = [
-  //   {
-  //     name: "crsu",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     courseName: "MCA",
-  //     CGPA: "8.2",
-  //   },
-  //   {
-  //     name: "crsu",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     courseName: "MCA",
-  //     CGPA: "8.2",
-  //   },
-  //   {
-  //     name: "crsu",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     courseName: "MCA",
-  //     CGPA: "8.2",
-  //   },
-  //   {
-  //     name: "crsu",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     courseName: "MCA",
-  //     CGPA: "8.2",
-  //   },
-  // ];
-
-  // const dataWork = [
-  //   {
-  //     name: "nirmitee",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     jobTitle: "Software Engineer",
-  //     responsibility: "developer",
-  //   },
-  //   {
-  //     name: "Elintex tecknologies",
-  //     location: "Pune",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     jobTitle: "Software Engineer",
-  //     responsibility: "developer in web app",
-  //   },
-  //   {
-  //     name: "nirmitee",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     jobTitle: "Software Engineer",
-  //     responsibility: "developer",
-  //   },
-  //   {
-  //     name: "nirmitee",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     jobTitle: "Software Engineer",
-  //     responsibility: "developer",
-  //   },
-  //   {
-  //     name: "nirmitee",
-  //     location: "Jind",
-  //     startDate: Date(),
-  //     endDate: Date(),
-  //     jobTitle: "Software Engineer",
-  //     responsibility: "developer",
-  //   },
-  // ];
-
-  // const dataAchive = [
-  //   {
-  //     name: "Haryan Hacks",
-  //     location: "Jind",
-  //     date: Date(),
-  //     des: "HAryan Hackes is a compitition that is based on developer",
-  //   },
-  //   {
-  //     name: "Haryan Hacks",
-  //     location: "Jind",
-  //     date: Date(),
-  //     des: "HAryan Hackes is a compitition that is based on developer",
-  //   },
-  //   {
-  //     name: "Haryan Hacks",
-  //     location: "Jind",
-  //     date: Date(),
-  //     des: "HAryan Hackes is a compitition that is based on developer",
-  //   },
-  //   {
-  //     name: "Haryan Hacks",
-  //     location: "Jind",
-  //     date: Date(),
-  //     des: "HAryan Hackes is a compitition that is based on developer",
-  //   },
-  // ];
-
-  // const dataSkill = [
-  //   {
-  //     name: "DSA",
-  //     rate: 90,
-  //   },
-  //   {
-  //     name: "Development",
-  //     rate: 80,
-  //   },
-  //   {
-  //     name: "JS",
-  //     rate: 78,
-  //   },
-  //   {
-  //     name: "Java",
-  //     rate: 89,
-  //   },
-  // ];
-
-  // function convert(str) {
-  //   var date = new Date(str),
-  //     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-  //     day = ("0" + date.getDate()).slice(-2);
-  //   return [date.getFullYear(), mnth, day].join("-");
-  // }
-
-  // console.log(selectedItem, data);
 
   const buttons = [
     <Button
@@ -269,17 +132,18 @@ export const AdminResume = (props) => {
           data.name === undefined ||
           data.startDate === undefined ||
           data.location === undefined ||
-          data.endDate === undefined ||
+          // data.endDate === undefined ||
           data.courseName === undefined ||
           data.CGPA === undefined ||
           data.name === "" ||
           data.startDate === "" ||
           data.location === "" ||
-          data.endDate === "" ||
+          // data.endDate === "" ||
           data.courseName === "" ||
           data.CGPA === ""
         ) {
-          alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
+          // alert("You can not submit empty field::");
           return;
         }
         break;
@@ -288,17 +152,18 @@ export const AdminResume = (props) => {
           data.name === undefined ||
           data.startDate === undefined ||
           data.location === undefined ||
-          data.endDate === undefined ||
+          // data.endDate === undefined ||
           data.responsibility === undefined ||
           data.jobTitle === undefined ||
           data.name === "" ||
           data.startDate === "" ||
           data.location === "" ||
-          data.endDate === "" ||
+          // data.endDate === "" ||
           data.responsibility === "" ||
           data.jobTitle === ""
         ) {
-          alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
+          // alert("You can not submit empty field::");
           return;
         }
         break;
@@ -311,7 +176,8 @@ export const AdminResume = (props) => {
           data.startDate === "" ||
           data.des === ""
         ) {
-          alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
+          // alert("You can not submit empty field::");
           return;
         }
         break;
@@ -322,14 +188,15 @@ export const AdminResume = (props) => {
           data.name === "" ||
           data.rate === ""
         ) {
-          alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
+          // alert("You can not submit empty field::");
           return;
         }
         break;
     }
 
     if (isEdit) {
-      console.info("Update Hit!!", selectedId);
+      console.info("Update Hit!!", selectedId.replace, userData, userSecret);
       handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {

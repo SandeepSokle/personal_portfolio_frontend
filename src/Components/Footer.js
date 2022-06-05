@@ -3,10 +3,12 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
+import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
+import { sendMessage } from "../HandleFunctions/handleFunctions";
 
 export const Footer = () => {
-
   const [getCompleteData, setGetCompleteData] = useState();
+  const [data, setData] = useState({});
   const [contactUs, setContactUs] = useState([]);
   const dispatch = useDispatch();
   const aboutData = useSelector((state) => {
@@ -54,6 +56,26 @@ export const Footer = () => {
     "youremailhere@gmail.com",
   ];
 
+  const handleSubmit = () => {
+    console.log("Enter In handle Submit!!");
+    if (!data.name || data.name === "") {
+      console.log("Please enter your name!!", data.name);
+      //Please enter your name
+    } else if (!data.email || data.email === "") {
+      console.log("Please Enter your email!!");
+      // Please Enter your email
+    } else if (!data.subject || data.subject === "") {
+      console.log(" Enter Title!!");
+      // Please Enter Title
+    } else if (!data.description || data.description === "") {
+      console.log(" Please Describe your Message!!");
+      // Please Describe your Message
+    } else {
+      sendMessage({ data, dispatch });
+      setData({});
+    }
+  };
+
   return (
     <div
       style={{
@@ -67,7 +89,7 @@ export const Footer = () => {
         padding: "2rem 4rem",
         paddingBottom: "0px",
       }}
-      id = "footer"
+      id="footer"
     >
       <Box
         sx={{
@@ -96,7 +118,7 @@ export const Footer = () => {
               padding: "1rem 2rem",
             }}
           >
-            <TextField
+            {/* <TextField
               fullWidth
               sx={{
                 margin: "0.5rem 0px",
@@ -106,8 +128,18 @@ export const Footer = () => {
               required
               id="outlined-required"
               label="Name"
+            /> */}
+            <GeneralInputField
+              // selectedItem={selectedItem}
+              data={data}
+              setData={setData}
+              // width="48%"
+              place={"Enter Your Name *"}
+              // value={data?.name}
+              dataKey={"name"}
+              // value = {data.name}
             />
-            <TextField
+            {/* <TextField
               fullWidth
               sx={{
                 margin: "0.5rem 0px",
@@ -117,8 +149,18 @@ export const Footer = () => {
               id="outlined-error-helper-text"
               label="Email"
               //   helperText="Incorrect entry."
+            /> */}
+            <GeneralInputField
+              // selectedItem={selectedItem}
+              data={data}
+              setData={setData}
+              // width="48%"
+              place={"Enter Your Email *"}
+              // value={data?.name}
+              dataKey={"email"}
+              // value = {data.name}
             />
-            <TextField
+            {/* <TextField
               fullWidth
               sx={{
                 margin: "0.5rem 0px",
@@ -126,8 +168,18 @@ export const Footer = () => {
               required
               id="outlined-required"
               label="Subject"
+            /> */}
+            <GeneralInputField
+              // selectedItem={selectedItem}
+              data={data}
+              setData={setData}
+              // width="48%"
+              place={"Enter Subject/Title *"}
+              // value={data?.name}
+              dataKey={"subject"}
+              // value = {data.name}
             />
-            <TextField
+            {/* <TextField
               fullWidth
               sx={{
                 margin: "0.5rem 0px",
@@ -137,6 +189,16 @@ export const Footer = () => {
               label="Multiline"
               multiline
               rows={4}
+            /> */}
+            <GeneralInputField
+              // selectedItem={selectedItem}
+              data={data}
+              setData={setData}
+              // width="48%"
+              place={"Message Description *"}
+              // value={data?.name}
+              dataKey={"description"}
+              // value = {data.name}
             />
             <Button
               sx={{
@@ -145,6 +207,10 @@ export const Footer = () => {
               }}
               variant="contained"
               color="success"
+              onClick={(e) => {
+                // e.preventDefault();
+                handleSubmit();
+              }}
             >
               Submit
             </Button>

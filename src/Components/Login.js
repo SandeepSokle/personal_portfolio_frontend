@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUserActionCreater } from "../Redux/getDataActionCreater";
 import { Redirect } from "react-router-dom";
 import { colorChannel } from "@mui/system";
-
+import GoogleIcon from "@mui/icons-material/Google";
 const theme = createTheme();
 
 export default function Login() {
@@ -32,18 +32,18 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const userData = useSelector((state) => {
-    console.log(state.data.user);
+    // console.log(state.data.user);
     return state.data.user;
   });
 
   React.useEffect(() => {
     if (userData) {
-    //  return <Redirect to="/admin" />;
-    history.push("/admin")
+      //  return <Redirect to="/admin" />;
+      history.push("/admin");
     }
   }, [userData]);
 
-  console.log(userData)
+  // console.log(userData)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,20 +59,25 @@ export default function Login() {
     if (loginState === "signin") {
       let userDetail = await loginWithEmailPassword(
         data.get("email"),
-        data.get("password")
+        data.get("password"),
+        dispatch
       );
       console.log("user!!", userDetail);
       setUser(userDetail);
-      // history.push("/admin");
+      dispatch(loginUserActionCreater(userDetail));
+      history.push("/admin");
     } else {
       if (data.get("password") === data.get("confirmPassword")) {
         let userDetail = await createUserWithEmailPassword(
           data.get("email"),
-          data.get("password")
+          data.get("displayName"),
+          data.get("password"),
+          dispatch
         );
         console.log("user!!", userDetail);
         setUser(userDetail);
-        // history.push("/admin");
+        dispatch(loginUserActionCreater(userDetail));
+        history.push("/admin");
       }
     }
   };
@@ -119,6 +124,21 @@ export default function Login() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
+              {loginState === "signin" ? (
+                ""
+              ) : (
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="displayName"
+                  label="Enter Full Name"
+                  type="text"
+                  id="password"
+                  autoComplete="displayName"
+                  autoFocus
+                />
+              )}
               <TextField
                 margin="normal"
                 required
@@ -127,7 +147,6 @@ export default function Login() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                autoFocus
               />
               <TextField
                 margin="normal"
@@ -162,26 +181,46 @@ export default function Login() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 1 }}
+              >
+                {`${loginState === "signin" ? "Sign in" : "Sign up"}`}
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                sx={{
+                  mt: 1,
+                  mb: 2,
+                  background: "#d2504d",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  // fontSize: "1rem",
+                  fontWeight: "bold",
+                }}
+                variant="contained"
                 onClick={async (e) => {
                   e.preventDefault();
                   let userDetail = await loginWithGoogle();
-                  console.log("user!!", userDetail);
+                  // console.log("user!!", userDetail);
                   setUser(userDetail);
                   dispatch(loginUserActionCreater(userDetail));
                   history.push("/admin");
                 }}
               >
-                Sign in with google
-              </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 1, mb: 2 }}
-              >
-                {`${loginState === "signin" ? "Sign in" : "Sign up"}`}
-              </Button>
-
+                <GoogleIcon
+                  sx={{
+                    mr: 2,
+                  }}
+                />
+                <div
+                  style={{
+                    padding: ".2rem",
+                  }}
+                >
+                  Sign in with google
+                </div>
+              </Button>{" "}
               <Grid
                 container
                 sx={{
@@ -207,11 +246,11 @@ export default function Login() {
                     }`}
                   </Link>
                 </Grid>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Box>
           </Box>

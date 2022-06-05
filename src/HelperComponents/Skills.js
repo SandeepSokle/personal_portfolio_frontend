@@ -5,7 +5,7 @@ import Progressbar from "./Progressbar";
 export const Skills = (props) => {
   const { data } = props;
   const [finalData, setFinalData] = useState([]);
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     if (data) {

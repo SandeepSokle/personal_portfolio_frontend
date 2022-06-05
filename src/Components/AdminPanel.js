@@ -20,6 +20,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import WorkIcon from "@mui/icons-material/Work";
 import BookIcon from "@mui/icons-material/Book";
+import MessageIcon from "@mui/icons-material/Message";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import { AdminAbout } from "../AdminPanelComponent/AdminAbout";
 import { AdminResume } from "../AdminPanelComponent/AdminResume";
@@ -27,6 +28,7 @@ import { AdminProjects } from "../AdminPanelComponent/AdminProjects";
 import { AdminExperience } from "../AdminPanelComponent/AdminExperience";
 import { AdminBlog } from "../AdminPanelComponent/AdminBlog";
 import { AdminContacts } from "../AdminPanelComponent/AdminContacts";
+import { AdminMessage } from "../AdminPanelComponent/AdminMessage";
 import {
   addSecretKeyActionCreater,
   getDataActionCreater,
@@ -140,7 +142,7 @@ export const AdminPanel = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   React.useEffect(() => {
-    console.log("In effect!!");
+    // console.log("In effect!!");
     dispatch(getDataActionCreater());
   }, [dispatch]);
 
@@ -156,6 +158,8 @@ export const AdminPanel = () => {
         return <AdminExperience selectedTab={val} />;
       case "Blog":
         return <AdminBlog selectedTab={val} />;
+      case "Communication":
+        return <AdminMessage selectedTab={val} />;
       case "Contacts":
         return <AdminContacts selectedTab={val} />;
       default:
@@ -174,7 +178,7 @@ export const AdminPanel = () => {
   });
 
   React.useEffect(() => {
-    console.log(secretKeyFromStore);
+    // console.log(secretKeyFromStore);
     setSecretKey(secretKeyFromStore || "");
   }, [secretKeyFromStore]);
 
@@ -555,18 +559,18 @@ export const AdminPanel = () => {
                 </ListItemIcon>
                 <ListItemText primary="Blog" />
               </ListItem>
-              {/* <ListItem
+              <ListItem
                 button
                 onClick={(e) => {
-                  console.log(e.currentTarget.innerText);
+                  // console.log(e.currentTarget.innerText);
                   setSelectedTab(e.currentTarget.innerText);
                 }}
               >
                 <ListItemIcon>
-                  <RecentActorsIcon />
+                  <MessageIcon />
                 </ListItemIcon>
-                <ListItemText primary="Contacts" />
-              </ListItem> */}
+                <ListItemText primary="Communication" />
+              </ListItem>
             </div>
           </List>
           {/* List of left nav */}
