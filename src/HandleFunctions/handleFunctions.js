@@ -252,3 +252,26 @@ export const fileUpload = async (props) => {
     console.log(err);
   }
 };
+
+export const checkCreds = async (props) => {
+  const { dispatch, userData, secretData, userSecret } = props;
+  //   const dispatch = useDispatch();
+  let secret = { userData, userSecret };
+
+  // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/checkCreds`,
+
+  try {
+    dispatch(loaderStartActionCreater());
+    const response = await axios.post(
+      `http://localhost:8080/` + `portfolio/checkCreds`,
+      { secret }
+    );
+    console.log(response.data);
+    // dispatch(openSnackbar("Details Updated Successfully", "success"));
+    return response.data;
+  } catch (err) {
+    console.log(err.response.data.message);
+    dispatch(loaderEndActionCreater());
+    dispatch(openSnackbar(err.response.data.message, "error"));
+  }
+};

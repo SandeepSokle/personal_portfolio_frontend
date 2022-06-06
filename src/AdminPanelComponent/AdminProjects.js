@@ -8,6 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  checkCreds,
   fileUpload,
   handleSave,
   handleUpdate,
@@ -60,8 +61,8 @@ export const AdminProjects = (props) => {
       data.link === "" ||
       data.des === ""
     ) {
-          dispatch(openSnackbar("You can not submit empty field::", "error"));
-          // alert("You can not submit empty field::");
+      dispatch(openSnackbar("You can not submit empty field::", "error"));
+      // alert("You can not submit empty field::");
       return;
     }
 
@@ -276,15 +277,23 @@ export const AdminProjects = (props) => {
                 onChange={async (e) => {
                   console.log("target", e.target.files);
 
-                  let fileUrl = await fileUpload({
-                    file: e.target.files[0],
+                  const creds = await checkCreds({
                     dispatch,
-                    storeValue: "file",
-                    data,
-                    setData,
                     userData,
                     userSecret,
                   });
+                  console.log(creds);
+                  if (creds) {
+                    let fileUrl = await fileUpload({
+                      file: e.target.files[0],
+                      dispatch,
+                      storeValue: "file",
+                      data,
+                      setData,
+                      userData,
+                      userSecret,
+                    });
+                  }
                   // console.log("fileUrl :: before");
                   // console.log(fileUrl);
                   // console.log("fileUrl :: after");
