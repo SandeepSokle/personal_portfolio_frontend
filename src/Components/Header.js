@@ -9,6 +9,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import { GeneralButton } from "../GeneralComponents/GeneralButton";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { useDispatch, useSelector } from "react-redux";
+import "./css/Header.css";
 export default function Header() {
   const title = "Software Engineer";
   // const des = `I am a javaScript Programmer “Adjunct professor of creative writing at Columbia University, published author, former lifestyle editor at Esquire, the New York Times. I can teach you how to find, shape, pitch, and publish stories for web & print. `;
@@ -50,16 +51,18 @@ export default function Header() {
 
   return (
     <Box
-      sx={{ width: "100vw", height: "100vh", position: "relative" }}
+      className="header"
+      fullWidth
+      sx={{  height: "100vh", position: "relative" }}
       style={{
         overflow: "hidden",
-        backgroundImage: `url(${image})`,
+       
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
       id="header"
     >
-      <Navbar />
+      <Navbar className="navbar" />
 
       <Box
         sx={{
@@ -80,31 +83,34 @@ export default function Header() {
       >
         {/* /////header */}
         <Box
+        className = "headerName"
           style={{ textShadow: "0px 0px 6px black" }}
-          sx={{
-            fontSize: "4.5rem",
-            fontWeight: "bold",
-            width: "100%",
-            display: "flex",
-            marginBottom: "2rem",
-            justifyContent: "center",
-            // color: "#2e7d32",
-          }}
+          // sx={{
+          //   fontSize: "4.5rem",
+          //   fontWeight: "bold",
+          //   width: "100%",
+          //   display: "flex",
+          //   marginBottom: "2rem",
+          //   justifyContent: "center",
+          //   // color: "#2e7d32",
+          // }}
         >
           Sandeep Sokle
         </Box>
         <Box
+        className = "headerTitle"
+
           style={{ textShadow: "0px 0px 18px black" }}
-          sx={{
-            fontSize: "2.5rem",
-            fontWeight: "bold",
-            width: "100%",
-            display: "flex",
-            marginBottom: "2rem",
-            justifyContent: "center",
-            // textDecoration: "underline",
-            // textDecorationColor: "#2e7d32",
-          }}
+          // sx={{
+          //   fontSize: "2.5rem",
+          //   fontWeight: "bold",
+          //   width: "100%",
+          //   display: "flex",
+          //   marginBottom: "2rem",
+          //   justifyContent: "center",
+          //   // textDecoration: "underline",
+          //   // textDecorationColor: "#2e7d32",
+          // }}
         >
           {title}
         </Box>
@@ -127,15 +133,16 @@ export default function Header() {
         {/* </Box> */}
         {/* ///inkes Buttons */}
         <Box
-          sx={{
-            width: "65%",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "2rem 2rem",
-            marginTop: "5%",
-          }}
+        className = "headerButtons"
+          // sx={{
+          //   width: "65%",
+          //   display: "flex",
+          //   flexDirection: "row",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          //   padding: "2rem 2rem",
+          //   marginTop: "5%",
+          // }}
         >
           <GeneralButton
             title={"Projects"}

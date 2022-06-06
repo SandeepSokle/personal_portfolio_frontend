@@ -23,7 +23,7 @@ export const handleSave = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.post(
-      "https://dynamic-portfolio-api.herokuapp.com/ " + "portfolio/save",
+      "https://dynamic-portfolio-api.herokuapp.com/" + "portfolio/save",
       {
         data: data,
         id: "1234587678",

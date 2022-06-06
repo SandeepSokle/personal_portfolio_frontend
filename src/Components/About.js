@@ -6,6 +6,7 @@ import { GeneralButton } from "../GeneralComponents/GeneralButton";
 import DownloadIcon from "@mui/icons-material/Download";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
+import "./css/About.css";
 export const About = () => {
   const [getCompleteData, setGetCompleteData] = React.useState();
   const [about, setAbout] = React.useState("");
@@ -60,28 +61,46 @@ export const About = () => {
 
   return (
     <Box
+      id="about"
       sx={{
         zIndex: 2,
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        width: "72vw",
+        // width: "72vw",
         marginTop: "2rem",
-        padding: "2rem 4rem",
+        padding: "2rem 13rem",
         paddingBottom: "0px",
       }}
-      id="about"
+      style={{
+        background: "#FFEEEE" /* fallback for old browsers */,
+        background:
+          " -webkit-linear-gradient(to right, #DDEFBB, #FFEEEE)" /* Chrome 10-25, Safari 5.1-6 */,
+        background:
+          "linear-gradient(to right, #DDEFBB, #FFEEEE)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
+      }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", width: "90%" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          width: "90%",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+        }}
+      >
         <Box
+          className="aboutDetails"
           sx={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "space-between",
           }}
         >
           <div
+          className="aboutDetailsAbout"
+
             style={{
               display: "flex",
               flexDirection: "column",
@@ -97,7 +116,7 @@ export const About = () => {
             </h1>
             <p
               style={{
-                fontSize: "18px",
+                fontSize: "20px",
               }}
             >
               {/* Use this bio section as your way of describing yourself and saying
@@ -108,30 +127,8 @@ export const About = () => {
             </p>
           </div>
           <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems :"center"
-            }}
-          >
-            <CardMedia
-              component="img"
-              sx={{ width: 301, borderRadius: "40px", padding: "1rem 1rem" }}
-              image={ProfileImage}
-              alt="Live from space album cover"
-            />
-            <GeneralButton
-              title={"Download Resume"}
-              btnIcon={DownloadIcon}
-              btnColor={"success"}
-              disabled
-            />
-          </div>
-        </Box>
-        <Box>
-          {" "}
-          <div
-            style={{
+          className="aboutDetailsContact"
+          style={{
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
@@ -171,6 +168,29 @@ export const About = () => {
                 })}
               </ul>
             </div>
+          </div>
+        </Box>
+        <Box>
+          {" "}
+          <div
+            className="aboutImg"
+            style={{
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <CardMedia
+              component="img"
+              sx={{ width: 250, borderRadius: "40px", padding: "1rem 1rem" }}
+              image={ProfileImage}
+              alt="Live from space album cover"
+            />
+            <GeneralButton
+              title={"Download Resume"}
+              btnIcon={DownloadIcon}
+              btnColor={"success"}
+              disabled
+            />
           </div>
         </Box>
       </Box>

@@ -430,6 +430,7 @@ export const AdminPanel = () => {
                             onChange={(ele) => {
                               setSecretKey(ele.target.value);
                             }}
+                            autoFocus
                           />
                         </div>
                         <div

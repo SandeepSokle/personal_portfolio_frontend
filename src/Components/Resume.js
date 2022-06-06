@@ -13,6 +13,11 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
+import {
+  loaderEndActionCreater,
+  loaderStartActionCreater,
+} from "../Redux/Loader/LoaderActionCreator";
+import "./css/Resume.css";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -52,7 +57,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export const Resume = () => {
   const [expanded, setExpanded] = React.useState("panel1");
+  const [imageStatus, setImageStatus] = React.useState("education");
   const [getCompleteData, setGetCompleteData] = React.useState();
+  const [imgUrl, setImgUrl] = React.useState(
+    "url(https://source.unsplash.com/random/?)"
+  );
 
   const dispatch = useDispatch();
   const resumeData = useSelector((state) => {
@@ -64,39 +73,61 @@ export const Resume = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    // console.log(resumeData);
+    console.log(resumeData);
     setGetCompleteData(resumeData);
   }, [resumeData]);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
+    dispatch(loaderStartActionCreater());
+    if (panel === "panel1") {
+      setImageStatus("education");
+    } else if (panel === "panel2") {
+      setImageStatus("works");
+    } else if (panel === "panel3") {
+      setImageStatus("achievements");
+    } else if (panel === "panel4") {
+      setImageStatus("skills");
+    } else {
+      dispatch(loaderEndActionCreater());
+    }
+    dispatch(loaderEndActionCreater());
   };
+
+  React.useEffect(() => {
+    dispatch(loaderStartActionCreater());
+    setImgUrl(imgUrl.substring(0, imgUrl.length - 1) + `,${imageStatus})`);
+    dispatch(loaderEndActionCreater());
+    // setImgUrl("url(https://source.unsplash.com/random)");
+  }, [imageStatus]);
+
   return (
     <div
+    className="resume"
       style={{
-        width: "100%",
+        
         display: "flex",
         flexDirection: "row",
         maxHeight: "90vh",
         overflow: "auto",
         marginTop: "2rem",
-        padding: "2rem 0rem",
+        // padding: "2rem 0rem",
+        background: "#73C8A9" /* fallback for old browsers */,
+        background:
+          "-webkit-linear-gradient(to right, #373B44, #73C8A9)" /* Chrome 10-25, Safari 5.1-6 */,
+        background:
+          "linear-gradient(to right, #373B44, #73C8A9)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
       }}
       id="resume"
+
+      // onClick={ ()={
+      //   setImgUrl(!imgUrl)
+      // }}
     >
-      <Box
-        sx={{
-          width: "16%",
-          opacity: "0.7",
-          // background: "#ff6e7f",
-          // background:
-          //   "-webkit-linear-gradient(to right, #bfe9ff, #ff6e7f)" /* Chrome 10-25, Safari 5.1-6 */,
-          background:
-            "linear-gradient(to right, #bfe9ff, #ff6e7f)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
-        }}
-      ></Box>
       {/* //Accordion */}
-      <Box sx={{ width: "67%", overflow: "auto" }}>
+      <Box 
+       className = "resumeContent"
+      sx={{  overflow: "auto" }}>
         <Accordion
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
@@ -111,11 +142,21 @@ export const Resume = () => {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography style = {{
-              // float : "left",
-              // width : "80vw"
-            }}>
-              <Education data={getCompleteData?.education} />
+            <Typography
+              style={
+                {
+                  // float : "left",
+                  // width : "80vw"
+                }
+              }
+            >
+              <Education
+                data={
+                  getCompleteData?.education?.sort((a, b) => {
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                  }) || []
+                }
+              />
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -124,11 +165,17 @@ export const Resume = () => {
           onChange={handleChange("panel2")}
         >
           <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-            <Typography>Works</Typography>
+            <Typography>Experience</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <Works data={getCompleteData?.works} />
+              <Works
+                data={
+                  getCompleteData?.works?.sort((a, b) => {
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                  }) || []
+                }
+              />
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -141,7 +188,13 @@ export const Resume = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <Achievements data={getCompleteData?.achievements} />
+              <Achievements
+                data={
+                  getCompleteData?.achievements?.sort((a, b) => {
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                  }) || []
+                }
+              />
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -160,21 +213,22 @@ export const Resume = () => {
                 justifyContent: "center",
               }}
             >
-              <Skills data={getCompleteData?.skills} />
+              <Skills
+                data={
+                  getCompleteData?.skills?.sort((a, b) => {
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                  }) || []
+                }
+              />
             </Typography>
           </AccordionDetails>
         </Accordion>
       </Box>{" "}
       <Box
+      className = "resumeImg"
         sx={{
-          width: "17%",
-          // background: "#ff6e7f",
-          // background:
-          //   "-webkit-linear-gradient(to right, #ff6e7f, #bfe9ff)" /* Chrome 10-25, Safari 5.1-6 */,
-          background:
-            "linear-gradient(to right, #ff6e7f, #bfe9ff)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
-
-          opacity: "0.7",
+         
+          backgroundImage: `${imgUrl}`,
         }}
       ></Box>
     </div>

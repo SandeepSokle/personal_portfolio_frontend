@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
 import { sendMessage } from "../HandleFunctions/handleFunctions";
+import { openSnackbar } from "../Redux/Snackbar/snackbarStore";
+import "./css/Footer.css";
 
 export const Footer = () => {
   const [getCompleteData, setGetCompleteData] = useState();
@@ -59,16 +61,20 @@ export const Footer = () => {
   const handleSubmit = () => {
     console.log("Enter In handle Submit!!");
     if (!data.name || data.name === "") {
-      console.log("Please enter your name!!", data.name);
+      // console.log("Please enter your name!!", data.name);
+      dispatch(openSnackbar("Please enter your name!!", "error"));
       //Please enter your name
     } else if (!data.email || data.email === "") {
-      console.log("Please Enter your email!!");
+      // console.log("Please Enter your email!!");
+      dispatch(openSnackbar("Please Enter your email!!", "error"));
       // Please Enter your email
     } else if (!data.subject || data.subject === "") {
-      console.log(" Enter Title!!");
+      // console.log(" Enter Title!!");
+      dispatch(openSnackbar("Enter Title!!", "error"));
       // Please Enter Title
     } else if (!data.description || data.description === "") {
-      console.log(" Please Describe your Message!!");
+      // console.log("Please Describe your Message!!");
+      dispatch(openSnackbar("Please Describe your Message!!", "error"));
       // Please Describe your Message
     } else {
       sendMessage({ data, dispatch });
@@ -78,44 +84,50 @@ export const Footer = () => {
 
   return (
     <div
+      className="footer"
       style={{
-        width: "100%",
         backgroundColor: "#636e72",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
         marginTop: "2rem",
-        padding: "2rem 4rem",
-        paddingBottom: "0px",
+
+        // paddingBottom: "0px",
+
+        background: "#abbaab" /* fallback for old browsers */,
+        background:
+          "-webkit-linear-gradient(to right, #ffffff, #abbaab)" /* Chrome 10-25, Safari 5.1-6 */,
+        background:
+          "linear-gradient(to right, #ffffff, #abbaab)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
       }}
       id="footer"
     >
-      <Box
-        sx={{
-          width: "60%",
-        }}
-      >
-        <div>
+      <Box className="footerOuterBox">
+        <div
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: "550",
+            textAlign: "center",
+            margin: "2rem 1rem",
+          }}
+        >
           Here is where you should write your message to readers to have them
           get in contact with you.
         </div>
         <div
+          className="footerContent"
           style={{
-            display: "flex",
-            flexDirection: "row",
             width: "100%",
-            alignItems: "center",
-            justifyContent: "space-evenly",
           }}
         >
           <Box
+            className="footerForm"
             sx={{
-              width: "50%",
               display: "flex",
               flexDirection: "column",
+              margin: "1rem 2rem",
               // backgroundColor:"white",
-              padding: "1rem 2rem",
             }}
           >
             {/* <TextField
@@ -216,17 +228,53 @@ export const Footer = () => {
             </Button>
           </Box>
           <Box
+            className="footerContacts"
             sx={{
-              width: "40%",
               display: "flex",
               flexDirection: "column",
+              margin: "1rem 2rem",
             }}
           >
-            <div>
-              <h1>Contact Details</h1>
+            <div
+              style={{
+                width: "100%",
+              }}
+            >
+              <h1
+                style={{
+                  color: "#2e7d32",
+                  fontWeight: 700,
+                }}
+              >
+                Contact Details
+              </h1>
               <ul>
-                {contactUs?.map((e) => {
-                  return <li>{e}</li>;
+                {contactUs.map((e) => {
+                  return (
+                    <li
+                      style={{
+                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          width: "30%",
+                        }}
+                      >
+                        {" "}
+                        {`${e.split(":")[0]} :`}
+                      </div>
+                      <div
+                        style={{
+                          // fontWeight: "bold",
+                          width: "70%",
+                        }}
+                      >{` ${e.split(":")[1]}`}</div>
+                    </li>
+                  );
                 })}
               </ul>
             </div>

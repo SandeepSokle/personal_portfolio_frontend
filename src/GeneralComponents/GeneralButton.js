@@ -11,15 +11,15 @@ export const GeneralButton = (props) => {
     <Button
       className="btn"
       sx={{
-        fontSize: "1rem",
+        // fontSize: "1rem",
         // padding: "2px 1px",
         m: 1,
-        width : "16rem",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        textTransform: "capitalize",
+        // width : "16rem",
+        // display: "flex",
+        // flexDirection: "row",
+        // justifyContent: "center",
+        // alignItems: "center",
+        // textTransform: "capitalize",
       }}
       disabled={disabled ? true : false}
       //   color={btnColor ? btnColor : ""}

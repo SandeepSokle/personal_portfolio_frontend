@@ -6,7 +6,10 @@ import { Link } from "react-scroll";
 import { useHistory } from "react-router-dom";
 import { Avatar, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-export default function Navbar() {
+import styles from "./css/Header.css";
+
+export default function Navbar(props) {
+  const { className } = props;
   const [value, setValue] = React.useState(0);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [scrollPosition, setScrollPosition] = React.useState(0);
@@ -61,6 +64,7 @@ export default function Navbar() {
 
   return (
     <Box
+      className="navbar"
       sx={{
         width: "100%",
         position: "fixed",
@@ -78,9 +82,8 @@ export default function Navbar() {
             ? "#3481385c"
             : scrollPosition <= 680
             ? "#34813894"
-            : "#348138b3"
+            : "#348138"
         }`,
-        display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
@@ -216,7 +219,7 @@ export default function Navbar() {
       >
         <Button
           variant="contained"
-          color="success"
+          color={scrollPosition <= 600 ? "success" : "warning"}
           onClick={() => {
             if (userData) history.push("/admin");
             else history.push("/login");

@@ -5,8 +5,8 @@ import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
 import { Box, Modal, Popover, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import ModelForMessage from "./ModelForMessage";
 import { deleteMessage, getMessage } from "../HandleFunctions/handleFunctions";
+import ModelForMessage from "./ModelForMessage";
 
 const style = {
   position: "absolute",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
+import MuiAlert from "@mui/material/Alert";
 import { connect } from "react-redux";
 import { closeSnackbar } from "../../Redux/Snackbar/snackbarStore";
 

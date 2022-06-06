@@ -25,7 +25,7 @@ export default function ModelForMessage(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={openModel}
         onClose={handleClose}

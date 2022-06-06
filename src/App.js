@@ -45,6 +45,7 @@ function App() {
           ""
         )}
 
+        <MySnackbar />
         <Switch>
           <Route path="/admin">
             <AdminPanel />
@@ -61,7 +62,6 @@ function App() {
         </Switch>
       </Router>
       {/* <Portfolio /> */}
-      <MySnackbar />
     </div>
   );
 }

@@ -62,10 +62,12 @@ export default function Login() {
         data.get("password"),
         dispatch
       );
-      console.log("user!!", userDetail);
-      setUser(userDetail);
-      dispatch(loginUserActionCreater(userDetail));
-      history.push("/admin");
+      if (userDetail) {
+        console.log("user!!", userDetail);
+        setUser(userDetail);
+        dispatch(loginUserActionCreater(userDetail));
+        history.push("/admin");
+      }
     } else {
       if (data.get("password") === data.get("confirmPassword")) {
         let userDetail = await createUserWithEmailPassword(
@@ -74,10 +76,12 @@ export default function Login() {
           data.get("password"),
           dispatch
         );
-        console.log("user!!", userDetail);
-        setUser(userDetail);
-        dispatch(loginUserActionCreater(userDetail));
-        history.push("/admin");
+        if (userDetail) {
+          console.log("user!!", userDetail);
+          setUser(userDetail);
+          dispatch(loginUserActionCreater(userDetail));
+          history.push("/admin");
+        }
       }
     }
   };
@@ -202,10 +206,12 @@ export default function Login() {
                 onClick={async (e) => {
                   e.preventDefault();
                   let userDetail = await loginWithGoogle();
-                  // console.log("user!!", userDetail);
-                  setUser(userDetail);
-                  dispatch(loginUserActionCreater(userDetail));
-                  history.push("/admin");
+                  if (userDetail) {
+                    console.log("user!!", userDetail);
+                    setUser(userDetail);
+                    dispatch(loginUserActionCreater(userDetail));
+                    history.push("/admin");
+                  }
                 }}
               >
                 <GoogleIcon
