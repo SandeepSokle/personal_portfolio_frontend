@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import Login from "./Components/Login";
 import { AdminPanel } from "./Components/AdminPanel";
+import  Blogs  from "./Components/Blogs";
 function App() {
   return (
     <div className="App">
@@ -10,6 +11,9 @@ function App() {
         <Switch>
           <Route path="/admin">
             <AdminPanel />
+          </Route>
+          <Route path="/blogs">
+            <Blogs />
           </Route>
           <Route path="/login">
             <Login />

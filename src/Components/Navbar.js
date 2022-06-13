@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Link } from "react-scroll";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { Avatar, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 export default function Navbar() {
@@ -181,6 +181,11 @@ export default function Navbar() {
             value={5}
             sx={{
               color: "white",
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("redirect");
+              history.push("/blogs");
             }}
           />
         </Link>

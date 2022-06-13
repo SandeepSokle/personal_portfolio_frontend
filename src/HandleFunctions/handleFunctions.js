@@ -143,3 +143,19 @@ export const fileUpload = async (props) => {
     console.log(err);
   }
 };
+
+
+// export const getBlogList = async (props) =>{
+ 
+//   // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/getBlogs`,
+//   try {
+//     const response = await axios.get(
+//       `http://localhost:8080/` + `portfolio/getBlogs`,
+//     );
+//     // console.log(response.data);
+
+//     // dispatch(getDataActionCreater());
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
