@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleSave, handleUpdate } from "../HandleFunctions/handleFunctions";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
+import { openSnackbar } from "../Redux/Snackbar/snackbarStore";
 
 export const AdminAbout = (props) => {
   const { selectedTab } = props;
@@ -54,7 +55,8 @@ export const AdminAbout = (props) => {
             userSecret,
           });
         } else {
-          alert("You can not submit empty field::");
+          // alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
         }
         break;
       case "Contact Details":
@@ -77,7 +79,8 @@ export const AdminAbout = (props) => {
             userSecret,
           });
         } else {
-          alert("You can not submit empty field::");
+          // alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
         }
         break;
       case "Links Details":
@@ -95,7 +98,8 @@ export const AdminAbout = (props) => {
             userSecret,
           });
         } else {
-          alert("You can not submit empty field::");
+          // alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
         }
         break;
     }

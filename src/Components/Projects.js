@@ -2,6 +2,7 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ProjectCard from "../HelperComponents/ProjectCard";
+import "./css/Projects.css";
 
 export const Projects = () => {
   const [getCompleteData, setGetCompleteData] = useState({});
@@ -11,14 +12,14 @@ export const Projects = () => {
   });
 
   useEffect(() => {
-    console.log(projectData);
+    // console.log(projectData);
     setGetCompleteData(projectData);
   }, [projectData]);
 
   useEffect(() => {
     if (getCompleteData) {
       let projectDataLocal = getCompleteData?.complete;
-      console.log(projectDataLocal);
+      // console.log(projectDataLocal);
       setData(projectDataLocal);
     }
   }, [getCompleteData]);
@@ -91,15 +92,21 @@ export const Projects = () => {
   ];
   return (
     <div
+    className="projects"
       style={{
-        width: "80%",
+        // width: "80%",
         display: "flex",
         flexDirection: "column",
         // alignItems: "flex-start",
         justifyContent: "space-evenly",
-        margin: "2rem 0",
-        padding: "2rem 2rem",
-        paddingBottom: "0px",
+        marginTop: "2rem",
+        
+        // paddingBottom: "0px",
+        background: "#c2e59c" /* fallback for old browsers */,
+        background:
+          "-webkit-linear-gradient(to right, #64b3f4, #c2e59c)" /* Chrome 10-25, Safari 5.1-6 */,
+        background:
+          "linear-gradient(to right, #64b3f4, #c2e59c)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
       }}
       id="works"
     >

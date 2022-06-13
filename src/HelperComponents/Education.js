@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 export const Education = (props) => {
   const { data } = props;
   const [finalData, setFinalData] = useState([]);
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     if (data) {
+      // data?.sort((a, b) => {
+      //   return a.createdAt - b.createdAt;
+      // }) || []
+
       let newData = data.map((ele) => {
         return ele.data;
       });
@@ -48,7 +52,7 @@ export const Education = (props) => {
           maxWidth: "100%",
         }}
       >
-        {finalData?.map((e,i) => {
+        {finalData?.map((e, i) => {
           return (
             <Box
               sx={{
@@ -65,7 +69,7 @@ export const Education = (props) => {
                   // color : "black"
                 }}
               >
-                {`${i+1}. ${e?.name}`}
+                {`${i + 1}. ${e?.name}`}
               </div>
               <div style={{ fontSize: "1.3rem" }}>{e.courseName}</div>
               <div

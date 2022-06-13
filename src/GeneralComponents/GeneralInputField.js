@@ -42,10 +42,12 @@ export const GeneralInputField = (props) => {
       // console.log(conflict);
       setConflict(!conflict);
     }
-    if (!data) return;
-    let newData = data;
-    newData[`${storeValue}`] = data[storeValue];
-    setData(newData);
+    if (setData) {
+      if (!data) return;
+      let newData = data;
+      newData[`${storeValue}`] = data[storeValue];
+      setData(newData);
+    }
   }, [data, conflict, setConflict, setData, storeValue]);
 
   // console.log("In Input Field : ", data[storeValue], value);

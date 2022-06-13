@@ -1,0 +1,31 @@
+.projects {
+  padding: 2rem 12rem;
+}
+
+@media only screen and (max-width: 1030px) {
+  .projects {
+    padding: 2rem 10rem;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .projects {
+    padding: 2rem 4rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .projects {
+    padding: 2rem 4rem;
+    padding-left: 20rem;
+    width: 1000px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .projects {
+    padding: 2rem 4rem;
+    padding-left: 24rem;
+    width: 1000px;
+  }
+}

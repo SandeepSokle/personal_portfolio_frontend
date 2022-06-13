@@ -1,12 +1,19 @@
 import axios from "axios";
+import { saveUserDetails } from "../HandleFunctions/handleFunctions";
 import { actions } from "./getDataAction";
 const { getDataAction, loginUserAction, logoutUserAction, addSecretKeyAction } =
   actions;
+  import {
+    // loaderStartActionCreater,
+    loaderEndActionCreater,
+  } from "./Loader/LoaderActionCreator"
 
-const getData = async () => {
+  
+
+const getData = async (dispatch) => {
   try {
     const add = process.env.PORTFOLIO_LOCAL_API;
-    console.log(add);
+    // console.log(add);
     const response = await axios.get(
       "https://dynamic-portfolio-api.herokuapp.com/portfolio/get"
     );
@@ -28,7 +35,7 @@ const getData = async () => {
     }, {});
 
     // console.log("Data After reduce : ", data);
-
+    dispatch(loaderEndActionCreater())
     return data;
   } catch (err) {
     console.log(err);
@@ -38,7 +45,7 @@ const getData = async () => {
 export const getDataActionCreater = () => {
   return async (dispatch) => {
     try {
-      let data = await getData();
+      let data = await getData(dispatch);
       // console.log("In getDataActionCreater : ", data);
       dispatch(getDataAction(data));
     } catch (err) {
@@ -51,6 +58,7 @@ export const loginUserActionCreater = (data) => {
   return async (dispatch) => {
     try {
       // console.log("In loginUserActionCreater : ", data);
+      saveUserDetails({ data,dispatch });
       dispatch(loginUserAction(data));
     } catch (err) {
       console.log(err.message);

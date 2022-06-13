@@ -8,7 +8,9 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
+import { openSnackbar } from "../Redux/Snackbar/snackbarStore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,11 +28,16 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 // const db = getFirestore(firebaseApp);
 const storage = getStorage();
-console.log({ firebaseApp });
+// console.log({ firebaseApp });
 
 const auth = getAuth();
 
-export const createUserWithEmailPassword = async (email, password) => {
+export const createUserWithEmailPassword = async (
+  email,
+  name,
+  password,
+  dispatch
+) => {
   let user;
   try {
     let userCredential = await createUserWithEmailAndPassword(
@@ -39,20 +46,25 @@ export const createUserWithEmailPassword = async (email, password) => {
       password
     );
     user = userCredential.user;
-
     if (!user) {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(userCredential);
     } else {
+      await updateProfile(user, {
+        displayName: name,
+      });
+      dispatch(openSnackbar("User Successfully Signup", "success"));
       return user;
     }
   } catch (err) {
     console.log(err.message);
+    dispatch(openSnackbar(err.message, "error"));
   }
+  F;
 };
 
-export const loginWithEmailPassword = async (email, password) => {
+export const loginWithEmailPassword = async (email, password, dispatch) => {
   let user;
   try {
     let userCredential = await signInWithEmailAndPassword(
@@ -71,7 +83,8 @@ export const loginWithEmailPassword = async (email, password) => {
     }
   } catch (err) {
     console.log(err.message);
-    alert(err.message);
+    // alert(err.message);
+    dispatch(openSnackbar(err.message, "error"));
   }
 };
 

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { handleSave, handleUpdate } from "../HandleFunctions/handleFunctions";
 import { GeneralInputField } from "../GeneralComponents/GeneralInputField";
+import { openSnackbar } from "../Redux/Snackbar/snackbarStore";
 
 export const AdminExperience = (props) => {
   const { selectedTab } = props;
@@ -24,7 +25,7 @@ export const AdminExperience = (props) => {
     // console.log(state)
     return state?.data?.user;
   });
-  const secretData = useSelector((state) => {
+  const userSecret = useSelector((state) => {
     // console.log(state)
     return state?.data?.secret;
   });
@@ -48,14 +49,15 @@ export const AdminExperience = (props) => {
       data.experience === "" ||
       data.response === ""
     ) {
-      alert("You can not submit empty field::");
+          dispatch(openSnackbar("You can not submit empty field::", "error"));
+          // alert("You can not submit empty field::");
       return;
     }
-    console.log("Selected Data after rejection ::", selectedVal, data);
+    // console.log("Selected Data after rejection ::", selectedVal, data);
 
     if (isEdit) {
       console.info("Update Hit!!", selectedId);
-      handleUpdate({ id: selectedId, data, dispatch, userData, secretData });
+      handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
       console.log("Save Hit!!", selectedTab, selectedVal, data);
@@ -65,7 +67,7 @@ export const AdminExperience = (props) => {
         data,
         dispatch,
         userData,
-        secretData,
+        userSecret,
       });
     }
     setSelectedItem({});
