@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { Box, CircularProgress } from "@mui/material";
+import ProjectListForHeaderBtn from "./Components/ProjectListForHeaderBtn";
 function App() {
   const [isProgress, setIsProgress] = useState(false);
   const progressStatus = useSelector((state) => {
@@ -53,6 +54,9 @@ function App() {
           </Route>
           <Route path="/blogs">
             <Blogs />
+          </Route>
+          <Route path="/projects">
+            <ProjectListForHeaderBtn />
           </Route>
           <Route path="/login">
             <Login />

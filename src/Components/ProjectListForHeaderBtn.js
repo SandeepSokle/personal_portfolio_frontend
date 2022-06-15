@@ -4,9 +4,10 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
-import { Button, Typography } from "@mui/material";
+import { Button, ImageList, ImageListItem, Typography } from "@mui/material";
+import { loaderEndActionCreater } from "../Redux/Loader/LoaderActionCreator";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -32,17 +33,20 @@ const style = {
   margin: "1rem 5px",
 };
 
-export default function Blogs() {
+export default function ProjectListForHeaderBtn() {
   const [data, setData] = useState();
+  const dispatch = useDispatch();
 
   const blogData = useSelector((state) => {
-    // console.log(state.data.blog.blog);
-    return state.data.blog.blog;
+    // console.log(state.data.projects);
+    return state.data.projects;
   });
 
   useEffect(() => {
     getDataActionCreater();
-    if (blogData) setData(blogData);
+    dispatch(loaderEndActionCreater());
+    if (blogData)
+      setData([...blogData["complete"], ...blogData["in progress"]]);
   }, [blogData]);
 
   // console.log(data);
@@ -67,6 +71,7 @@ export default function Blogs() {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               <Button
                 variant="contained"
+                color={`${e.type === "complete" ? "success" : "warning"}`}
                 fullWidth
                 onClick={() => {
                   var url = document.createElement("a");
@@ -78,6 +83,32 @@ export default function Blogs() {
               >
                 {e.data.name}
               </Button>
+
+              <ImageListItem
+                key={e.name}
+                sx={{
+                  width: "100%",
+                  minHeight: "14rem!important",
+                  maxHeight: "16rem!important",
+                  p: 4,
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                cols={1}
+              >
+                <img
+                  src={`${e.data.file}`}
+                  srcSet={`${e.data.file}`}
+                  alt={e.data.name}
+                  loading="lazy"
+                  style={{
+                    width: "80%",
+                    height: "80%",
+                  }}
+                />
+              </ImageListItem>
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <div

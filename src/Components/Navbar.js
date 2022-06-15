@@ -159,7 +159,7 @@ export default function Navbar(props) {
         </Link>
         <Link
           activeClass="active"
-          to=""
+          to="resume"
           spy={true}
           smooth={true}
           position={"top"}

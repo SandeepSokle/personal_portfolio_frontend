@@ -5,11 +5,13 @@ import Navbar from "./Navbar";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BookIcon from "@mui/icons-material/Book";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CodeIcon from "@mui/icons-material/Code";
 import { GeneralButton } from "../GeneralComponents/GeneralButton";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { useDispatch, useSelector } from "react-redux";
 import "./css/Header.css";
+import { Link } from "react-router-dom";
 export default function Header() {
   const title = "Software Engineer";
   // const des = `I am a javaScript Programmer “Adjunct professor of creative writing at Columbia University, published author, former lifestyle editor at Esquire, the New York Times. I can teach you how to find, shape, pitch, and publish stories for web & print. `;
@@ -53,10 +55,10 @@ export default function Header() {
     <Box
       className="header"
       fullWidth
-      sx={{  height: "100vh", position: "relative" }}
+      sx={{ height: "100vh", position: "relative" }}
       style={{
         overflow: "hidden",
-       
+
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
@@ -83,7 +85,7 @@ export default function Header() {
       >
         {/* /////header */}
         <Box
-        className = "headerName"
+          className="headerName"
           style={{ textShadow: "0px 0px 6px black" }}
           // sx={{
           //   fontSize: "4.5rem",
@@ -98,8 +100,7 @@ export default function Header() {
           Sandeep Sokle
         </Box>
         <Box
-        className = "headerTitle"
-
+          className="headerTitle"
           style={{ textShadow: "0px 0px 18px black" }}
           // sx={{
           //   fontSize: "2.5rem",
@@ -133,7 +134,7 @@ export default function Header() {
         {/* </Box> */}
         {/* ///inkes Buttons */}
         <Box
-        className = "headerButtons"
+          className="headerButtons"
           // sx={{
           //   width: "65%",
           //   display: "flex",
@@ -148,8 +149,17 @@ export default function Header() {
             title={"Projects"}
             btnIcon={BookIcon}
             btnColor={"secondary"}
-            link={"https://primeprogrammingworld.blogspot.com/"}
+            // link={"https://primeprogrammingworld.blogspot.com/"}
+           
           />
+           <GeneralButton
+            title={"Blogs"}
+            btnIcon={MenuBookIcon}
+            btnColor={"warning"}
+            // link={"https://primeprogrammingworld.blogspot.com/"}
+           
+          />
+
           <GeneralButton
             title={"LinkedIn"}
             btnIcon={LinkedInIcon}
@@ -173,7 +183,7 @@ export default function Header() {
           <GeneralButton
             title={"Leet Code"}
             btnIcon={CodeIcon}
-            btnColor={"success"}
+            btnColor={"secondary"}
             link={links?.leetCodeName}
             onClick={(e) => {
               // e.preventDefault();
