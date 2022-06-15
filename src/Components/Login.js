@@ -20,8 +20,7 @@ import {
 } from "../firebase/firebase_config";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUserActionCreater } from "../Redux/getDataActionCreater";
-import { Redirect } from "react-router-dom";
-import { colorChannel } from "@mui/system";
+import { loaderEndActionCreater } from "../Redux/Loader/LoaderActionCreator";
 import GoogleIcon from "@mui/icons-material/Google";
 const theme = createTheme();
 
@@ -41,6 +40,7 @@ export default function Login() {
       //  return <Redirect to="/admin" />;
       history.push("/admin");
     }
+    dispatch(loaderEndActionCreater());
   }, [userData]);
 
   // console.log(userData)
@@ -50,11 +50,11 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
 
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      confirmPassword: data.get("confirmPassword"),
-    });
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    //   confirmPassword: data.get("confirmPassword"),
+    // });
 
     if (loginState === "signin") {
       let userDetail = await loginWithEmailPassword(
@@ -63,7 +63,7 @@ export default function Login() {
         dispatch
       );
       if (userDetail) {
-        console.log("user!!", userDetail);
+        // console.log("user!!", userDetail);
         setUser(userDetail);
         dispatch(loginUserActionCreater(userDetail));
         history.push("/admin");
@@ -77,7 +77,7 @@ export default function Login() {
           dispatch
         );
         if (userDetail) {
-          console.log("user!!", userDetail);
+          // console.log("user!!", userDetail);
           setUser(userDetail);
           dispatch(loginUserActionCreater(userDetail));
           history.push("/admin");
@@ -207,7 +207,7 @@ export default function Login() {
                   e.preventDefault();
                   let userDetail = await loginWithGoogle();
                   if (userDetail) {
-                    console.log("user!!", userDetail);
+                    // console.log("user!!", userDetail);
                     setUser(userDetail);
                     dispatch(loginUserActionCreater(userDetail));
                     history.push("/admin");

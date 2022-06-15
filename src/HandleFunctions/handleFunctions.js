@@ -253,25 +253,18 @@ export const fileUpload = async (props) => {
   }
 };
 
-export const checkCreds = async (props) => {
-  const { dispatch, userData, secretData, userSecret } = props;
-  //   const dispatch = useDispatch();
-  let secret = { userData, userSecret };
 
-  // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/checkCreds`,
+// export const getBlogList = async (props) =>{
+ 
+//   // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/getBlogs`,
+//   try {
+//     const response = await axios.get(
+//       `http://localhost:8080/` + `portfolio/getBlogs`,
+//     );
+//     // console.log(response.data);
 
-  try {
-    dispatch(loaderStartActionCreater());
-    const response = await axios.post(
-      `http://localhost:8080/` + `portfolio/checkCreds`,
-      { secret }
-    );
-    console.log(response.data);
-    // dispatch(openSnackbar("Details Updated Successfully", "success"));
-    return response.data;
-  } catch (err) {
-    console.log(err.response.data.message);
-    dispatch(loaderEndActionCreater());
-    dispatch(openSnackbar(err.response.data.message, "error"));
-  }
-};
+//     // dispatch(getDataActionCreater());
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }

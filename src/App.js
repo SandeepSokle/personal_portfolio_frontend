@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import Login from "./Components/Login";
 import { AdminPanel } from "./Components/AdminPanel";
+import  Blogs  from "./Components/Blogs";
 import MySnackbar from "./Components/Snackbar/Snackbar";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { Box, CircularProgress } from "@mui/material";
+import ProjectListForHeaderBtn from "./Components/ProjectListForHeaderBtn";
 function App() {
   const [isProgress, setIsProgress] = useState(false);
   const progressStatus = useSelector((state) => {
@@ -49,6 +51,12 @@ function App() {
         <Switch>
           <Route path="/admin">
             <AdminPanel />
+          </Route>
+          <Route path="/blogs">
+            <Blogs />
+          </Route>
+          <Route path="/projects">
+            <ProjectListForHeaderBtn />
           </Route>
           <Route path="/login">
             <Login />
