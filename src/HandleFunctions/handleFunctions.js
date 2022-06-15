@@ -193,6 +193,11 @@ export const fileUpload = async (props) => {
   // console.log(file.name)
 
   try {
+    const creds = await checkCreds({ userData, userSecret });
+    if (!creds) {
+      throw "Unautorized User!!";
+    }
+
     const storageRef = ref(getStorage(), "images/" + uuid() + "_" + file.name);
     let fileUrl = "";
     dispatch(loaderStartActionCreater());
@@ -250,21 +255,24 @@ export const fileUpload = async (props) => {
   } catch (err) {
     dispatch(loaderEndActionCreater());
     console.log(err);
+    dispatch(openSnackbar(err, "error"));
   }
 };
 
+export const checkCreds = async (props) => {
+  const { selectedTab, selectedVal, data, dispatch, userData, userSecret } =
+    props;
 
-// export const getBlogList = async (props) =>{
- 
-//   // `https://dynamic-portfolio-api.herokuapp.com/` + `portfolio/getBlogs`,
-//   try {
-//     const response = await axios.get(
-//       `http://localhost:8080/` + `portfolio/getBlogs`,
-//     );
-//     // console.log(response.data);
-
-//     // dispatch(getDataActionCreater());
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
+  try {
+    const response = await axios.post(
+      "https://dynamic-portfolio-api.herokuapp.com/" + "portfolio/checkCreds",
+      {
+        secret: { userData, userSecret },
+      }
+    );
+    return true;
+  } catch (err) {
+    console.log(err.response.data.message);
+    return false;
+  }
+};
