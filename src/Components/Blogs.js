@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import { Button, Typography } from "@mui/material";
+// import { callBlogsUpdates } from "../HandleFunctions/handleFunctions";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -44,6 +45,10 @@ export default function Blogs() {
     getDataActionCreater();
     if (blogData) setData(blogData);
   }, [blogData]);
+
+  // useEffect(() => {
+  //   callBlogsUpdates();
+  // }, []);
 
   // console.log(data);
 

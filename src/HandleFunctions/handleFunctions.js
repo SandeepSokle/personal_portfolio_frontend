@@ -1,10 +1,12 @@
 import axios, { Axios } from "axios";
+// const Puppeteer = require("puppeteer");
 import { getDataActionCreater } from "../Redux/getDataActionCreater";
 import {
   loaderEndActionCreater,
   loaderStartActionCreater,
 } from "../Redux/Loader/LoaderActionCreator";
 import { openSnackbar } from "../Redux/Snackbar/snackbarStore";
+
 const uuid = require("react-uuid");
 const {
   ref,
@@ -276,3 +278,62 @@ export const checkCreds = async (props) => {
     return false;
   }
 };
+
+// export const getblogList = async (props) => {
+//   let data;
+//   try {
+//     data = await axios.get(
+//       "https://dynamic-portfolio-api.herokuapp.com/portfolio/getBlogs"
+//     );
+//   } catch (err) {
+//     console.log(err);
+//   }
+//   return data;
+// };
+
+// export const callBlogsUpdates = async (props) => {
+//   let data;
+//   try {
+//     data = await getblogList();
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+//   const browser = await Puppeteer.launch({
+//     headless: false,
+//     slowMo: 250,
+//     executablePath: "/usr/bin/chromium-browser",
+//   });
+//   const page = await browser.newPage();
+//   await page.setViewport({ width: 1366, height: 768 });
+
+//   for (let i = 0; i < data.length; i++) {
+//     console.log(data[i]);
+//     await page.goto(data[i]?.link);
+//     await autoScroll(page);
+//   }
+//   await browser.close();
+// };
+
+// async function autoScroll(page) {
+//   await page.evaluate(async () => {
+//     await new Promise((resolve, reject) => {
+//       // for (let i = 0; i <= 10; i++) {
+//       var totalHeight = 0;
+//       var distance = Math.floor(Math.random() * 15 + 1);
+//       var timer = setInterval(() => {
+//         distance = Math.floor(Math.random() * 55 + 1);
+//         var scrollHeight = document.body.scrollHeight;
+//         console.log(distance);
+//         window.scrollBy(0, distance);
+//         totalHeight += distance;
+
+//         if (totalHeight >= scrollHeight) {
+//           clearInterval(timer);
+//           resolve();
+//         }
+//       }, Math.floor(Math.random() * 1000 + 1));
+//       // }
+//     });
+//   });
+//   return;
+// }

@@ -165,7 +165,10 @@ const ConfigInput = (props) => {
                 fontStyle: "none",
               }}
             >
-              info not available
+              {element.des ||
+                element.courseName ||
+                element.responsibility ||
+                "info not available"}
             </div>
           </Popover>
         </div>
