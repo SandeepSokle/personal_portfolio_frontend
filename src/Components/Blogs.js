@@ -61,17 +61,29 @@ export default function Blogs() {
         height: "100vh",
         display: "flex",
         alignItems: "flex-start",
-        justifyContent: "space-evenly",
+        justifyContent: "space-between",
         flexWrap: "wrap",
         overflow: "auto",
       }}
     >
       {data?.map((e) => {
         return (
-          <Box sx={style}>
+          <Box
+            sx={style}
+            onClick={() => {
+              var url = document.createElement("a");
+              url.href = e.data.link;
+              url.target = "_blank";
+              document.body.appendChild(url);
+              url.click();
+            }}
+          >
             <Typography id="modal-modal-title" variant="h6" component="h2">
               <Button
                 variant="contained"
+                sx={{
+                  textTransform: "capitalize",
+                }}
                 fullWidth
                 onClick={() => {
                   var url = document.createElement("a");
@@ -90,6 +102,9 @@ export default function Blogs() {
                   padding: "2=0px",
                   fontSize: "1.3rem",
                   fontWeight: "525",
+                  minHeight: "8rem",
+                  maxHeight: "10rem",
+                  overflow: "auto",
                 }}
               >
                 {e.data.des}

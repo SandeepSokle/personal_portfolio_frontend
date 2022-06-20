@@ -44,7 +44,7 @@ export const Education = (props) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
       <div

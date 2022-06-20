@@ -148,6 +148,7 @@ export const AdminResume = (props) => {
         }
         break;
       case "Works":
+        console.log(data);
         if (
           data.name === undefined ||
           data.startDate === undefined ||
@@ -318,7 +319,7 @@ export const AdminResume = (props) => {
                   }}
                   onBlur={(e) => {
                     e.target.type = "text";
-                    // setISUpdateHit(true);
+                    setISUpdateHit(true);
                     setStartDate(e.target.value);
                   }}
                   onChange={(e) => {
@@ -506,6 +507,7 @@ export const AdminResume = (props) => {
                     onBlur={(e) => {
                       e.target.type = "text";
                       // console.log("On blur", e.target.value, e.target.value);
+                      setISUpdateHit(true);
                       setStartDate(e.target.value);
                     }}
                     onChange={(e) => {

@@ -77,7 +77,7 @@ export const Achievements = (props) => {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  fontSize: "1.3rem",
+                  fontSize: "1.1rem",
                   justifyContent: "space-between",
                 }}
               >

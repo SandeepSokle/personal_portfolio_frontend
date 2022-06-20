@@ -261,7 +261,7 @@ export const Footer = () => {
                       <div
                         style={{
                           fontWeight: "bold",
-                          width: "30%",
+                          width: "25%",
                         }}
                       >
                         {" "}
@@ -270,7 +270,7 @@ export const Footer = () => {
                       <div
                         style={{
                           // fontWeight: "bold",
-                          width: "70%",
+                          width: "75%",
                         }}
                       >{` ${e.split(":")[1]}`}</div>
                     </li>

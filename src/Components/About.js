@@ -99,8 +99,7 @@ export const About = () => {
           }}
         >
           <div
-          className="aboutDetailsAbout"
-
+            className="aboutDetailsAbout"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -126,16 +125,19 @@ export const About = () => {
               {about}
             </p>
           </div>
-          <div
-          className="aboutDetailsContact"
-          style={{
+          <Box
+            className="footerContacts"
+            sx={{
               display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
+              flexDirection: "column",
+              margin: "1rem 0rem",
             }}
           >
-            <div>
+            <div
+              style={{
+                width: "100%",
+              }}
+            >
               <h1
                 style={{
                   color: "#2e7d32",
@@ -144,7 +146,9 @@ export const About = () => {
               >
                 Contact Details
               </h1>
-              <ul>
+              <div>
+                <ul>
+
                 {contactUs.map((e) => {
                   return (
                     <li
@@ -157,18 +161,26 @@ export const About = () => {
                       <div
                         style={{
                           fontWeight: "bold",
+                          width: "20%",
+                          // marginRight: "4px",
                         }}
                       >
                         {" "}
                         {`${e.split(":")[0]} :`}
                       </div>
-                      <div>{` ${e.split(":")[1]}`}</div>
+                      <div
+                        style={{
+                          // fontWeight: "bold",
+                          width: "80%",
+                        }}
+                      >{` ${e.split(":")[1]}`}</div>
                     </li>
                   );
                 })}
-              </ul>
+                </ul>
+              </div>
             </div>
-          </div>
+          </Box>
         </Box>
         <Box>
           {" "}

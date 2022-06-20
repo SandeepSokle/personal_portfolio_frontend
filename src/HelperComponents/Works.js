@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 // import { style } from "@mui/system";
 export const Works = (props) => {
-
   const { data } = props;
   const [finalData, setFinalData] = useState([]);
   // console.log(data);
@@ -49,7 +48,8 @@ export const Works = (props) => {
         "The client can use Tools only when permitted by the Host otherwise client can not annotate / only watching",
         "Tech Used : SOCKETIO, nodejs, ExpressJs, MongoDB, CANVAS, HTML, CSS, JAVASCRIPT",
       ],
-    },{
+    },
+    {
       projectName: "COLLABORATIVE TEACHING BOARD (MERN Stack)",
       startDate: "07/2018",
       endDate: "07/2021",
@@ -63,7 +63,8 @@ export const Works = (props) => {
         "The client can use Tools only when permitted by the Host otherwise client can not annotate / only watching",
         "Tech Used : SOCKETIO, nodejs, ExpressJs, MongoDB, CANVAS, HTML, CSS, JAVASCRIPT",
       ],
-    },{
+    },
+    {
       projectName: "COLLABORATIVE TEACHING BOARD (MERN Stack)",
       startDate: "07/2018",
       endDate: "07/2021",
@@ -77,7 +78,8 @@ export const Works = (props) => {
         "The client can use Tools only when permitted by the Host otherwise client can not annotate / only watching",
         "Tech Used : SOCKETIO, nodejs, ExpressJs, MongoDB, CANVAS, HTML, CSS, JAVASCRIPT",
       ],
-    },{
+    },
+    {
       projectName: "COLLABORATIVE TEACHING BOARD (MERN Stack)",
       startDate: "07/2018",
       endDate: "07/2021",
@@ -102,25 +104,30 @@ export const Works = (props) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
-     
       {/* //////data */}
       <div
         style={{
           maxWidth: "100%",
         }}
       >
-        {finalData?.map((e,i) => {
+        {finalData?.map((e, i) => {
           return (
             <div
               style={{
                 maxWidth: "100%",
               }}
             >
-              <div style={{ fontSize: "1.8rem", fontWeight: "bold" ,color:"#2e7d32"}}>
-                {`${i+1}. ${e?.name}`}
+              <div
+                style={{
+                  fontSize: "1.8rem",
+                  fontWeight: "bold",
+                  color: "#2e7d32",
+                }}
+              >
+                {`${i + 1}. ${e?.name}`}
               </div>
               <div
                 style={{
@@ -132,13 +139,13 @@ export const Works = (props) => {
                 }}
               >
                 <div>
-                  {e?.startDate} - {e?.endDate}
+                  {e?.startDate} - {e?.endDate || "Present"}
                 </div>
                 {/* <a href={e.link}>Live Demo</a> */}
               </div>
-              <div>
-                  {e?.responsibility}
-                </div>
+              <div style={{ fontSize: "1.3rem", margin: "2px 0px" }}>
+                {e?.responsibility}
+              </div>
               {/* <ul>
                 {e.des.map((e) => {
                   return <li style={{ textDecoration: "none",listStyleType: "square" }}>{e}</li>;

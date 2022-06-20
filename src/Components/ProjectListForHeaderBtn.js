@@ -46,7 +46,10 @@ export default function ProjectListForHeaderBtn() {
     getDataActionCreater();
     dispatch(loaderEndActionCreater());
     if (blogData)
-      setData([...blogData["complete"], ...blogData["in progress"]]);
+      setData([
+        ...(blogData["complete"]?.length > 0 ? blogData["complete"] : []),
+        ...(blogData["in progress"]?.length > 0 ? blogData["in progress"] : []),
+      ]);
   }, [blogData]);
 
   // console.log(data);
