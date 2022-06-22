@@ -12,8 +12,9 @@ const getData = async (dispatch) => {
   try {
     const add = process.env.PORTFOLIO_LOCAL_API;
     // console.log(add);
+    // "https://dynamic-portfolio-api.herokuapp.com/portfolio/get"
     const response = await axios.get(
-      "https://dynamic-portfolio-api.herokuapp.com/portfolio/get"
+      `https://dynamic-portfolio-api.herokuapp.com/portfolio/get`
     );
     // console.log("Data : ", response.data);
 

@@ -4,9 +4,15 @@ import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
 import { Popover, TextField } from "@mui/material";
-import { handleDelete } from "../HandleFunctions/handleFunctions";
+import {
+  handleDelete,
+  handleUpdate,
+  handleUpdateProjectStatus,
+} from "../HandleFunctions/handleFunctions";
 import { useDispatch, useSelector } from "react-redux";
-
+import DoneIcon from "@mui/icons-material/Done";
+import RuleIcon from "@mui/icons-material/Rule";
+import { getDataActionCreater } from "../Redux/getDataActionCreater";
 const ConfigInput = (props) => {
   const {
     setSelectedItem,
@@ -18,8 +24,10 @@ const ConfigInput = (props) => {
     setEditFile,
     setEditLink,
     setIsEdit,
+    selectedTab,
   } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
   // console.log(configType);
   // const [data, setData] = useState({});
   const dispatch = useDispatch();
@@ -62,23 +70,55 @@ const ConfigInput = (props) => {
     if (setIsEdit) setIsEdit(true);
   };
 
+  const secretData = useSelector((state) => {
+    // console.log(state)
+    return state?.data?.secret;
+  });
+
+  const userSecret = useSelector((state) => {
+    // console.log(state);
+    return state.data.secret;
+  });
+
+  const userData = useSelector((state) => {
+    // console.log(state);
+    return state.data.user;
+  });
+
+  const handleChangeStatus = () => {
+    let data = {
+      selectedVal,
+    };
+    console.log(selectedVal);
+    handleUpdateProjectStatus({
+      id: id,
+      data,
+      dispatch,
+      userData,
+      userSecret,
+    });
+    dispatch(getDataActionCreater());
+  };
+
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverOpen2 = (event) => {
+    setAnchorEl2(event.currentTarget);
   };
 
   const handlePopoverClose = () => {
     setAnchorEl(null);
   };
-  const open = Boolean(anchorEl);
 
-  const userData = useSelector((state) => {
-    // console.log(state)
-    return state?.data?.user;
-  });
-  const secretData = useSelector((state) => {
-    // console.log(state)
-    return state?.data?.secret;
-  });
+  const handlePopoverClose2 = () => {
+    setAnchorEl2(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const open2 = Boolean(anchorEl2);
+
   return (
     <div
       className="d-flex align-items-center"
@@ -87,10 +127,11 @@ const ConfigInput = (props) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly",
+        justifyContent: "space-between",
+        padding: "0px 10px",
       }}
     >
-      <div style={{ width: "70%" }}>
+      <div style={{ width: `${selectedTab ? "60%" : "70%"}` }}>
         <TextField
           fullWidth
           className="form-control"
@@ -105,11 +146,12 @@ const ConfigInput = (props) => {
       <div
         className="d-flex align-items-center "
         style={{
-          width: "30%",
+          width: `${selectedTab ? "35%" : "30%"}`,
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
+          padding: "0px 10px",
         }}
       >
         <div style={{ width: "30%" }} onClick={handleEdit}>
@@ -121,8 +163,8 @@ const ConfigInput = (props) => {
           style={{ width: "30%" }}
           onClick={() => {
             console.log(id, element);
-
             handleDelete({ id, dispatch, userData, secretData });
+            dispatch(getDataActionCreater());
           }}
         >
           {" "}
@@ -172,6 +214,53 @@ const ConfigInput = (props) => {
             </div>
           </Popover>
         </div>
+        {selectedTab ? (
+          <div
+            style={{ width: "30%" }}
+            onClick={handleChangeStatus}
+            onMouseEnter={handlePopoverOpen2}
+            onMouseLeave={handlePopoverClose2}
+          >
+            <IconButton aria-label="delete" size="large">
+              {selectedVal === "Complete" ? (
+                <RuleIcon style={feature} />
+              ) : (
+                <DoneIcon style={feature} />
+              )}
+            </IconButton>
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: "none",
+              }}
+              open={open2}
+              anchorEl={anchorEl2}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              onClose={handlePopoverClose}
+              disableRestoreFocus
+            >
+              <div
+                style={{
+                  padding: ".5rem",
+                  fontSize: "1.1rem",
+                  maxWidth: "20rem",
+                  fontStyle: "none",
+                }}
+              >
+                {selectedVal === "Complete" ? "Uncompleted" : "Completed"}
+              </div>
+            </Popover>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

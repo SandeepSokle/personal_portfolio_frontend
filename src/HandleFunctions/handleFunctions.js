@@ -72,6 +72,7 @@ export const handleDelete = async (props) => {
 export const handleUpdate = async (props) => {
   const { id, data, dispatch, userData, secretData, userSecret } = props;
   //   const dispatch = useDispatch();
+  console.log(data);
   let secret = { userData, secretData };
   console.log("Update Hit!!", props);
   // `http://localhost:8080/` + `portfolio/update/${id}`,
@@ -279,61 +280,27 @@ export const checkCreds = async (props) => {
   }
 };
 
-// export const getblogList = async (props) => {
-//   let data;
-//   try {
-//     data = await axios.get(
-//       "https://dynamic-portfolio-api.herokuapp.com/portfolio/getBlogs"
-//     );
-//   } catch (err) {
-//     console.log(err);
-//   }
-//   return data;
-// };
+export const handleUpdateProjectStatus = async (props) => {
+  const { id, data, dispatch, userData, secretData, userSecret } = props;
+  //   const dispatch = useDispatch();
+  console.log(data);
+  let secret = { userData, secretData };
+  console.log("Update Hit!!", props);
+  // `http://localhost:8080/` + `portfolio/updateProjectStatus/${id}`,
+  try {
+    dispatch(loaderStartActionCreater());
+    const response = await axios.put(
+      `https://dynamic-portfolio-api.herokuapp.com/` +
+        `portfolio/updateProjectStatus/${id}`,
+      { ...data, secret: { userData, userSecret } }
+    );
+    // console.log(response.data);
 
-// export const callBlogsUpdates = async (props) => {
-//   let data;
-//   try {
-//     data = await getblogList();
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-//   const browser = await Puppeteer.launch({
-//     headless: false,
-//     slowMo: 250,
-//     executablePath: "/usr/bin/chromium-browser",
-//   });
-//   const page = await browser.newPage();
-//   await page.setViewport({ width: 1366, height: 768 });
-
-//   for (let i = 0; i < data.length; i++) {
-//     console.log(data[i]);
-//     await page.goto(data[i]?.link);
-//     await autoScroll(page);
-//   }
-//   await browser.close();
-// };
-
-// async function autoScroll(page) {
-//   await page.evaluate(async () => {
-//     await new Promise((resolve, reject) => {
-//       // for (let i = 0; i <= 10; i++) {
-//       var totalHeight = 0;
-//       var distance = Math.floor(Math.random() * 15 + 1);
-//       var timer = setInterval(() => {
-//         distance = Math.floor(Math.random() * 55 + 1);
-//         var scrollHeight = document.body.scrollHeight;
-//         console.log(distance);
-//         window.scrollBy(0, distance);
-//         totalHeight += distance;
-
-//         if (totalHeight >= scrollHeight) {
-//           clearInterval(timer);
-//           resolve();
-//         }
-//       }, Math.floor(Math.random() * 1000 + 1));
-//       // }
-//     });
-//   });
-//   return;
-// }
+    dispatch(getDataActionCreater());
+    dispatch(openSnackbar("Details Updated Successfully", "success"));
+  } catch (err) {
+    console.log(err.response.data.message);
+    dispatch(loaderEndActionCreater());
+    dispatch(openSnackbar(err.response.data.message, "error"));
+  }
+};

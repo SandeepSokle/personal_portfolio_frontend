@@ -194,6 +194,7 @@ export const AdminProjects = (props) => {
             setSelectedItem={setSelectedItem}
             setSelectedID={setSelectedID}
             setIsEdit={setIsEdit}
+            selectedTab = {selectedTab}
           />
         ) : (
           <AdminResumeEducationData
@@ -204,6 +205,7 @@ export const AdminProjects = (props) => {
             setSelectedItem={setSelectedItem}
             setSelectedID={setSelectedID}
             setIsEdit={setIsEdit}
+            selectedTab = {selectedTab}
           />
         )}
 
