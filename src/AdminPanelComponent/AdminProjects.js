@@ -49,7 +49,7 @@ export const AdminProjects = (props) => {
   }, [selectedItem]);
 
   const handleSubmit = async (name) => {
-    console.log("Selected Data", selectedVal, data);
+    // console.log("Selected Data", selectedVal, data);
 
     if (
       data.name === undefined ||
@@ -71,7 +71,7 @@ export const AdminProjects = (props) => {
       handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
-      console.log("Save Hit!!", userData, userSecret);
+      // console.log("Save Hit!!", userData, userSecret);
       handleSave({
         selectedTab,
         selectedVal,
@@ -277,14 +277,14 @@ export const AdminProjects = (props) => {
                 // value = {data?.file}
                 // name={data?.file}
                 onChange={async (e) => {
-                  console.log("target", e.target.files);
+                  // console.log("target", e.target.files);
 
                   const creds = await checkCreds({
                     dispatch,
                     userData,
                     userSecret,
                   });
-                  console.log(creds);
+                  // console.log(creds);
                   if (creds) {
                     let fileUrl = await fileUpload({
                       file: e.target.files[0],

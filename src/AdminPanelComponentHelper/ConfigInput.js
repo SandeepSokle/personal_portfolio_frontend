@@ -89,7 +89,7 @@ const ConfigInput = (props) => {
     let data = {
       selectedVal,
     };
-    console.log(selectedVal);
+    // console.log(selectedVal);
     handleUpdateProjectStatus({
       id: id,
       data,
@@ -162,7 +162,7 @@ const ConfigInput = (props) => {
         <div
           style={{ width: "30%" }}
           onClick={() => {
-            console.log(id, element);
+            // console.log(id, element);
             handleDelete({ id, dispatch, userData, secretData });
             dispatch(getDataActionCreater());
           }}

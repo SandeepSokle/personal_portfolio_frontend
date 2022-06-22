@@ -13,7 +13,7 @@ export const mainListItems = (
     <ListItem
       button
       onClick={(e) => {
-        console.log(e.currentTarget.innerText);
+        // console.log(e.currentTarget.innerText);
       }}
     >
       <ListItemIcon>
@@ -22,7 +22,7 @@ export const mainListItems = (
       <ListItemText primary="About" />
     </ListItem>
     <ListItem button  onClick={(e) => {
-        console.log(e.currentTarget.innerText);
+        // console.log(e.currentTarget.innerText);
       }}>
       <ListItemIcon>
         <DocumentScannerIcon />
@@ -30,7 +30,7 @@ export const mainListItems = (
       <ListItemText primary="Resume" />
     </ListItem>
     <ListItem button  onClick={(e) => {
-        console.log(e.currentTarget.innerText);
+        // console.log(e.currentTarget.innerText);
       }}>
       <ListItemIcon>
         <ImportContactsIcon />
@@ -38,7 +38,7 @@ export const mainListItems = (
       <ListItemText primary="Projects" />
     </ListItem>
     <ListItem button  onClick={(e) => {
-        console.log(e.currentTarget.innerText);
+        // console.log(e.currentTarget.innerText);
       }}>
       <ListItemIcon>
         <WorkIcon />
@@ -46,7 +46,7 @@ export const mainListItems = (
       <ListItemText primary="Experience" />
     </ListItem>
     <ListItem button  onClick={(e) => {
-        console.log(e.currentTarget.innerText);
+        // console.log(e.currentTarget.innerText);
       }}>
       <ListItemIcon>
         <BookIcon />
@@ -54,7 +54,7 @@ export const mainListItems = (
       <ListItemText primary="Blog" />
     </ListItem>
     <ListItem button  onClick={(e) => {
-        console.log(e.currentTarget.innerText);
+        // console.log(e.currentTarget.innerText);
       }}>
       <ListItemIcon>
         <RecentActorsIcon />

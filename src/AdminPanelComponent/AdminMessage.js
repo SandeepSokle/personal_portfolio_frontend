@@ -35,7 +35,7 @@ export const AdminMessage = (props) => {
 
   React.useEffect(async () => {
     let resData = await getMessage({ userData, userSecret, dispatch });
-    console.log("resData", resData);
+    // console.log("resData", resData);
     setData(resData);
   }, [userData, userSecret]);
 
@@ -46,7 +46,7 @@ export const AdminMessage = (props) => {
       handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
-      console.log("Save Hit!!", selectedTab, selectedVal, data);
+      // console.log("Save Hit!!", selectedTab, selectedVal, data);
       handleSave({
         selectedTab,
         selectedVal,

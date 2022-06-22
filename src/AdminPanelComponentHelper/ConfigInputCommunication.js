@@ -41,7 +41,7 @@ const ConfigInputCommunication = (props) => {
   const handleOpen = () => setOpenModel(true);
   // const handleClose = () => setOpenModel(false);
 
-  console.log(openModel);
+  // console.log(openModel);
 
   const dispatch = useDispatch();
   const feature = {
@@ -70,7 +70,7 @@ const ConfigInputCommunication = (props) => {
   const handleDelete = async (data) => {
     deleteMessage(data);
     let resData = await getMessage({ userData, userSecret, dispatch });
-    console.log("resData", resData);
+    // console.log("resData", resData);
     setData(resData);
   };
 
@@ -110,7 +110,7 @@ const ConfigInputCommunication = (props) => {
         <div
           style={{ width: "30%" }}
           onClick={() => {
-            console.log(element?._id);
+            // console.log(element?._id);
             handleDelete({ id: element?._id, dispatch });
           }}
         >

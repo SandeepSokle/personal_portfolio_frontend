@@ -49,7 +49,7 @@ export const createUserWithEmailPassword = async (
     if (!user) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(userCredential);
+      // console.log(userCredential);
     } else {
       await updateProfile(user, {
         displayName: name,
@@ -120,7 +120,7 @@ export const loginWithGoogle = async () => {
     if (!user) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // console.log(errorMessage);
+      console.log(errorMessage);
     } else {
       return user;
     }

@@ -65,7 +65,7 @@ export const GeneralInputField = (props) => {
       return true;
     }
     if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       return true;
     } else {
       alert("Please enter only alphabets");

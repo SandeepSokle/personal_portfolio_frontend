@@ -19,7 +19,7 @@ export const handleSave = async (props) => {
   const { selectedTab, selectedVal, data, dispatch, userData, userSecret } =
     props;
   //   const dispatch = useDispatch();
-  console.log("Save Hit!!");
+  // console.log("Save Hit!!");
   // http://localhost:8080/
   // "http://localhost:8080/" + "portfolio/save",
   try {
@@ -34,11 +34,11 @@ export const handleSave = async (props) => {
         secret: { userData, userSecret },
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     dispatch(openSnackbar("Details Saved Successfully", "success"));
     dispatch(getDataActionCreater());
   } catch (err) {
-    console.log(err.response.data.message);
+    // console.log(err.response.data.message);
     dispatch(loaderEndActionCreater());
     dispatch(openSnackbar(err.response.data.message, "error"));
   }
@@ -47,7 +47,7 @@ export const handleSave = async (props) => {
 export const handleDelete = async (props) => {
   const { id, dispatch, userData, secretData } = props;
   //   const dispatch = useDispatch();
-  console.log("Delete Hit!!", id);
+  // console.log("Delete Hit!!", id);
   const secret = { userData, userSecret: secretData };
   // "http://localhost:8080/" + `portfolio/delete/${id}`,
   try {
@@ -58,12 +58,12 @@ export const handleDelete = async (props) => {
         secret,
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     dispatch(openSnackbar("Details Successfully Deleted", "success"));
 
     dispatch(getDataActionCreater());
   } catch (err) {
-    console.log(err.response.data.message);
+    // console.log(err.response.data.message);
     dispatch(loaderEndActionCreater());
     dispatch(openSnackbar(err.response.data.message, "error"));
   }
@@ -72,9 +72,9 @@ export const handleDelete = async (props) => {
 export const handleUpdate = async (props) => {
   const { id, data, dispatch, userData, secretData, userSecret } = props;
   //   const dispatch = useDispatch();
-  console.log(data);
+  // console.log(data);
   let secret = { userData, secretData };
-  console.log("Update Hit!!", props);
+  // console.log("Update Hit!!", props);
   // `http://localhost:8080/` + `portfolio/update/${id}`,
   try {
     dispatch(loaderStartActionCreater());
@@ -283,9 +283,9 @@ export const checkCreds = async (props) => {
 export const handleUpdateProjectStatus = async (props) => {
   const { id, data, dispatch, userData, secretData, userSecret } = props;
   //   const dispatch = useDispatch();
-  console.log(data);
+  // console.log(data);
   let secret = { userData, secretData };
-  console.log("Update Hit!!", props);
+  // console.log("Update Hit!!", props);
   // `http://localhost:8080/` + `portfolio/updateProjectStatus/${id}`,
   try {
     dispatch(loaderStartActionCreater());

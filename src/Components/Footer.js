@@ -59,7 +59,7 @@ export const Footer = () => {
   ];
 
   const handleSubmit = () => {
-    console.log("Enter In handle Submit!!");
+    // console.log("Enter In handle Submit!!");
     if (!data.name || data.name === "") {
       // console.log("Please enter your name!!", data.name);
       dispatch(openSnackbar("Please enter your name!!", "error"));

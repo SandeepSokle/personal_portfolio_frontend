@@ -33,7 +33,7 @@ const getData = async (dispatch) => {
       };
     }, {});
 
-    console.log("Data After reduce : ", data);
+    // console.log("Data After reduce : ", data);
     dispatch(loaderEndActionCreater());
     return data;
   } catch (err) {

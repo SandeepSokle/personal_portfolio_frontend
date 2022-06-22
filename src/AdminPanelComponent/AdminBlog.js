@@ -57,7 +57,7 @@ export const AdminBlog = (props) => {
       handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
-      console.log("Save Hit!!", selectedTab, selectedVal, data);
+      // console.log("Save Hit!!", selectedTab, selectedVal, data);
       handleSave({
         selectedTab,
         selectedVal,

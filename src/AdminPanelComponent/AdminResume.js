@@ -46,11 +46,11 @@ export const AdminResume = (props) => {
   });
 
   const userSecret = useSelector((state) => {
-    console.log(state.data);
+    // console.log(state.data);
     return state.data.secret;
   });
 
-  console.log(userSecret);
+  // console.log(userSecret);
 
   // React.useEffect(() => {
   //   dispatch(getDataActionCreater());
@@ -124,7 +124,7 @@ export const AdminResume = (props) => {
   ];
 
   const handleSubmit = async (name) => {
-    console.log("Selected Data", selectedVal, data);
+    // console.log("Selected Data", selectedVal, data);
 
     switch (selectedVal) {
       case "Education":
@@ -148,7 +148,7 @@ export const AdminResume = (props) => {
         }
         break;
       case "Works":
-        console.log(data);
+        // console.log(data);
         if (
           data.name === undefined ||
           data.startDate === undefined ||
@@ -201,7 +201,7 @@ export const AdminResume = (props) => {
       handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
-      console.log("Save Hit!!", selectedTab, selectedVal, data);
+      // console.log("Save Hit!!", selectedTab, selectedVal, data);
       handleSave({
         selectedTab,
         selectedVal,

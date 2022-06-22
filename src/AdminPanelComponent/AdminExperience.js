@@ -37,7 +37,7 @@ export const AdminExperience = (props) => {
 
   const handleSubmit = async (name) => {
     // console.log("Selected Data", name);
-    console.log("Selected Data", selectedVal, data);
+    // console.log("Selected Data", selectedVal, data);
 
     if (
       data.name === undefined ||
@@ -60,7 +60,7 @@ export const AdminExperience = (props) => {
       handleUpdate({ id: selectedId, data, dispatch, userData, userSecret });
       dispatch(getDataActionCreater());
     } else {
-      console.log("Save Hit!!", selectedTab, selectedVal, data);
+      // console.log("Save Hit!!", selectedTab, selectedVal, data);
       handleSave({
         selectedTab,
         selectedVal,

@@ -22,7 +22,7 @@ export const GeneralDatePicker = (props) => {
 
   const handleChange = (event) => {
     setValue(event);
-    console.log(event);
+    // console.log(event);
     if (setConflict) {
       // console.log(conflict);
       setConflict(!conflict);
@@ -81,7 +81,7 @@ export const GeneralDatePicker = (props) => {
         }}
         onBlur={(e) => {
           e.target.type = "text";
-          console.log("On blur", e.target.value, e.target.value);
+          // console.log("On blur", e.target.value, e.target.value);
           handleChange(e.target.value);
         }}
       />

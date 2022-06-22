@@ -187,7 +187,7 @@ export default function Navbar(props) {
             }}
             onClick={(e) => {
               e.preventDefault();
-              console.log("redirect");
+              // console.log("redirect");
               history.push("/blogs");
             }}
           />
