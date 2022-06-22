@@ -59,7 +59,7 @@ export default function ModelForMessage(props) {
           </Typography>
           <Typography
             id="modal-modal-description"
-            sx={{ mt: 2, display: "flex", flexDirection: "column" }}
+            sx={{ mt: 2, display: "flex", flexDirection: "column",lineBreak : "anywhere" }}
           >
             <div
               style={{

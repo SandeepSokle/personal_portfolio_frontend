@@ -3,12 +3,10 @@ import { saveUserDetails } from "../HandleFunctions/handleFunctions";
 import { actions } from "./getDataAction";
 const { getDataAction, loginUserAction, logoutUserAction, addSecretKeyAction } =
   actions;
-  import {
-    // loaderStartActionCreater,
-    loaderEndActionCreater,
-  } from "./Loader/LoaderActionCreator"
-
-  
+import {
+  // loaderStartActionCreater,
+  loaderEndActionCreater,
+} from "./Loader/LoaderActionCreator";
 
 const getData = async (dispatch) => {
   try {
@@ -35,7 +33,7 @@ const getData = async (dispatch) => {
     }, {});
 
     console.log("Data After reduce : ", data);
-    dispatch(loaderEndActionCreater())
+    dispatch(loaderEndActionCreater());
     return data;
   } catch (err) {
     console.log(err);
@@ -58,7 +56,7 @@ export const loginUserActionCreater = (data) => {
   return async (dispatch) => {
     try {
       // console.log("In loginUserActionCreater : ", data);
-      saveUserDetails({ data,dispatch });
+      saveUserDetails({ data, dispatch });
       dispatch(loginUserAction(data));
     } catch (err) {
       console.log(err.message);
