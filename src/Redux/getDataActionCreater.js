@@ -14,7 +14,7 @@ const getData = async (dispatch) => {
     // console.log(add);
     // "https://dynamic-portfolio-api.herokuapp.com/portfolio/get"
     const response = await axios.get(
-      `https://portfolio-fjll.onrender.com/portfolio/get`
+      `https://portfolio.webtechbharat.com/portfolio/get`
     );
     // console.log("Data : ", response.data);
 

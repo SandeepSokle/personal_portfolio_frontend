@@ -25,7 +25,7 @@ export const handleSave = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.post(
-      "https://portfolio-fjll.onrender.com/" + "portfolio/save",
+      "https://portfolio.webtechbharat.com/" + "portfolio/save",
       {
         data: data,
         id: "1234587678",
@@ -53,7 +53,7 @@ export const handleDelete = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.put(
-      "https://portfolio-fjll.onrender.com/" + `portfolio/delete/${id}`,
+      "https://portfolio.webtechbharat.com/" + `portfolio/delete/${id}`,
       {
         secret,
       }
@@ -79,7 +79,7 @@ export const handleUpdate = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.put(
-      `https://portfolio-fjll.onrender.com/` + `portfolio/update/${id}`,
+      `https://portfolio.webtechbharat.com/` + `portfolio/update/${id}`,
       { ...data, secret: { userData, userSecret } }
     );
     // console.log(response.data);
@@ -150,8 +150,7 @@ export const deleteMessage = async (props) => {
     dispatch(loaderStartActionCreater());
 
     const response = await axios.post(
-      `https://portfolio.webtechbharat.com/` +
-        `message/deleteMessage/${id}`
+      `https://portfolio.webtechbharat.com/` + `message/deleteMessage/${id}`
     );
     // console.log(response.data);
 
@@ -268,7 +267,7 @@ export const checkCreds = async (props) => {
 
   try {
     const response = await axios.post(
-      "https://portfolio-fjll.onrender.com/" + "portfolio/checkCreds",
+      "https://portfolio.webtechbharat.com/" + "portfolio/checkCreds",
       {
         secret: { userData, userSecret },
       }
@@ -290,7 +289,7 @@ export const handleUpdateProjectStatus = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.put(
-      `https://portfolio-fjll.onrender.com/` +
+      `https://portfolio.webtechbharat.com/` +
         `portfolio/updateProjectStatus/${id}`,
       { ...data, secret: { userData, userSecret } }
     );
