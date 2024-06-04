@@ -100,7 +100,7 @@ export const saveUserDetails = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.post(
-      `https://portfolio-fjll.onrender.com/` + `user/save`,
+      `https://portfolio.webtechbharat.com/` + `user/save`,
       {
         data,
       }
@@ -124,7 +124,7 @@ export const sendMessage = async (props) => {
     dispatch(loaderStartActionCreater());
 
     const response = await axios.post(
-      `https://portfolio-fjll.onrender.com/` + `message/sendMessage`,
+      `https://portfolio.webtechbharat.com/` + `message/sendMessage`,
       {
         data,
       }
@@ -150,7 +150,7 @@ export const deleteMessage = async (props) => {
     dispatch(loaderStartActionCreater());
 
     const response = await axios.post(
-      `https://portfolio-fjll.onrender.com/` +
+      `https://portfolio.webtechbharat.com/` +
         `message/deleteMessage/${id}`
     );
     // console.log(response.data);
@@ -173,7 +173,7 @@ export const getMessage = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.post(
-      `https://portfolio-fjll.onrender.com/` + `message/getMessage`,
+      `https://portfolio.webtechbharat.com/` + `message/getMessage`,
       {
         data,
       }
