@@ -25,7 +25,7 @@ export const handleSave = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.post(
-      "https://portfolio.webtechbharat.com/" + "portfolio/save",
+      "https://portfolio-fjll.onrender.com/" + "portfolio/save",
       {
         data: data,
         id: "1234587678",
@@ -53,7 +53,7 @@ export const handleDelete = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.put(
-      "https://portfolio.webtechbharat.com/" + `portfolio/delete/${id}`,
+      "https://portfolio-fjll.onrender.com/" + `portfolio/delete/${id}`,
       {
         secret,
       }
@@ -79,7 +79,7 @@ export const handleUpdate = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.put(
-      `https://portfolio.webtechbharat.com/` + `portfolio/update/${id}`,
+      `https://portfolio-fjll.onrender.com/` + `portfolio/update/${id}`,
       { ...data, secret: { userData, userSecret } }
     );
     // console.log(response.data);
@@ -100,7 +100,7 @@ export const saveUserDetails = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.post(
-      `https://portfolio.webtechbharat.com/` + `user/save`,
+      `https://portfolio-fjll.onrender.com/` + `user/save`,
       {
         data,
       }
@@ -124,7 +124,7 @@ export const sendMessage = async (props) => {
     dispatch(loaderStartActionCreater());
 
     const response = await axios.post(
-      `https://portfolio.webtechbharat.com/` + `message/sendMessage`,
+      `https://portfolio-fjll.onrender.com/` + `message/sendMessage`,
       {
         data,
       }
@@ -150,7 +150,7 @@ export const deleteMessage = async (props) => {
     dispatch(loaderStartActionCreater());
 
     const response = await axios.post(
-      `https://portfolio.webtechbharat.com/` + `message/deleteMessage/${id}`
+      `https://portfolio-fjll.onrender.com/` + `message/deleteMessage/${id}`
     );
     // console.log(response.data);
 
@@ -172,7 +172,7 @@ export const getMessage = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.post(
-      `https://portfolio.webtechbharat.com/` + `message/getMessage`,
+      `https://portfolio-fjll.onrender.com/` + `message/getMessage`,
       {
         data,
       }
@@ -267,7 +267,7 @@ export const checkCreds = async (props) => {
 
   try {
     const response = await axios.post(
-      "https://portfolio.webtechbharat.com/" + "portfolio/checkCreds",
+      "https://portfolio-fjll.onrender.com/" + "portfolio/checkCreds",
       {
         secret: { userData, userSecret },
       }
@@ -289,7 +289,7 @@ export const handleUpdateProjectStatus = async (props) => {
   try {
     dispatch(loaderStartActionCreater());
     const response = await axios.put(
-      `https://portfolio.webtechbharat.com/` +
+      `https://portfolio-fjll.onrender.com/` +
         `portfolio/updateProjectStatus/${id}`,
       { ...data, secret: { userData, userSecret } }
     );
